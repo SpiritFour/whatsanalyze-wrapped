@@ -1,23 +1,25 @@
 <template>
   <div class="bg-black w-full h-full min-h-screen text-gray-300">
-    <header class="sticky top-0 z-50 py-8 border-b-2 border-gray-900 bg-black">
+    <header
+      class="sticky top-0 z-50 py-8 border-b-2 border-gray-900 bg-black px-8"
+    >
       <div
         class="gid-container flex flex-col md:flex-row items-center justify-between"
       >
-        <Logo>
-          <Gradient
-            class="w-min h-min translate-y-2 absolute rounded-lg right-0 top-0 rotate-12 bg-gradient px-2 font-black"
-          >
-            wrapped
-          </Gradient>
-        </Logo>
+        <Logo />
 
-        <nav class="block items-center space-x-6 mt-8 md:mt-0">
+        <nav class="block items-center space-x-6 mt-8 md:mt-0 hidden md:block">
           <a
             class="hover:text-gray-300 transition-colors text-sm font-semibold"
             href="#privacy"
           >
             Privacy
+          </a>
+          <a
+            class="hover:text-gray-300 transition-colors text-sm font-semibold"
+            href="#guide"
+          >
+            How to export
           </a>
         </nav>
       </div>
@@ -58,7 +60,7 @@
                   <a
                     class="hover:underline"
                     href="https://github.com/SpiritFour/whatsanalyze-wrapped/"
-                    >Check it here on GitHub.</a
+                    >Check code on GitHub.</a
                   >
                 </div>
               </div>

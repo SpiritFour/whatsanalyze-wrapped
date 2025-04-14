@@ -2,13 +2,13 @@
   <div class="relative overflow-hidden text-black">
     <canvas ref="canvas" class="w-full h-full absolute inset-0"></canvas>
     <div class="relative z-10 w-full h-full">
-      <slot/>
+      <slot />
     </div>
   </div>
 </template>
 
 <script setup>
-import {onBeforeUnmount, onMounted, ref} from 'vue';
+import { onBeforeUnmount, onMounted, ref } from "vue";
 
 const canvas = ref(null);
 let animationId = null;
@@ -17,15 +17,15 @@ let animationId = null;
 function draw() {
   if (!canvas.value) return;
 
-  const ctx = canvas.value.getContext('2d');
-  const {width, height} = canvas.value;
+  const ctx = canvas.value.getContext("2d");
+  const { width, height } = canvas.value;
 
   // Time-based angle for a shift effect
   const time = performance.now() * 0.001;
 
   // Center moves around in a circular pattern
-  let centerX = width / 2 + Math.sin(time) * width / 2;
-  let centerY = height / 2 + Math.cos(time * 0.8) * height / 2;
+  let centerX = width / 2 + (Math.sin(time) * width) / 2;
+  let centerY = height / 2 + (Math.cos(time * 0.8) * height) / 2;
 
   // Create a large radial gradient that covers the canvas
   centerX = centerX > width ? width : centerX;
@@ -35,19 +35,19 @@ function draw() {
   centerY = centerY < 0 ? 0 : centerY;
 
   const gradient = ctx.createRadialGradient(
-      centerX,
-      centerY,
-      0,
-      width / 2,
-      height / 2,
-      Math.max(width, height)
+    centerX,
+    centerY,
+    0,
+    width / 2,
+    height / 2,
+    Math.max(width, height),
   );
 
   // Add color stops for your gradient
-  gradient.addColorStop(0, 'rgb(255, 150, 0)');
-  gradient.addColorStop(0.33, 'rgb(255,0,98)');
-  gradient.addColorStop(0.66, 'rgb(100, 0, 255)');
-  gradient.addColorStop(1, 'rgb(0,196,255)');
+  gradient.addColorStop(0, "rgb(31,166,15)");
+  gradient.addColorStop(0.33, "rgb(75,255,3)");
+  gradient.addColorStop(0.66, "rgb(55,255,0)");
+  gradient.addColorStop(1, "rgb(238,255,0)");
 
   // Fill the canvas
   ctx.fillStyle = gradient;
@@ -69,12 +69,12 @@ function resizeCanvas() {
 
 onMounted(() => {
   resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
+  window.addEventListener("resize", resizeCanvas);
   animate();
 });
 
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', resizeCanvas);
+  window.removeEventListener("resize", resizeCanvas);
   if (animationId) cancelAnimationFrame(animationId);
 });
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center justify-center w-full relative">
     <label
-      class="flex flex-col items-center justify-center w-full h-64 rounded-lg cursor-pointer hover:bg-gray-900 bg-gray-950 border-2 border-dashed hover:border-solid border-white hover:border-green-500 hover:text-green-600"
+      class="bg-whatsapp flex flex-col items-center justify-center w-full h-64 rounded-lg cursor-pointer hover:bg-gray-900 bg-gray-950 border-2 border-dashed hover:border-solid border-white hover:border-green-500 hover:text-green-600 p-2 text-center"
       for="dropzone-file"
     >
       <div class="flex flex-col items-center justify-center pt-5 pb-6">

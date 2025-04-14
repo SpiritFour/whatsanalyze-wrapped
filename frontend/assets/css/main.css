@@ -3,7 +3,15 @@
 @tailwind utilities;
 
 
+.bg-whatsapp {
+    background: url('/backgrounds/light.png') repeat;
+}
+
 .bg-gradient {
+    @apply bg-gradient-to-r from-lime-600 via-emerald-400 to-green-500
+}
+
+.bg-gradient-red {
     @apply bg-gradient-to-r from-purple-600 via-pink-500 via-red-500 to-yellow-500
 }
 
