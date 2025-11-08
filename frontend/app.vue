@@ -100,8 +100,9 @@ const { setLocale } = useI18n();
 
 onMounted(() => {
   const savedLocale = localStorage.getItem('locale');
-  if (savedLocale) {
-    setLocale(savedLocale);
+  const validLocales: string[] = ['en', 'de', 'es', 'fr', 'pt', 'it'];
+  if (savedLocale && validLocales.includes(savedLocale)) {
+    setLocale(savedLocale as 'en' | 'de' | 'es' | 'fr' | 'pt' | 'it');
   }
 });
 </script>
