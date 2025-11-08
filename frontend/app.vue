@@ -13,13 +13,16 @@
             class="hover:text-gray-300 transition-colors text-sm font-semibold"
             href="#privacy"
           >
-            Privacy
+            {{ $t("nav.privacy") }}
           </a>
           <a
             class="hover:text-gray-300 transition-colors text-sm font-semibold"
             href="#guide"
           >
-            How to export
+            {{ $t("nav.exportGuide") }}
+          </a>
+          <a>
+          <LanguageSwitcher />
           </a>
         </nav>
       </div>
@@ -37,8 +40,8 @@
           <div id="privacy" class="p-8">
             <div class="w-max mb-4">
               <div class="flex items-center justify-start gap-8">
-                <h2 class="text-lg font-semibold">Privacy First</h2>
-                <div>No data is sent to any server.</div>
+                <h2 class="text-lg font-semibold">{{ $t("footer.privacyFirst") }}</h2>
+                <div>{{ $t("common.loading") !== "Loading..." ? $t("upload.noServerUpload") : "No data is sent to any server." }}</div>
               </div>
 
               <hr class="border-gray-900 border-t-2 w-full" />
@@ -55,7 +58,7 @@
           <div id="code" class="p-8">
             <div class="w-max mb-4">
               <div class="flex items-center justify-start gap-8">
-                <h2 class="text-lg font-semibold">Open Source</h2>
+                <h2 class="text-lg font-semibold">{{ $t("footer.openSource") }}</h2>
                 <div>
                   <a
                     class="hover:underline"
@@ -76,11 +79,10 @@
             </div>
           </div>
         </div>
-        <div class="text-xs mt-12">Made with ❤ by friends in Munich️</div>
+        <div class="text-xs mt-12">{{ $t("footer.madeBy") }}</div>
 
         <p class="text-xs text-center md:text-right">
-          &copy; {{ new Date().getFullYear() }} WhatsAnalyze. All rights
-          reserved.
+          &copy; {{ new Date().getFullYear() }} WhatsAnalyze. {{ $t("footer.copyright").split(". All rights reserved.")[1] ? "All rights reserved." : "" }}
         </p>
       </div>
     </footer>
@@ -89,4 +91,17 @@
 
 <style scoped></style>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { useI18n } from 'vue-i18n';
+import { onMounted } from 'vue';
+import LanguageSwitcher from "./components/LanguageSwitcher.vue";
+
+const { setLocale } = useI18n();
+
+onMounted(() => {
+  const savedLocale = localStorage.getItem('locale');
+  if (savedLocale) {
+    setLocale(savedLocale);
+  }
+});
+</script>
