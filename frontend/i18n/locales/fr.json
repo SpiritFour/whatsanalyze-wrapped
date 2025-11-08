@@ -1,0 +1,116 @@
+{
+  "common": {
+    "loading": "Chargement...",
+    "error": "Erreur",
+    "success": "Succès",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "save": "Enregistrer",
+    "upload": "Télécharger",
+    "download": "Télécharger",
+    "export": "Exporter",
+    "share": "Partager",
+    "yes": "Oui",
+    "no": "Non",
+    "or": "ou"
+  },
+  "nav": {
+    "privacy": "Confidentialité",
+    "exportGuide": "Comment exporter",
+    "appTitle": "WhatsApp Wrapped"
+  },
+  "footer": {
+    "privacyFirst": "Confidentialité d'abord",
+    "openSource": "Source ouverte",
+    "madeBy": "Fait avec ❤ par des amis à Munich",
+    "copyright": "© 2024 WhatsApp Wrapped. Tous droits réservés."
+  },
+  "home": {
+    "hero": {
+      "title": "Wrapped - mais pour WhatsApp",
+      "subtitle": "L'histoire de vos relations, racontée à travers vos données de chat WhatsApp"
+    },
+    "sections": {
+      "whatIs": "Qu'est-ce que WhatsApp Wrapped?",
+      "whatToExpect": "À quoi s'attendre?",
+      "privacyFirst": "Confidentialité d'abord"
+    },
+    "features": [
+      {
+        "title": "Informations sur les messages",
+        "description": "Obtenez des statistiques détaillées sur vos modèles de chat et vos habitudes de messagerie"
+      },
+      {
+        "title": "Partage chiffré",
+        "description": "Partagez vos résultats en toute sécurité sans stocker de données sur aucun serveur"
+      },
+      {
+        "title": "Télécharger les résultats",
+        "description": "Exportez votre rapport enveloppé personnalisé sous forme d'image ou de PDF"
+      }
+    ],
+    "explanations": [
+      {
+        "title": "Informations sur les messages",
+        "description": "Analysez votre fréquence de messagerie, vos heures de pointe et vos modèles de communication"
+      },
+      {
+        "title": "Partage chiffré",
+        "description": "Vos données sont chiffrées de bout en bout. Partagez vos résultats sans préoccupations concernant la confidentialité"
+      },
+      {
+        "title": "Télécharger les résultats",
+        "description": "Obtenez votre rapport personnalisé dans plusieurs formats pour un partage facile"
+      }
+    ]
+  },
+  "upload": {
+    "dragDrop": "Cliquez pour télécharger ou glissez-déposez votre export WhatsApp.",
+    "noServerUpload": "Aucune donnée n'est envoyée à aucun serveur. Traitement uniquement sur votre appareil.",
+    "fileFormats": "TXT ou ZIP",
+    "loading": "Chargement...",
+    "processingYourData": "Traitement de vos données...",
+    "selectChatFile": "Sélectionnez votre fichier de chat WhatsApp"
+  },
+  "exportGuide": {
+    "title": "Comment exporter votre chat WhatsApp?",
+    "ios": "iOS",
+    "android": "Android",
+    "iosSteps": [
+      "Ouvrez WhatsApp et accédez au chat que vous souhaitez exporter",
+      "Appuyez sur le nom du chat en haut",
+      "Faites défiler vers le bas et appuyez sur \"Exporter le chat\"",
+      "Choisissez \"Sans média\" ou \"Avec média\"",
+      "Sélectionnez comment vous souhaitez partager le fichier (E-mail, iCloud Drive, etc.)",
+      "Sélectionnez votre fichier et suivez les invites pour exporter",
+      "Partagez le fichier .txt exporté avec WhatsApp Wrapped"
+    ],
+    "androidSteps": [
+      "Ouvrez WhatsApp et appuyez longuement sur le chat que vous souhaitez exporter",
+      "Appuyez sur l'icône du menu à trois points",
+      "Sélectionnez \"Plus\" > \"Exporter le chat\"",
+      "Choisissez \"Sans média\" ou \"Avec média\"",
+      "Sélectionnez comment vous souhaitez partager le fichier",
+      "Partagez le fichier .txt exporté avec WhatsApp Wrapped"
+    ],
+    "coming_soon": "Guide Android à venir bientôt"
+  },
+  "results": {
+    "mostEmojis": "Le plus d'emojis",
+    "mostEmojisInOne": "Le plus d'emojis dans un message",
+    "messageCount": "Messages totaux",
+    "chatPartners": "Partenaires de chat",
+    "averageMessageLength": "Longueur moyenne des messages",
+    "longestStreak": "Plus long série",
+    "mostActiveTime": "Heure la plus active",
+    "leastActiveTime": "Heure la moins active",
+    "averageMessagesPerDay": "Messages moyens par jour",
+    "topWords": "Mots principaux",
+    "topEmojis": "Emojis principaux",
+    "wordFrequency": "Fréquence des mots",
+    "emojiFrequency": "Fréquence des emojis",
+    "messageTimeline": "Chronologie des messages",
+    "activityByDay": "Activité par jour",
+    "activityByHour": "Activité par heure"
+  }
+}

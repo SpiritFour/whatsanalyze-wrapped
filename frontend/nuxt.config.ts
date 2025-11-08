@@ -64,8 +64,15 @@ export default defineNuxtConfig({
         code: "pt",
         iso: "pt-PT",
       },
+      {
+        code: "it",
+        iso: "it-IT",
+      },
     ],
     defaultLocale: "en",
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
   },
 
   runtimeConfig: {

@@ -1,0 +1,116 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "close": "Close",
+    "save": "Save",
+    "upload": "Upload",
+    "download": "Download",
+    "export": "Export",
+    "share": "Share",
+    "yes": "Yes",
+    "no": "No",
+    "or": "or"
+  },
+  "nav": {
+    "privacy": "Privacy",
+    "exportGuide": "How to export",
+    "appTitle": "WhatsApp Wrapped"
+  },
+  "footer": {
+    "privacyFirst": "Privacy First",
+    "openSource": "Open Source",
+    "madeBy": "Made with ❤ by friends in Munich",
+    "copyright": "© 2024 WhatsApp Wrapped. All rights reserved."
+  },
+  "home": {
+    "hero": {
+      "title": "Wrapped - but for WhatsApp",
+      "subtitle": "The story of your relationships, told through your WhatsApp chat data"
+    },
+    "sections": {
+      "whatIs": "What is WhatsApp Wrapped?",
+      "whatToExpect": "What to expect?",
+      "privacyFirst": "Privacy first"
+    },
+    "features": [
+      {
+        "title": "Message Insights",
+        "description": "Get detailed statistics about your chat patterns and messaging habits"
+      },
+      {
+        "title": "Encrypted Sharing",
+        "description": "Share your results securely without storing data on any server"
+      },
+      {
+        "title": "Download Results",
+        "description": "Export your personalized wrapped report as an image or PDF"
+      }
+    ],
+    "explanations": [
+      {
+        "title": "Message Insights",
+        "description": "Analyze your messaging frequency, peak times, and communication patterns"
+      },
+      {
+        "title": "Encrypted Sharing",
+        "description": "Your data is encrypted end-to-end. Share your wrapped results without privacy concerns"
+      },
+      {
+        "title": "Download Results",
+        "description": "Get your personalized wrapped report in multiple formats for easy sharing"
+      }
+    ]
+  },
+  "upload": {
+    "dragDrop": "Click to upload or drag and drop your WhatsApp export.",
+    "noServerUpload": "No data is sent to any server. Processing only on your device.",
+    "fileFormats": "TXT or ZIP",
+    "loading": "Loading...",
+    "processingYourData": "Processing your data...",
+    "selectChatFile": "Select your WhatsApp chat file"
+  },
+  "exportGuide": {
+    "title": "How to export your WhatsApp chat?",
+    "ios": "iOS",
+    "android": "Android",
+    "iosSteps": [
+      "Open WhatsApp and go to the chat you want to export",
+      "Tap on the chat name at the top",
+      "Scroll down and tap \"Export Chat\"",
+      "Choose \"Without Media\" or \"Including Media\"",
+      "Select how you want to share the file (Email, iCloud Drive, etc.)",
+      "Select your file and follow the prompts to export",
+      "Share the exported .txt file with WhatsApp Wrapped"
+    ],
+    "androidSteps": [
+      "Open WhatsApp and long-press on the chat you want to export",
+      "Tap the three-dot menu icon",
+      "Select \"More\" > \"Export Chat\"",
+      "Choose \"Without Media\" or \"Including Media\"",
+      "Select how you want to share the file",
+      "Share the exported .txt file with WhatsApp Wrapped"
+    ],
+    "coming_soon": "Android guide coming soon"
+  },
+  "results": {
+    "mostEmojis": "Most Emojis",
+    "mostEmojisInOne": "Most emoji's in one message",
+    "messageCount": "Total Messages",
+    "chatPartners": "Chat Partners",
+    "averageMessageLength": "Average Message Length",
+    "longestStreak": "Longest Streak",
+    "mostActiveTime": "Most Active Time",
+    "leastActiveTime": "Least Active Time",
+    "averageMessagesPerDay": "Average Messages Per Day",
+    "topWords": "Top Words",
+    "topEmojis": "Top Emojis",
+    "wordFrequency": "Word Frequency",
+    "emojiFrequency": "Emoji Frequency",
+    "messageTimeline": "Message Timeline",
+    "activityByDay": "Activity by Day",
+    "activityByHour": "Activity by Hour"
+  }
+}
