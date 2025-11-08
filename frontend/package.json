@@ -12,6 +12,7 @@
     "nuxi": "nuxi"
   },
   "dependencies": {
+    "@anthropic-ai/claude-code": "^2.0.36",
     "@firebase/app-types": "^0.9.3",
     "@firebase/firestore": "^4.7.10",
     "@nuxt/content": "2.13.4",

@@ -12,9 +12,11 @@
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
 import { ref, watch } from 'vue';
 
-const { locale } = useI18n();
+const { locale, localeProperties } = useI18n();
+const router = useRouter();
 const selectedLocale = ref(locale.value);
 
 const availableLocales = [
@@ -57,7 +59,8 @@ const availableLocales = [
 ];
 
 watch(selectedLocale, (newLocale) => {
-  locale.value = newLocale;
-  localStorage.setItem('locale', newLocale);
+  // Use switchLocalePath from i18n if available, otherwise use router
+  const localePath = `/${newLocale}${router.currentRoute.value.path.replace(/^\/[a-z]{2}/, '')}`;
+  router.push(localePath);
 });
 </script>

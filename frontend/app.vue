@@ -92,17 +92,5 @@
 <style scoped></style>
 
 <script lang="ts" setup>
-import { useI18n } from 'vue-i18n';
-import { onMounted } from 'vue';
 import LanguageSwitcher from "./components/LanguageSwitcher.vue";
-
-const { setLocale } = useI18n();
-
-onMounted(() => {
-  const savedLocale = localStorage.getItem('locale');
-  const validLocales: string[] = ['en', 'de', 'es', 'fr', 'pt', 'it'];
-  if (savedLocale && validLocales.includes(savedLocale)) {
-    setLocale(savedLocale as 'en' | 'de' | 'es' | 'fr' | 'pt' | 'it');
-  }
-});
 </script>

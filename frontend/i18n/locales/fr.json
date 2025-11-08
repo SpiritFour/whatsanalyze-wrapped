@@ -111,6 +111,22 @@
     "emojiFrequency": "Fréquence des emojis",
     "messageTimeline": "Chronologie des messages",
     "activityByDay": "Activité par jour",
-    "activityByHour": "Activité par heure"
+    "activityByHour": "Activité par heure",
+    "mostActiveWeek": "Semaine la plus active",
+    "mostActiveMonth": "Mois le plus actif",
+    "mostActiveYear": "Année la plus active",
+    "firstMessage": "Premier message",
+    "lastMessage": "Dernier message",
+    "daysActive": "Jours actifs",
+    "totalWords": "Mots totaux",
+    "averageWordsPerMessage": "Mots moyens par message",
+    "longestMessage": "Message le plus long",
+    "shortestMessage": "Message le plus court",
+    "mostCommonEmoji": "Emoji le plus courant",
+    "busiesHour": "Heure la plus chargée",
+    "quietestHour": "Heure la plus calme",
+    "busiesDay": "Jour le plus chargé",
+    "quietestDay": "Jour le plus calme",
+    "messageFrequency": "Fréquence des messages"
   }
 }

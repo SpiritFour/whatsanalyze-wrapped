@@ -52,7 +52,7 @@
       <template v-slot:1>
         <div>
           <h2>
-            <strong> Most Emojies </strong>
+            <strong> {{ $t("results.mostEmojis") }} </strong>
           </h2>
           <div class="flex">
             <div
@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="text-2xl font-bold text-green-600 mt-2">
-                  Most emoji's in one message
+                  {{ $t("results.mostEmojisInOne") }}
                 </div>
 
                 <div class="chat-bubble mt-8">

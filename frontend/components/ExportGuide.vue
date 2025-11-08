@@ -2,7 +2,7 @@
   <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
     <div>
       <h2 class="text-3xl md:text-4xl font-bold mb-4">
-        How to export your <i>WhatsApp</i> chat?
+        {{ $t("exportGuide.title").split("WhatsApp")[0] }}<i>WhatsApp</i>{{ $t("exportGuide.title").split("WhatsApp")[1] }}
       </h2>
       <p class="mb-4">
         In depth guide to export your WhatsApp Chat data from your Android or
@@ -17,7 +17,7 @@
           class="inline-block mt-4 bg-black px-5 py-2 rounded-full rounded-r-none font-semibold hover:bg-green-800 transition-colors"
           @click="changeSystemTo('iOS')"
         >
-          iOS
+          {{ $t("exportGuide.ios") }}
         </button>
         <button
           :class="{
@@ -26,7 +26,7 @@
           class="inline-block mt-4 bg-black px-5 py-2 rounded-full rounded-l-none font-semibold hover:bg-green-800 transition-colors"
           @click="changeSystemTo('Android')"
         >
-          Android
+          {{ $t("exportGuide.android") }}
         </button>
       </div>
 
@@ -116,49 +116,28 @@ export default {
     activeInstructions() {
       return this.instructions[this.selectedSystem][this.selectedStep];
     },
+    instructions() {
+      // iOS: 7 steps, Android: 6 steps
+      const iosSteps = Array.from({ length: 7 }, (_, idx) => ({
+        text: this.$t(`exportGuide.iosSteps.${idx}`) as string,
+        img: `/img/instructions/iOS/Frame${idx + 1}.png`,
+      }));
+
+      const androidSteps = Array.from({ length: 6 }, (_, idx) => ({
+        text: this.$t(`exportGuide.androidSteps.${idx}`) as string,
+        img: `/img/instructions/Android/${idx + 1}.png`,
+      }));
+
+      return {
+        iOS: iosSteps,
+        Android: androidSteps,
+      };
+    },
   },
   data() {
     return {
       selectedSystem: "iOS" as "iOS" | "Android",
       selectedStep: 0,
-      instructions: {
-        iOS: [
-          {
-            text: "Open WhatsApp and the chat you would like to export",
-            img: "/img/instructions/iOS/Frame1.png",
-          },
-          {
-            text: "Click at the top tap on the name of the chat (next to the image).",
-            img: "/img/instructions/iOS/Frame2.png",
-          },
-          {
-            text: "In chat info, scroll all the way to the bottom.",
-            img: "/img/instructions/iOS/Frame3.png",
-          },
-          {
-            text: "Tap on Export Chat. Choose Without Media.",
-            img: "/img/instructions/iOS/Frame4.png",
-          },
-          {
-            text: "Tap on Export Chat. Choose Without Media.",
-            img: "/img/instructions/iOS/Frame5.png",
-          },
-          {
-            text: " Tap on Save to Files to save it on your iPhone.",
-            img: "/img/instructions/iOS/Frame6.png",
-          },
-          {
-            text: "Select your exported .zip to be analyzed.",
-            img: "/img/instructions/iOS/Frame7.png",
-          },
-        ],
-        Android: [
-          {
-            text: "TODO",
-            img: "/img/instructions/Android/1.png",
-          },
-        ],
-      },
     };
   },
 };

@@ -22,12 +22,12 @@
         </svg>
 
         <p class="text-gray-100">
-          Click to upload or drag and drop your WhatsApp export.
+          {{ $t("upload.dragDrop") }}
         </p>
         <p class="text-xs text-gray-400 my-2">
-          No data is sent to any server. Processing only on your device.
+          {{ $t("upload.noServerUpload") }}
         </p>
-        <p class="text-xs text-gray-400">TXT or ZIP</p>
+        <p class="text-xs text-gray-400">{{ $t("upload.fileFormats") }}</p>
       </div>
       <input
         id="dropzone-file"
@@ -45,7 +45,7 @@
   </div>
 
   <div v-if="isLoading" class="bg-blue-500">
-    <pre>Loading...</pre>
+    <pre>{{ $t("upload.loading") }}</pre>
   </div>
 </template>
 
