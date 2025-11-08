@@ -35,7 +35,6 @@
 
   <StoryCarousel :duration="4000">
     <Story1 :data="data" />
-    <Story2 />
   </StoryCarousel>
 </template>
 

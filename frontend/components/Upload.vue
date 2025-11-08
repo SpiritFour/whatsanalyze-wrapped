@@ -64,7 +64,7 @@ const handleFile = async (e: Event): Promise<void> => {
 
   statsStore.$reset();
   isLoading.value = true;
-  result.value = (await sendFile(file)) ?? null;
+  result.value = (await sendFile(file)) ?? undefined;
 
   isLoading.value = false;
 

@@ -1,4 +1,3 @@
-<!-- StoryCarousel.vue -->
 <template>
   <div class="flex justify-center m-8">
     <div

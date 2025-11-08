@@ -1,10 +1,32 @@
 <template>
-  <StoryContainer class="bg-green-500">
-    <h2 class="text-2xl">HALLOO</h2>
+  <StoryContainer
+    v-if="result"
+    class="bg-gradient-to-r from-red-500 via-orange-400 to-yellow-300 flex flex-col gap-2 relative"
+  >
+    <EmojiChaos
+      :count="40"
+      :emojis="result.getMostUsedEmojis.globalTop5Emojis.map((m) => m.emoji)"
+    />
 
-    {{ props.data }}
+    <h2 class="text-5xl font-bold">You really love us ❤️</h2>
+
+    <emoji-podium :top-three-emojies="topThreeEmojies"></emoji-podium>
+
+    <!--    {{ result.getMostUsedEmojis.authors }}-->
+    <!--    {{ result.getMostUsedEmojis.globalMessageWithMostEmojis }}-->
+    <!--    {{ result.getMostUsedEmojis.globalTop5Emojis }}-->
   </StoryContainer>
 </template>
 <script lang="ts" setup>
-const props = defineProps<{ data: any }>();
+import { useStatsStore } from "~/store/stats";
+
+const statsStore = useStatsStore();
+
+const { result } = storeToRefs(statsStore);
+
+const authors = statsStore.getAuthors;
+
+const topThreeEmojies = computed(() => {
+  return result.value?.getMostUsedEmojis.globalTop5Emojis.slice(0, 3);
+});
 </script>
