@@ -11,16 +11,28 @@
         <nav class="block items-center space-x-6 mt-8 md:mt-0 hidden md:block">
           <a
             class="hover:text-gray-300 transition-colors text-sm font-semibold"
+            href="#guide"
+          >
+            How to export your chat
+          </a>
+          <a
+            class="hover:text-gray-300 transition-colors text-sm font-semibold"
+            href="#features"
+          >
+            Features
+          </a>
+          <a
+            class="hover:text-gray-300 transition-colors text-sm font-semibold"
             href="#privacy"
           >
             Privacy
           </a>
-          <a
-            class="hover:text-gray-300 transition-colors text-sm font-semibold"
-            href="#guide"
-          >
-            How to export
-          </a>
+          <!--          <a
+                      class="hover:text-gray-300 transition-colors text-sm font-semibold"
+                      href="#pricing"
+                    >
+                      Pricing
+                    </a>-->
         </nav>
       </div>
     </header>
@@ -34,7 +46,7 @@
         <hr class="border-gray-900 border-t-2 w-full" />
 
         <div class="flex flex-wrap w-full">
-          <div id="privacy" class="p-8">
+          <div class="p-8">
             <div class="w-max mb-4">
               <div class="flex items-center justify-start gap-8">
                 <h2 class="text-lg font-semibold">Privacy First</h2>

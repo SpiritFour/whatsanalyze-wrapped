@@ -49,7 +49,7 @@
     <ExportGuide />
   </section>
 
-  <section id="stats" class="container card">
+  <section id="features" class="container card">
     <div class="text-center mb-12">
       <h2 class="text-3xl md:text-5xl font-extrabold mb-8">What to expect?</h2>
 
@@ -67,6 +67,42 @@
       </div>
     </div>
   </section>
+
+  <section id="privacy" class="container card">
+    <div class="text-center mb-12">
+      <div class="flex flex-col items-center justify-center">
+        <LockClosedIcon class="w-28 h-28 mb-8" />
+        <h2 class="text-3xl md:text-5xl font-extrabold mb-8">Privacy first</h2>
+      </div>
+      <p class="text-lg md:text-xl text-green-400">
+        Your Chat does not leave your device.
+      </p>
+    </div>
+  </section>
+
+  <!--  <section id="pricing" class="container card">
+      <div class="mb-12">
+        <h2 class="text-center text-3xl md:text-5xl font-extrabold mb-8">
+          Pricing
+        </h2>
+  
+        <div class="flex flex-col md:flex-row gap-2 items-center justify-center">
+          <div class="card bg-gray-800 w-full">
+            <h3 class="font-bold text-4xl">Free</h3>
+  
+            <p>0€</p>
+          </div>
+          <div class="card bg-green-400 w-full md:mt-8">
+            <h3 class="font-bold text-4xl">Subscribe</h3>
+            <div>4.99€ / month</div>
+          </div>
+          <div class="card bg-gray-800 w-full">
+            <h3 class="font-bold text-4xl">Once</h3>
+            <div>7.99€</div>
+          </div>
+        </div>
+      </div>
+    </section>-->
 </template>
 
 <script lang="ts">
@@ -75,6 +111,7 @@ import {
   ChatBubbleLeftIcon,
   DocumentArrowDownIcon,
   LightBulbIcon,
+  LockClosedIcon,
 } from "@heroicons/vue/24/solid";
 import Gradient from "~/components/Gradient.vue";
 
@@ -85,6 +122,7 @@ export default {
     CalendarIcon,
     LightBulbIcon,
     DocumentArrowDownIcon,
+    LockClosedIcon,
   },
   data() {
     return {
