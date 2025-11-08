@@ -1,4 +1,4 @@
-type Key = { cryptoKey: CryptoKey; iv: Uint8Array };
+type Key = { cryptoKey: CryptoKey; iv: ArrayBuffer };
 
 function arrayBufferToBase64(buffer: ArrayBuffer): string {
   let binary = "";
@@ -61,6 +61,6 @@ export async function generateKey(): Promise<Key> {
     true,
     ["encrypt", "decrypt"],
   );
-  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const iv = crypto.getRandomValues(new Uint8Array(12)).buffer;
   return { cryptoKey: key, iv };
 }
