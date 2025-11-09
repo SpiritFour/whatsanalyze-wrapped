@@ -1,5 +1,5 @@
 <template>
-  <section class="flex flex-col gap-12 px-4 py-10 md:px-10">
+  <section class="flex flex-col gap-12 md:px-10">
     <div class="text-center space-y-6">
       <h2 class="text-3xl md:text-5xl font-extrabold">
         {{ $t("about") }}
