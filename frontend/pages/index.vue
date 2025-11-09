@@ -5,7 +5,7 @@
       <h1
         class="text-4xl md:text-6xl font-extrabold ml-2 mb-4 tracking-tight z-10"
       >
-        {{ $t("home.hero.title").split('WhatsApp')[0]}}<span class="text-green-400">WhatsApp</span>
+        {{ $t("home.hero.title")}}<span class="text-green-400">WhatsApp</span>
       </h1>
 
       <div class="ml-2 mb-8 text-lg md:text-xl">
@@ -22,7 +22,7 @@
   <section class="relative container">
     <div class="text-center mb-12">
       <h2 class="text-3xl md:text-5xl font-extrabold mb-8">
-        {{ $t("home.sections.whatIs").split("?")[0] }}<i>?</i>
+        {{ $t("home.sections.whatIs")}}<i>?</i>
       </h2>
 
       <p class="text-lg md:text-xl text-green-400">
