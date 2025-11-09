@@ -10,8 +10,11 @@
           <h1 class="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight">
             {{ heroCopy?.headline }}
           </h1>
-          <p class="text-lg md:text-xl text-gray-300 mb-6">
-            {{ heroCopy?.description }}
+          <p v-if="heroDescriptionMobile" class="text-lg text-gray-300 mb-6 lg:hidden">
+            {{ heroDescriptionMobile }}
+          </p>
+          <p v-if="heroDescriptionDesktop" class="hidden lg:block text-lg md:text-xl text-gray-300 mb-6">
+            {{ heroDescriptionDesktop }}
           </p>
           <div class="flex flex-wrap gap-3 text-sm text-gray-400">
             <span
@@ -122,7 +125,7 @@
           <component :is="explanation.icon" class="w-8 h-8" />
         </div>
         <h3 class="text-xl font-semibold">{{ explanation.title }}</h3>
-        <p class="text-gray-300 text-sm md:text-base leading-relaxed text-gray-500">
+        <p class="text-sm md:text-base leading-relaxed text-gray-500">
           {{ explanation.description }}
         </p>
       </div>
@@ -168,7 +171,7 @@
         class="space-y-4"
       >
         <h3 class="text-xl font-semibold">{{ feature.title }}</h3>
-        <p class="text-gray-300 text-sm md:text-base leading-relaxed text-gray-500">
+        <p class="text-sm md:text-base leading-relaxed text-gray-500">
           {{ feature.description }}
         </p>
       </div>
@@ -269,10 +272,12 @@ import {
 const { t, tm } = useI18n();
 
 type HeroCopy = {
-  date: string;
+  date?: string;
   tagline: string;
   headline: string;
-  description: string;
+  description?: string;
+  descriptionMobile?: string;
+  descriptionDesktop?: string;
   highlights: string[];
 };
 
@@ -308,6 +313,14 @@ type FeatureCard = {
 
 const heroCopy = computed<HeroCopy | null>(() => {
   return (tm("home.hero.english") as HeroCopy) ?? null;
+});
+
+const heroDescriptionMobile = computed(() => {
+  return heroCopy.value?.descriptionMobile ?? heroCopy.value?.description ?? "";
+});
+
+const heroDescriptionDesktop = computed(() => {
+  return heroCopy.value?.descriptionDesktop ?? heroCopy.value?.description ?? "";
 });
 
 const pressQuotes = computed<PressQuote[]>(() => {

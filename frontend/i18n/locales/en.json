@@ -40,7 +40,8 @@
       "english": {
         "tagline": "2026 WhatsApp Wrapped is here",
         "headline": "Experience Your Year in Chatting Like Never Before",
-        "description": "There is nothing quite like replaying the conversations that soundtracked your year. WhatsAnalyze Wrapped rebuilds your private WhatsApp chats into an immersive recap with privacy-first insights, AI commentary, and export-ready visuals.",
+        "descriptionMobile": "Relive the chats that shaped your year. WhatsAnalyze Wrapped turns your conversations into an exciting, privacy-first story—spot the milestones, the people, and the moments that defined your journey.",
+        "descriptionDesktop": "Your year was written in chats—from marathon threads to midnight voice notes. WhatsAnalyze Wrapped rebuilds those conversations into an exciting, privacy-first story that surfaces the people, patterns, and turning points behind your journey. Explore AI commentary, meaningful insights, and share-ready visuals—crafted locally from your private WhatsApp data.",
         "highlights": [
           "Private by design",
           "TXT or ZIP support",

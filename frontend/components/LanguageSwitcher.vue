@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 import { useSwitchLocalePath } from '#i18n'
@@ -25,6 +25,43 @@ const switchLocalePath = useSwitchLocalePath()
 
 // 4) Selected is a ref<LocaleCode>
 const selected = ref<LocaleCode>(locale.value as LocaleCode)
+const isDesktop = ref(false)
+let mediaQuery: MediaQueryList | null = null
+let mediaListener: ((event: MediaQueryListEvent) => void) | null = null
+
+onMounted(() => {
+  if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+    return
+  }
+
+  mediaQuery = window.matchMedia('(min-width: 1024px)')
+  isDesktop.value = mediaQuery.matches
+
+  mediaListener = (event: MediaQueryListEvent) => {
+    isDesktop.value = event.matches
+  }
+
+  if (typeof mediaQuery.addEventListener === 'function') {
+    mediaQuery.addEventListener('change', mediaListener)
+  } else if (typeof mediaQuery.addListener === 'function') {
+    mediaQuery.addListener(mediaListener)
+  }
+})
+
+onBeforeUnmount(() => {
+  if (!mediaQuery || !mediaListener) {
+    return
+  }
+
+  if (typeof mediaQuery.removeEventListener === 'function') {
+    mediaQuery.removeEventListener('change', mediaListener)
+  } else if (typeof mediaQuery.removeListener === 'function') {
+    mediaQuery.removeListener(mediaListener)
+  }
+
+  mediaQuery = null
+  mediaListener = null
+})
 
 // 5) Either handle change…
 const onChange = async (e: Event) => {
@@ -55,11 +92,11 @@ watch(selected, async (code) => {
         :aria-label="$t('nav.selectLanguage')"
     >
       <option v-for="loc in locales" :key="loc.code" :value="loc.code">
-        {{ loc.flag }} {{ loc.name }}
+        {{ isDesktop ? `${loc.flag} ${loc.name}` : loc.flag }}
       </option>
     </select>
     <div class="pointer-events-none absolute inset-y-0 right-2 flex items-center">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-400" viewBox="0 0 20 20" fill="currentColor">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-zinc-400" viewBox="0 0 20 20">
         <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.25a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
       </svg>
     </div>

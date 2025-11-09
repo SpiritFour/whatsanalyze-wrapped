@@ -40,7 +40,8 @@
       "english": {
         "tagline": "WhatsApp Wrapped 2026 est arrivé",
         "headline": "Revivez votre année de messages comme jamais",
-        "description": "Rien ne vaut le fait de rejouer les conversations qui ont rythmé votre année. WhatsAnalyze Wrapped reconstruit vos chats WhatsApp privés en un récap immersif avec des insights respectueux de la vie privée, des commentaires IA et des visuels prêts à l’export.",
+        "descriptionMobile": "Rien ne vaut le fait de rejouer les conversations qui ont rythmé votre année. WhatsAnalyze Wrapped reconstruit vos chats WhatsApp privés en un récap immersif avec des insights respectueux de la vie privée, des commentaires IA et des visuels prêts à l’export.",
+        "descriptionDesktop": "Rien ne vaut le fait de rejouer les conversations qui ont rythmé votre année. WhatsAnalyze Wrapped reconstruit vos chats WhatsApp privés en un récap immersif avec des insights respectueux de la vie privée, des commentaires IA et des visuels prêts à l’export.",
         "highlights": [
           "Confidentiel par conception",
           "Prend en charge TXT ou ZIP",
