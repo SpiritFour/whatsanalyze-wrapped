@@ -162,24 +162,21 @@ export default {
     explanations() {
       return [
         {
-          title: this.$t("home.explanations.0.title") || "Message Insights",
+          title: this.$t("home.explanations.0.title"),
           description:
-              this.$t("home.explanations.0.description") ||
-              "Analyze your messaging frequency, peak times, and communication patterns",
+              this.$t("home.explanations.0.description"),
           icon: "LightBulbIcon",
         },
         {
-          title: this.$t("home.explanations.1.title") || "Encrypted Sharing",
+          title: this.$t("home.explanations.1.title"),
           description:
-              this.$t("home.explanations.1.description") ||
-              "Your data is encrypted end-to-end. Share your wrapped results without privacy concerns",
+              this.$t("home.explanations.1.description"),
           icon: "ChatBubbleLeftIcon",
         },
         {
-          title: this.$t("home.explanations.2.title") || "Download Results",
+          title: this.$t("home.explanations.2.title"),
           description:
-              this.$t("home.explanations.2.description") ||
-              "Get your personalized wrapped report in multiple formats for easy sharing",
+              this.$t("home.explanations.2.description"),
           icon: "DocumentArrowDownIcon",
         },
       ];
