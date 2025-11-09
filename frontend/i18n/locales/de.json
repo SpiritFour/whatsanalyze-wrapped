@@ -23,7 +23,7 @@
   },
   "footer": {
     "privacyFirst": "Datenschutz zuerst",
-    "privacyFirstDescription": "Alles läuft lokal in deinem Browser – für garantierte Privatsphäre. Wenn du einen Teil-Link erstellst, werden nur verschlüsselte Daten gespeichert.",
+    "privacyFirstDescription": "Alles läuft lokal in deinem Browser - für garantierte Privatsphäre. Wenn du einen Teil-Link erstellst, werden nur verschlüsselte Daten gespeichert.",
     "openSource": "Open Source",
     "openSourceDescription": "Dieses Projekt ist Open Source, der gesamte Code ist öffentlich auf GitHub. Du kannst es lokal ausführen und nachvollziehen, wie es funktioniert.",
     "checkOnGithub": "Code auf GitHub ansehen.",
@@ -31,17 +31,17 @@
     "copyright": "© 2026 WhatsApp Wrapped. Alle Rechte vorbehalten."
   },
   "about": "Über uns",
-  "aboutPoints": "<p>Wir sind eine Gruppe von Freunden mit einer gemeinsamen Leidenschaft für Technologie und der Neugier auf menschliche Kommunikation. Nach Jahren intensiver WhatsApp-Nutzung wollten wir verstehen, wie sich unsere Gespräche und Beziehungen im Laufe der Zeit verändert haben.</p><p>Als Informatiker wollten wir mehr als nur rohe Statistiken – wir wollten ein Tool, das Privatsphäre und Neugier vereint. Daraus entstand WhatsAnalyze: eine vollständig lokale, datenschutzfreundliche Lösung, die aussagekräftige Einblicke liefert, ohne persönliche Informationen zu teilen.</p><p>Ein Tool von Nutzern, für Nutzer – transparent, sicher und mit Liebe zum Detail entwickelt.</p>",
+  "aboutPoints": "<p>Wir sind eine Gruppe von Freunden mit einer gemeinsamen Leidenschaft für Technologie und der Neugier auf menschliche Kommunikation. Nach Jahren intensiver WhatsApp-Nutzung wollten wir verstehen, wie sich unsere Gespräche und Beziehungen im Laufe der Zeit verändert haben.</p><p>Als Informatiker wollten wir mehr als nur rohe Statistiken - wir wollten ein Tool, das Privatsphäre und Neugier vereint. Daraus entstand WhatsAnalyze: eine vollständig lokale, datenschutzfreundliche Lösung, die aussagekräftige Einblicke liefert, ohne persönliche Informationen zu teilen.</p><p>Ein Tool von Nutzern, für Nutzer - transparent, sicher und mit Liebe zum Detail entwickelt.</p>",
   "home": {
     "hero": {
-      "title": "Wrapped – aber für ",
-      "subtitle": "Die Geschichte deiner Beziehungen – erzählt durch deine WhatsApp-Chats",
+      "title": "Wrapped - aber für ",
+      "subtitle": "Die Geschichte deiner Beziehungen - erzählt durch deine WhatsApp-Chats",
       "usedBy": "Bereits von Tausenden genutzt.",
       "english": {
         "tagline": "2026 WhatsApp Wrapped ist da",
         "headline": "Dein Chat, erzählt wie eine Story",
-        "descriptionMobile": "WhatsAnalyze verwandelt deine exportierten WhatsApp-Daten in einen privaten Story-Recap. Erlebe deine geschäftigsten Stunden, witzigsten Chats und emotionalsten Peaks – ohne dass deine Nachrichten jemals den Browser verlassen.",
-        "descriptionDesktop": "WhatsAnalyze verwandelt deine exportierten WhatsApp-Daten in einen visuellen Rückblick - wie dein ganz persönliches \"Year in Review\". Sieh deine aktivsten Stunden, lustigsten Unterhaltungen und emotionalen Höhepunkte in einem Story-Format. Alle Insights werden lokal auf deinem Gerät verarbeitet – deine Nachrichten verlassen niemals den Browser.",
+        "descriptionMobile": "WhatsAnalyze verwandelt deine exportierten WhatsApp-Daten in einen privaten Story-Recap. Erlebe deine geschäftigsten Stunden, witzigsten Chats und emotionalsten Peaks - ohne dass deine Nachrichten jemals den Browser verlassen.",
+        "descriptionDesktop": "WhatsAnalyze verwandelt deine exportierten WhatsApp-Daten in einen visuellen Rückblick - wie dein ganz persönliches \"Year in Review\". Sieh deine aktivsten Stunden, lustigsten Unterhaltungen und emotionalen Höhepunkte in einem Story-Format. Alle Insights werden lokal auf deinem Gerät verarbeitet - deine Nachrichten verlassen niemals den Browser.",
         "highlights": [
           "Privatsphäre by Design",
           "Unterstützt TXT oder ZIP",
@@ -86,20 +86,20 @@
     "media": {
       "eyebrow": "Mediagalerie",
       "title": "Erlebe deine Chats in filmreifen Slides",
-      "description": "Erlebe die Geschichten hinter deinen aktivsten Tagen, nächtlichen Diskussionen und unvergesslichen Emojis. Alles wird lokal gerendert – so kannst du Screenshots teilen, ohne Chatdaten preiszugeben.",
+      "description": "Erlebe die Geschichten hinter deinen aktivsten Tagen, nächtlichen Diskussionen und unvergesslichen Emojis. Alles wird lokal gerendert - so kannst du Screenshots teilen, ohne Chatdaten preiszugeben.",
       "tagline": "Teilbereit in Sekunden",
       "cards": [
         {
           "eyebrow": "Stoßzeiten",
           "title": "Heatmaps deiner lautesten Tage",
-          "description": "Sieh, wann der Chat nie geschlafen hat – mit Highlights zu Nachrichtenmarathons, Sprachnachricht-Wellen und nächtlichen Drop-ins.",
+          "description": "Sieh, wann der Chat nie geschlafen hat - mit Highlights zu Nachrichtenmarathons, Sprachnachricht-Wellen und nächtlichen Drop-ins.",
           "stat": "Automatisch generiert in 7 Sekunden"
         },
         {
           "eyebrow": "Beziehungsloops",
           "title": "Erlebe dein Jahr in Gesprächen wieder",
-          "description": "Erkunde deine Chats als Story-Slides – von den meistgenutzten Emojis bis zur Nachricht mit der größten Reaktion. Unsere Visuals zeigen Momente, Rhythmen und Beziehungen, ohne jemals private Nachrichten offenzulegen.",
-          "stat": "Alles läuft lokal in deinem Browser – für vollständige Privatsphäre."
+          "description": "Erkunde deine Chats als Story-Slides - von den meistgenutzten Emojis bis zur Nachricht mit der größten Reaktion. Unsere Visuals zeigen Momente, Rhythmen und Beziehungen, ohne jemals private Nachrichten offenzulegen.",
+          "stat": "Alles läuft lokal in deinem Browser - für vollständige Privatsphäre."
         },
         {
           "eyebrow": "Galerie-Mix",
@@ -112,7 +112,7 @@
     "celebration": {
       "eyebrow": "Neue Wege zum Feiern",
       "title": "Dein privater Chat-Rückblick wird immer smarter",
-      "description": "Von sich wandelnden Stimmungen bis hin zu personalisierten Chat-Momenten – WhatsAnalyze Wrapped bietet alles, was Fans an Spotify Wrapped lieben, nur für deine Nachrichten.",
+      "description": "Von sich wandelnden Stimmungen bis hin zu personalisierten Chat-Momenten - WhatsAnalyze Wrapped bietet alles, was Fans an Spotify Wrapped lieben, nur für deine Nachrichten.",
       "items": [
         {
           "badge": "Neu",
@@ -127,12 +127,12 @@
         {
           "badge": "Story-Magie",
           "title": "Nachrichten-Evolution",
-          "description": "Erstelle kuratierte Karten mit Chat-Momenten, Zitaten und Highlights, die zu jeder Chatphase passen – alles lokal generiert."
+          "description": "Erstelle kuratierte Karten mit Chat-Momenten, Zitaten und Highlights, die zu jeder Chatphase passen - alles lokal generiert."
         },
         {
           "badge": "Clips & Cameos",
           "title": "Chat-Highlights, die deine Story erzählen",
-          "description": "Jeder Recap wird wie eine Instagram-Story kuratiert – mit dezenten Animationen, Emojis und smarten Übergängen, die deine Gesprächshistorie lebendig machen. Sieh aktivste Zeiten, witzigste Momente und längste Streaks auf eine persönliche Art."
+          "description": "Jeder Recap wird wie eine Instagram-Story kuratiert - mit dezenten Animationen, Emojis und smarten Übergängen, die deine Gesprächshistorie lebendig machen. Sieh aktivste Zeiten, witzigste Momente und längste Streaks auf eine persönliche Art."
         }
       ]
     },
@@ -147,15 +147,15 @@
       },
       {
         "title": "Zeitreise-Insights",
-        "description": "Finde heraus, wann du am aktivsten warst – und wann Funkstille herrschte."
+        "description": "Finde heraus, wann du am aktivsten warst - und wann Funkstille herrschte."
       },
       {
         "title": "Wortschatz-Analysen",
-        "description": "Zähle Wörter, Emojis und Lieblingsausdrücke – entdecke den Stil deines Chats."
+        "description": "Zähle Wörter, Emojis und Lieblingsausdrücke - entdecke den Stil deines Chats."
       },
       {
         "title": "Medien-Statistiken",
-        "description": "Zähle Bilder, Links und Anhänge – ohne Inhalte offenzulegen."
+        "description": "Zähle Bilder, Links und Anhänge - ohne Inhalte offenzulegen."
       },
       {
         "title": "Chat-Charaktere",
@@ -178,14 +178,14 @@
         },
         {
           "title": "Konfliktlösung mit KI",
-          "description": "Erhalte kontextbezogene Hinweise, um Streitpunkte zu verstehen und gemeinsame Grundlagen zu finden – ohne Rohtexte preiszugeben."
+          "description": "Erhalte kontextbezogene Hinweise, um Streitpunkte zu verstehen und gemeinsame Grundlagen zu finden - ohne Rohtexte preiszugeben."
         }
       ]
     },
     "share": {
       "eyebrow": "Wrapped überall",
       "title": "Teile deine Ergebnisse auf jedem Kanal",
-      "description": "Poste deine Wrapped-Visuals auf TikTok, iMessage, Discord oder per E-Mail – alles ist automatisch optimiert.",
+      "description": "Poste deine Wrapped-Visuals auf TikTok, iMessage, Discord oder per E-Mail - alles ist automatisch optimiert.",
       "cards": [
         {
           "title": "TikTok & Reels-Exporte",
@@ -211,11 +211,11 @@
         },
         {
           "title": "Campus-Kooperationen",
-          "description": "Zeige anonymisierte Statistiken auf lokalen Screens – privat und sicher."
+          "description": "Zeige anonymisierte Statistiken auf lokalen Screens - privat und sicher."
         },
         {
           "title": "Open-Source- & Community-Projekte",
-          "description": "WhatsAnalyze ist komplett Open Source und Privacy-first. Jeder kann es forken, erweitern oder neue Visual-Templates bauen – für private Nutzung, Campus-Projekte oder kreative Experimente – ohne jemals Daten an einen Server zu senden."
+          "description": "WhatsAnalyze ist komplett Open Source und Privacy-first. Jeder kann es forken, erweitern oder neue Visual-Templates bauen - für private Nutzung, Campus-Projekte oder kreative Experimente - ohne jemals Daten an einen Server zu senden."
         },
         {
           "title": "Chat-Magie",
