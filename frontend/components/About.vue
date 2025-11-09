@@ -1,11 +1,11 @@
 <template>
   <section class="flex flex-col gap-12 px-4 py-10 md:px-10">
-    <div class="text-center space-y-4">
+    <div class="text-center space-y-6">
       <h2 class="text-3xl md:text-5xl font-extrabold">
         {{ $t("about") }}
       </h2>
       <div
-        class="mx-auto max-w-3xl text-base md:text-lg text-gray-300"
+        class="about-copy mx-auto max-w-2xl text-center text-base md:text-lg text-gray-200 leading-relaxed space-y-4"
         v-html="$t('aboutPoints')"
       />
     </div>
@@ -14,7 +14,7 @@
       <article
         v-for="person in persons"
         :key="person.name"
-        class="flex flex-col items-center gap-3 rounded-3xl bg-black/40 p-6 text-center shadow-lg shadow-black/30"
+        class="flex flex-col items-center gap-4 rounded-3xl bg-black/40 p-6 text-center shadow-lg shadow-black/30 backdrop-blur"
       >
         <img
           :src="person.image"
@@ -23,7 +23,10 @@
           loading="lazy"
         />
         <h3 class="text-xl font-semibold">{{ person.name }}</h3>
-        <ul class="space-y-1 text-sm text-gray-300">
+        <p class="text-sm uppercase tracking-wide text-green-300">
+          {{ person.tagline }}
+        </p>
+        <ul class="space-y-1 text-sm text-gray-300 leading-relaxed">
           <li v-for="d in person.description" :key="d">{{ d }}</li>
         </ul>
       </article>
@@ -56,6 +59,7 @@ interface Person {
   image: string;
   name: string;
   description: string[];
+  tagline: string;
 }
 
 interface University {
@@ -91,24 +95,36 @@ const persons: Person[] = [
   {
     image: "/img/us/Sebastian_WA.jpg",
     name: "Sebastian Fellner",
+    tagline: "Machine learning explorer building smart analytics.",
     description: ["Computer Science MSc", "AI Enthusiast"],
   },
   {
     image: "/img/us/Paul_WA.jpg",
     name: "Paul Kehnel",
+    tagline: "Architect at heart, shaping physical and digital spaces.",
     description: ["Computer Science  MSc", "Bicycle Dude"],
   },
   {
     image: "/img/us/Adrian_WA.jpg",
     name: "Adrian Thiesen",
+    tagline: "Building AI-driven products that users love",
     description: ["Information Systems BSc", "The Product Enthusiast"],
   },
   {
     image: "/img/us/Moritz_WA.jpeg",
     name: "Moritz Wolf",
+    tagline: "Creative energy from photography to playful apps.",
     description: ["Robotics MSc", "Outdoor Specialist"],
   },
 ];
 </script>
 
-<style scoped></style>
+<style scoped>
+:deep(.about-copy p) {
+  margin-bottom: 1rem;
+}
+
+:deep(.about-copy p:last-child) {
+  margin-bottom: 0;
+}
+</style>

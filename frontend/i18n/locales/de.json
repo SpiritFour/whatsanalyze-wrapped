@@ -31,7 +31,7 @@
     "copyright": "© 2024 WhatsApp Wrapped. Alle Rechte vorbehalten."
   },
   "about": "Über uns",
-  "aboutPoints": "<p>Wir sind eine Gruppe von Uni-Freunden mit einer gemeinsamen Leidenschaft für Technologie und großer Neugier auf menschliche Interaktionen. Nach Jahren der WhatsApp-Nutzung wollten wir verstehen, wie sich unsere Gespräche und Verbindungen im Laufe der Zeit entwickelt haben.</p><p>Als Informatiker glaubten wir natürlich, dass wir etwas Besseres bauen können – eine Datenschutz-first-Lösung, mit der wir unsere Chats analysieren können, ohne persönliche Daten zu teilen oder offenzulegen. Daraus entstand WhatsAnalyze – ein Tool von Nutzer:innen für Nutzer:innen, das wertvolle Einblicke liefert und dabei die volle Kontrolle über die eigenen Informationen bewahrt.</p>",
+  "aboutPoints": "<p>Wir sind eine Gruppe von Freunden mit einer gemeinsamen Leidenschaft für Technologie und Neugier auf menschliche Kommunikation. Nach Jahren intensiver WhatsApp-Nutzung wollten wir verstehen, wie sich unsere Gespräche und Beziehungen im Laufe der Zeit verändert haben.</p><p>Als Informatiker wollten wir mehr als nur Statistiken – wir wollten ein Werkzeug, das Datenschutz und Neugier vereint. So entstand WhatsAnalyze: eine vollständig lokale, datenschutzorientierte Lösung, die wertvolle Einblicke liefert, ohne persönliche Informationen zu teilen.</p><p>Ein Tool von Nutzer:innen, für Nutzer:innen – transparent, sicher und mit Liebe zum Detail entwickelt.</p>",
   "home": {
     "hero": {
       "title": "Wrapped - aber für ",
