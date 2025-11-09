@@ -1,14 +1,13 @@
 <template>
   <StoryContainer
     v-if="result"
-    class="bg-gradient-to-r from-red-500 via-orange-400 to-yellow-300 flex flex-col gap-2 relative"
+    class="bg-black flex flex-col gap-2 relative"
+    title="Your most used Emojis"
   >
     <EmojiChaos
       :count="40"
       :emojis="result.getMostUsedEmojis.globalTop5Emojis.map((m) => m.emoji)"
     />
-
-    <h2 class="text-5xl font-bold">You really love us ❤️</h2>
 
     <EmojiPodium :top-three-emojies="topThreeEmojies" />
 
@@ -23,8 +22,6 @@ import { useStatsStore } from "~/store/stats";
 const statsStore = useStatsStore();
 
 const { result } = storeToRefs(statsStore);
-
-const authors = statsStore.getAuthors;
 
 const topThreeEmojies = computed(() => {
   if (!result.value) return [];
