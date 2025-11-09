@@ -1,7 +1,7 @@
 <template>
   <StoryContainer
     v-if="result"
-    class="bg-black flex flex-col gap-2 text-blue-600"
+    class="bg-black text-blue-600 text-6xl"
     title="Your most used Emojis"
   >
     <EmojiChaos
@@ -12,6 +12,7 @@
     <EmojiPodium :top-three-emojies="topThreeEmojies" />
   </StoryContainer>
 </template>
+
 <script lang="ts" setup>
 import { useStatsStore } from "~/store/stats";
 

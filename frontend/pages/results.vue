@@ -33,8 +33,9 @@
   <!--    scrolling takes emojies apart and shows number of usages-->
   <!--  </div>-->
 
-  <StoryCarousel :duration="4000">
-    <Story1 :data="data" />
+  <StoryCarousel :duration="6000">
+    <MostUsedEmojiStory />
+    <Story2 :data="data" />
   </StoryCarousel>
 </template>
 
@@ -42,6 +43,7 @@
 import { useStatsStore } from "~/store/stats";
 import { useUserDataStore } from "~/store/userDataStore";
 import { parseShareInfo, serializeShareInfo } from "~/utils/sharing/param";
+import MostUsedEmojiStory from "~/components/MostUsedEmojiStory.vue";
 
 const statsStore = useStatsStore();
 

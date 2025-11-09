@@ -222,8 +222,6 @@ async function initAnimations() {
   const width = rect.width;
   const height = rect.height;
 
-  console.log(width, height);
-
   emojiEls.value.forEach((el) => {
     if (!el) return;
     const control = createEmojiAnimation(el, width, height);
