@@ -1,0 +1,34 @@
+# WhatsAnalyze Wrapped
+
+- End of Year! So much has happend
+- Reveal insights & get statistics, while all data stays on your device.
+- No chat data is sent to a server it runs only locally in your browser.
+
+Based on the open-source tool whatsanalyze.com we present the new wrapped version for limited time or forever.
+
+No data about your chat is transferred to any server at all.
+![wrapped.png](docs/img/wrapped.png)
+
+## Encountered an issue?
+
+Please report bugs in the github issues.
+
+# Running whatsanalyze wrapped locally
+
+## Build Setup
+We use node 22
+
+```bash
+# install dependencies
+$ pnpm install
+
+# serve with hot reload at localhost:3000
+$ pnpm dev
+
+# build for production and launch server
+$ pnpm build
+$ pnpm start
+
+# generate static project
+$ pnpm generate
+```
