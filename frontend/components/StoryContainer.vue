@@ -1,7 +1,18 @@
 <template>
-  <div class="w-full h-full flex items-center justify-center">
+  <div
+    class="w-full h-full flex items-center justify-center text-center relative"
+  >
+    <h2
+      v-if="title"
+      class="text-6xl font-extrabold z-50 break-words w-3/4 text-shadow-lg text-shadow-white"
+      style="text-shadow: 0 0 3px black"
+    >
+      {{ title }}
+    </h2>
     <slot></slot>
   </div>
 </template>
 
-<script lang="ts"></script>
+<script lang="ts" setup>
+const props = defineProps<{ title?: string }>();
+</script>

@@ -4,7 +4,7 @@
     <!-- 1st place -->
     <div
       ref="first"
-      class="absolute text-8xl -translate-x-1/2 -translate-y-1/2 left-1/2 -top-12"
+      class="absolute text-8xl -translate-x-1/2 -translate-y-1/2 left-14 -top-24"
     >
       {{ topThreeEmojies[0].emoji }}
     </div>
@@ -12,7 +12,7 @@
     <!-- 2nd place -->
     <div
       ref="second"
-      class="absolute text-6xl -translate-x-1/2 -translate-y-1/2 left-8"
+      class="absolute text-6xl -translate-x-1/2 -translate-y-1/2 left-0 -top-2"
     >
       {{ topThreeEmojies[1].emoji }}
     </div>
@@ -20,7 +20,7 @@
     <!-- 3rd place -->
     <div
       ref="third"
-      class="absolute text-6xl -translate-x-1/2 -translate-y-1/2 -right-8"
+      class="absolute text-6xl -translate-x-1/2 -translate-y-1/2 -right-0 -top-2"
     >
       {{ topThreeEmojies[2].emoji }}
     </div>
