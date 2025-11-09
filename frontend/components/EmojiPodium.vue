@@ -32,9 +32,10 @@
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
 import { animate } from "motion";
+import type { EmojiStats } from "~/utils/parsing/types";
 
 const props = defineProps<{
-  topThreeEmojies: { emoji: string }[];
+  topThreeEmojies: EmojiStats[];
 }>();
 
 const first = ref<HTMLElement | null>(null);
@@ -53,6 +54,7 @@ onMounted(() => {
   animate(
     first.value,
     {
+      // @ts-ignore
       x: [-260, -120, -60, -20, 0],
       opacity: [0, 1, 1, 1, 1],
     },
@@ -63,6 +65,7 @@ onMounted(() => {
   ).finished.then(() => {
     // idle bounce
     animate(
+      // @ts-ignore
       first.value,
       { y: [0, -8, 0] },
       { duration: 0.5, easing: "ease-in-out", repeat: Infinity },
@@ -73,6 +76,7 @@ onMounted(() => {
   animate(
     second.value,
     {
+      // @ts-ignore
       x: [-200, -120, -60, 0],
       opacity: [0, 0.6, 1, 1],
     },
@@ -83,6 +87,7 @@ onMounted(() => {
     },
   ).finished.then(() => {
     animate(
+      // @ts-ignore
       second.value,
       { y: [0, -5, 0] },
       { duration: 0.6, easing: "ease-in-out", repeat: Infinity },
@@ -93,6 +98,7 @@ onMounted(() => {
   animate(
     third.value,
     {
+      // @ts-ignore
       x: [200, 120, 60, 0],
       opacity: [0, 0.6, 1, 1],
     },
@@ -103,6 +109,7 @@ onMounted(() => {
     },
   ).finished.then(() => {
     animate(
+      // @ts-ignore
       third.value,
       { y: [0, -5, 0] },
       { duration: 0.6, easing: "ease-in-out", repeat: Infinity },

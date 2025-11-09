@@ -54,7 +54,13 @@ const props = defineProps({
 const stage = ref<HTMLElement | null>(null);
 // v-for ref array
 const emojiEls = ref<HTMLElement[]>([]);
-let controls = [];
+
+interface Control {
+  cancel: () => void;
+  x?: number[];
+}
+
+let controls: Control[] = [];
 
 const emojiInstances = computed(() => {
   const result: string[] = [];
