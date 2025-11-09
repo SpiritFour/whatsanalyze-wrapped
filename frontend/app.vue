@@ -80,6 +80,7 @@
               <p>
                 {{ $t("footer.privacyFirstDescription") }}
               </p>
+              <p>If you create a share-link, only encrypted data is saved.</p>
             </div>
           </div>
 
@@ -103,6 +104,7 @@
               <p>
                 {{ $t("footer.openSourceDescription") }}
               </p>
+              <p>Feel free to run it locally and see how it is working.</p>
             </div>
           </div>
         </div>

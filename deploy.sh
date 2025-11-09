@@ -1,4 +1,13 @@
 # Local build, move to /docs to be able to deploy in same branch
+
+if [ -z statusResult ]
+then
+   echo 'Git clean, continue...'
+else
+   echo 'Git not clean, ending..!'
+  exit;
+fi
+
 echo "Starting Deploy"
 cd frontend
 
@@ -13,3 +22,9 @@ mv frontend/.output/public docs
 rm -r frontend/.output
 
 echo "Please commit and push now"
+
+git add .
+
+git commit -m "deploy"
+
+git push

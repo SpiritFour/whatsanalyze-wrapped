@@ -27,7 +27,7 @@ export async function storeResult(data: string): Promise<ShareInfo> {
 
   // You may want to export the key in a way that it can be shared
   const exportedKey = {
-    iv: Array.from(key.iv),
+    iv: Array.from(new Uint8Array(key.iv)),
     key: await crypto.subtle.exportKey("raw", key.cryptoKey),
   };
   console.log("exportedkey", exportedKey);
@@ -56,7 +56,7 @@ export async function retrieveResult({
     console.log("document", document.data);
     const decrypted_document = await decryptData(document.data, {
       cryptoKey: key,
-      iv: new Uint8Array(encryptedKey.iv),
+      iv: new Uint8Array(encryptedKey.iv).buffer,
     });
     console.log("decrypted docyment", decrypted_document);
     return decrypted_document;

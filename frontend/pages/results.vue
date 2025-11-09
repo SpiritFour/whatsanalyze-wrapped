@@ -1,210 +1,52 @@
 <template>
-  <!--  <MorphSvg :from-path="star" :to-path="heart" class="h-80 w-80"/>-->
+  <!--  <MorphSvg :from-path="star" :to-path="heart" class="h-80 w-80" />-->
 
-  <!-- black bg-->
+  <!--  black bg-->
   <!--  <div>-->
-  <!--    Whatsapp warpped-->
-  <!--    Hello author 1 author 2-->
-
-  <!--    iPhone sceen sith start of chat text. animates form complete dark bg into opening whatsapp-->
-
-  <!--    scrolling down shuts down iphone again into black-->
+  <!--    Whatsapp warpped Hello author 1 author 2 iPhone sceen sith start of chat-->
+  <!--    text. animates form complete dark bg into opening whatsapp scrolling down-->
+  <!--    shuts down iphone again into black-->
   <!--  </div>-->
 
   <!--  &lt;!&ndash; black bg&ndash;&gt;-->
   <!--  <div>-->
-  <!--    Take a closer look.-->
-
-  <!--    - Zahlen klappen sich 3d um / drehen sich um sich-->
-  <!--    - zahlen haben outline und werden dann angeleuchtet-->
-  <!--    - getippt-->
-
+  <!--    Take a closer look. - Zahlen klappen sich 3d um / drehen sich um sich - -->
+  <!--    zahlen haben outline und werden dann angeleuchtet - getippt-->
   <!--  </div>-->
 
-  <!--  <div>-->
-
-  <!--  </div>-->
+  <!--  <div></div>-->
 
   <!--  &lt;!&ndash; colorful eye catcher area with some stats and big animation&ndash;&gt;-->
   <!--  graph of chat frequency per week builds up from left to right (line graph)-->
-  <!--  interactive shows time/date of longest message, longes emojie message and longest time of no chat-->
+  <!--  interactive shows time/date of longest message, longes emojie message and-->
+  <!--  longest time of no chat-->
+
+  <!--  <div>small stats in columns (blend in) below colorful animation</div>-->
 
   <!--  <div>-->
-  <!--    small stats in columns (blend in) below colorful animation-->
+  <!--    Must used words appear like shot onto the page (like a canon) maybe one of-->
+  <!--    each chat partner at the same time-->
   <!--  </div>-->
-
+  <!--  animate the images of whatsapp chat-->
   <!--  <div>-->
-  <!--    Must used words appear like shot onto the page (like a canon)-->
-
-  <!--    maybe one of each chat partner at the same time-->
-
-  <!--  </div>-->
-  <!--animate the images of whatsapp chat-->
-  <!--  <div>-->
-
-  <!--    most used emojies animation:-->
-  <!--    1. all emojies floating around in the middle-->
-  <!--    2. scrolling takes emojies apart and shows number of usages-->
+  <!--    most used emojies animation: 1. all emojies floating around in the middle 2.-->
+  <!--    scrolling takes emojies apart and shows number of usages-->
   <!--  </div>-->
 
-  <div>
-    <Lines v-if="data">
-      <template v-slot:1>
-        <div>
-          <h2>
-            <strong> {{ $t("results.mostEmojis") }} </strong>
-          </h2>
-          <div class="flex">
-            <div
-                v-for="(authorData, author) in data.getMostUsedEmojis.authors"
-                :key="author"
-                class="flex my-8 p-8"
-            >
-              <div>
-                <div
-                    v-for="(emoji, key) in authorData.top5Emojis"
-                    :key="key + author"
-                    class="flex gap-2 text-4xl font-bold"
-                >
-                  <div class="p-2 w-40">
-                    {{ emoji.emoji }}
-                  </div>
-                  <div class="text-gray-600">
-                    {{ emoji.count }}
-                  </div>
-                </div>
-
-                <div class="text-2xl font-bold text-green-600 mt-2">
-                  {{ $t("results.mostEmojisInOne") }}
-                </div>
-
-                <div class="chat-bubble mt-8">
-                  <div class="flex justify-between">
-                    <div class="author">
-                      {{ author }}
-                    </div>
-                    <div class="time">
-                      {{
-                        authorData?.messageWithMostEmojis?.date &&
-                        getDate(authorData.messageWithMostEmojis.date)
-                      }}
-                    </div>
-                  </div>
-
-                  <div class="message">
-                    {{ authorData?.messageWithMostEmojis?.message }}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </template>
-      <template v-slot:2>
-        <div>
-          <div>
-            <h2>Most active Week</h2>
-            <strong>
-              {{ data.getActiveDates.weekWithMostMessages.week }}
-            </strong>
-            <h2>
-              {{ data.getActiveDates.weekWithMostMessages.count }}
-            </h2>
-          </div>
-          <div>
-            <h2>Most active Day</h2>
-            <strong>
-              {{ data.getActiveDates.dayWithMostMessages.day }}
-            </strong>
-            <h2>
-              {{ data.getActiveDates.dayWithMostMessages.count }}
-            </h2>
-          </div>
-        </div>
-      </template>
-      <template v-slot:3>
-        <div>
-          {{ data.getNumberOfMessagesPerMonth }}
-        </div>
-      </template>
-      <template v-slot:4>
-        <div class="flex gap-20">
-          <div
-              v-for="(authorData, author) in data.getRelativeWordUsage.authors"
-              :key="author"
-              class="p-20"
-          >
-            <h2>
-              {{ author }}
-            </h2>
-            <div>
-              <div
-                  v-for="word in authorData.top5Words"
-                  class="flex gap-2 text-xl font-bold"
-              >
-                <div class="p-2 w-40">
-                  {{ word.word }}
-                </div>
-                {{ word.count }}
-              </div>
-            </div>
-
-            <div class="">
-              Your longest messages are:
-              <h3>{{ authorData?.longestMessage?.message.length }}</h3>
-              <div class="max-w-[400px] max-h-24 overflow-scroll">
-                {{ authorData?.longestMessage?.message }}
-              </div>
-            </div>
-          </div>
-        </div>
-      </template>
-      <template v-slot:5>
-        <div>
-          <h2>Longest <strong>gap</strong> in your chat</h2>
-          <h3>
-            {{
-              (data.getTimeData.longestGap / (1000 * 60 * 60 * 24)).toFixed(1)
-            }}
-            days
-          </h3>
-
-          <p>
-            You did not chat from
-            {{
-              data.getTimeData.longestGapStart &&
-              getDate(data.getTimeData.longestGapStart)
-            }}
-            to
-            {{
-              data.getTimeData.longestGapEnd &&
-              getDate(data.getTimeData.longestGapEnd)
-            }}.
-          </p>
-        </div>
-      </template>
-    </Lines>
-    <!--    todo have proper stuff here? how do we handle this not existing at all?-->
-    <div v-else class="flex gap-20">
-      Sorry nothing found, but do you wanna load something?
-    </div>
-    <div class="max-width: 100px;overflow: hidden; text-overflow: ellipsis;">
-      {{ share_info }}
-    </div>
-    <a :href="'results?' + share_info">share</a>
-    <br/>
-    <button @click="save">Save</button>
-  </div>
+  <StoryCarousel :duration="4000">
+    <Story1 :data="data" />
+    <Story2 />
+  </StoryCarousel>
 </template>
 
 <script lang="ts" setup>
-import {useStatsStore} from "~/store/stats";
-import {useUserDataStore} from "~/store/userDataStore";
-import {parseShareInfo, serializeShareInfo} from "~/utils/sharing/param";
+import { useStatsStore } from "~/store/stats";
+import { useUserDataStore } from "~/store/userDataStore";
+import { parseShareInfo, serializeShareInfo } from "~/utils/sharing/param";
 
 const statsStore = useStatsStore();
 
-const {result} = storeToRefs(statsStore);
+const { result } = storeToRefs(statsStore);
 const data = result;
 // ######## data loading part
 const userDataStore = useUserDataStore();
@@ -234,13 +76,13 @@ onMounted(() => {
 
       // Use userDataStore to load the data using shareInfo
       userDataStore
-          .loadData(shareInfo)
-          .then((loadedData) => {
-            result.value = loadedData;
-          })
-          .catch((error) => {
-            console.error("Error loading data:", error);
-          });
+        .loadData(shareInfo)
+        .then((loadedData) => {
+          result.value = loadedData;
+        })
+        .catch((error) => {
+          console.error("Error loading data:", error);
+        });
     } catch (error) {
       console.error("Failed to parse share info:", error);
     }
@@ -251,7 +93,7 @@ onMounted(() => {
 </script>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   data() {

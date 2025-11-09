@@ -85,11 +85,11 @@
         <h2 class="text-center text-3xl md:text-5xl font-extrabold mb-8">
           Pricing
         </h2>
-  
+
         <div class="flex flex-col md:flex-row gap-2 items-center justify-center">
           <div class="card bg-gray-800 w-full">
             <h3 class="font-bold text-4xl">Free</h3>
-  
+
             <p>0€</p>
           </div>
           <div class="card bg-green-400 w-full md:mt-8">
