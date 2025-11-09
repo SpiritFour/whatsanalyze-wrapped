@@ -2,20 +2,20 @@
   <section class="relative overflow-hidden pb-16">
     <Polygon />
     <div class="card container w-full h-full">
-      <div v-if="isEnglish" class="flex flex-col gap-8">
+      <div v-if="heroCopy" class="flex flex-col gap-8">
         <div>
           <div class="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-4">
-            <span class="uppercase tracking-widest text-green-400 font-semibold">{{ heroEnglishCopy?.tagline }}</span>
+            <span class="uppercase tracking-widest text-green-400 font-semibold">{{ heroCopy?.tagline }}</span>
           </div>
           <h1 class="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight">
-            {{ heroEnglishCopy?.headline }}
+            {{ heroCopy?.headline }}
           </h1>
           <p class="text-lg md:text-xl text-gray-300 mb-6">
-            {{ heroEnglishCopy?.description }}
+            {{ heroCopy?.description }}
           </p>
           <div class="flex flex-wrap gap-3 text-sm text-gray-400">
             <span
-              v-for="highlight in heroEnglishCopy?.highlights ?? []"
+              v-for="highlight in heroCopy?.highlights ?? []"
               :key="highlight"
               class="rounded-full border border-gray-700/80 px-3 py-1"
             >
@@ -47,7 +47,7 @@
     </div>
   </section>
 
-  <section v-if="isEnglish" class="container card">
+  <section v-if="pressQuotes.length" class="container card">
     <div class="text-center mb-8">
       <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">{{ $t("home.press.eyebrow") }}</p>
       <h2 class="text-3xl md:text-4xl font-extrabold mt-2">{{ $t("home.press.title") }}</h2>
@@ -75,7 +75,7 @@
     </div>
   </section>
 
-  <section v-if="isEnglish" class="container card">
+  <section v-if="mediaCards.length" class="container card">
     <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-8">
       <div>
         <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">{{ $t("home.media.eyebrow") }}</p>
@@ -104,7 +104,7 @@
   <section class="relative container">
     <div class="text-center mb-12">
       <h2 class="text-3xl md:text-5xl font-extrabold mb-8">
-        {{ $t("home.sections.whatIs")}}<i>?</i>
+        {{ $t("home.sections.whatIs")}}
       </h2>
 
       <p class="text-lg md:text-xl text-green-400">
@@ -129,7 +129,7 @@
     </div>
   </section>
 
-  <section v-if="isEnglish" class="container card">
+  <section v-if="celebrationStories.length" class="container card">
     <div class="text-center mb-12">
       <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">{{ $t("home.celebration.eyebrow") }}</p>
       <h2 class="text-3xl md:text-5xl font-extrabold mt-2">{{ $t("home.celebration.title") }}</h2>
@@ -175,7 +175,7 @@
     </div>
   </section>
 
-  <section v-if="isEnglish" class="container card bg-gradient">
+  <section v-if="aiHighlights.length" class="container card bg-gradient">
     <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between mb-8">
       <div>
         <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">{{ $t("home.ai.eyebrow") }}</p>
@@ -199,7 +199,7 @@
     </div>
   </section>
 
-  <section v-if="isEnglish" class="container card">
+  <section v-if="shareHighlights.length" class="container card">
     <div class="text-center mb-10">
       <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">{{ $t("home.share.eyebrow") }}</p>
       <h2 class="text-3xl md:text-5xl font-extrabold mt-2">{{ $t("home.share.title") }}</h2>
@@ -220,7 +220,7 @@
     </div>
   </section>
 
-  <section v-if="isEnglish" class="container card">
+  <section v-if="globalTouchpoints.length" class="container card">
     <div class="flex flex-col gap-6">
       <div>
         <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">{{ $t("home.globalTouchpoints.eyebrow") }}</p>
@@ -266,10 +266,9 @@ import {
   LockClosedIcon,
 } from "@heroicons/vue/24/solid";
 
-const { t, locale, tm } = useI18n();
-const isEnglish = computed(() => locale.value === "en");
+const { t, tm } = useI18n();
 
-type HeroEnglishCopy = {
+type HeroCopy = {
   date: string;
   tagline: string;
   headline: string;
@@ -307,31 +306,19 @@ type FeatureCard = {
   description: string;
 };
 
-const heroEnglishCopy = computed<HeroEnglishCopy | null>(() => {
-  if (!isEnglish.value) {
-    return null;
-  }
-  return (tm("home.hero.english") as HeroEnglishCopy) ?? null;
+const heroCopy = computed<HeroCopy | null>(() => {
+  return (tm("home.hero.english") as HeroCopy) ?? null;
 });
 
 const pressQuotes = computed<PressQuote[]>(() => {
-  if (!isEnglish.value) {
-    return [];
-  }
   return (tm("home.press.quotes") as PressQuote[]) ?? [];
 });
 
 const mediaCards = computed<MediaCard[]>(() => {
-  if (!isEnglish.value) {
-    return [];
-  }
   return (tm("home.media.cards") as MediaCard[]) ?? [];
 });
 
 const celebrationStories = computed<StoryCard[]>(() => {
-  if (!isEnglish.value) {
-    return [];
-  }
   return (tm("home.celebration.items") as StoryCard[]) ?? [];
 });
 
@@ -340,23 +327,14 @@ const featureList = computed<FeatureCard[]>(() => {
 });
 
 const aiHighlights = computed<SimpleCard[]>(() => {
-  if (!isEnglish.value) {
-    return [];
-  }
   return (tm("home.ai.cards") as SimpleCard[]) ?? [];
 });
 
 const shareHighlights = computed<SimpleCard[]>(() => {
-  if (!isEnglish.value) {
-    return [];
-  }
   return (tm("home.share.cards") as SimpleCard[]) ?? [];
 });
 
 const globalTouchpoints = computed<SimpleCard[]>(() => {
-  if (!isEnglish.value) {
-    return [];
-  }
   return (tm("home.globalTouchpoints.cards") as SimpleCard[]) ?? [];
 });
 
