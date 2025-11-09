@@ -1,6 +1,6 @@
 const local = process.env.NUXT_ENV_LOCAL !== undefined;
 const baseUrl = (
-  process.env.BASE_URL || "https://www.whatsanalyze.com"
+  process.env.BASE_URL || "https://www.wrapped2.whatsanalyze.com"
 ).replace("http:", "https:");
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
