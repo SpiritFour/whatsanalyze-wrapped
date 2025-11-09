@@ -35,25 +35,41 @@
   "home": {
     "hero": {
       "title": "Wrapped - ma per ",
-      "subtitle": "La storia delle tue relazioni, raccontata attraverso i tuoi dati di chat di WhatsApp"
+      "subtitle": "La storia delle tue relazioni, raccontata attraverso i tuoi dati di chat di WhatsApp",
+      "usedBy": "Usato da migliaia di persone."
     },
     "sections": {
       "whatIs": "Cos'è WhatsApp Wrapped",
       "whatToExpect": "Cosa aspettarsi?",
-      "privacyFirst": "Privacy prima di tutto"
+      "privacyFirst": "Privacy prima di tutto",
+      "whatIsSubheading": "Uno sguardo più profondo alle tue relazioni.",
+      "whatToExpectSubheading": "Un sacco.",
+      "privacyFirstSubheading": "La tua chat non lascia il tuo dispositivo."
     },
     "features": [
       {
-        "title": "Informazioni sui messaggi",
-        "description": "Ottieni statistiche dettagliate sui tuoi modelli di chat e le tue abitudini di messaggistica"
+        "title": "Dashboard riassuntive della chat",
+        "description": "Scopri chi guida la conversazione, come si distribuisce la parola e come cambia il ritmo durante l'anno."
       },
       {
-        "title": "Condivisione crittografata",
-        "description": "Condividi i tuoi risultati in modo sicuro senza archiviare dati su alcun server"
+        "title": "Note vocali e chiamate",
+        "description": "Quantifica il tempo di conversazione, individua chi invia le registrazioni più lunghe e chi avvia sempre le chiamate."
       },
       {
-        "title": "Scarica risultati",
-        "description": "Esporta il tuo rapporto personalizzato come immagine o PDF"
+        "title": "Insight macchina del tempo",
+        "description": "Identifica le settimane di picco, le ore più intense e i periodi di silenzio per rivivere gli alti (e sorridere dei bassi)."
+      },
+      {
+        "title": "Approfondimenti sul vocabolario",
+        "description": "Metti in evidenza conteggi di parole, strisce di emoji e tormentoni personali per fotografare il dialetto unico della chat."
+      },
+      {
+        "title": "Suddivisione dei media",
+        "description": "Conta ogni immagine, allegato e link senza rivelarne il contenuto: solo la storia che raccontano."
+      },
+      {
+        "title": "Archetipi della chat",
+        "description": "Etichetta il Re degli emoji, il Romanziere delle note vocali o il Ghost texter in base a soglie di attività normalizzate."
       }
     ],
     "explanations": [

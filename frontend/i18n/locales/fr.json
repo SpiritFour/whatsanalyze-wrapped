@@ -35,25 +35,41 @@
   "home": {
     "hero": {
       "title": "Wrapped - mais pour ",
-      "subtitle": "L'histoire de vos relations, racontée à travers vos données de chat WhatsApp"
+      "subtitle": "L'histoire de vos relations, racontée à travers vos données de chat WhatsApp",
+      "usedBy": "Utilisé par des milliers de personnes."
     },
     "sections": {
       "whatIs": "Qu'est-ce que WhatsApp Wrapped",
       "whatToExpect": "À quoi s'attendre?",
-      "privacyFirst": "Confidentialité d'abord"
+      "privacyFirst": "Confidentialité d'abord",
+      "whatIsSubheading": "Un regard plus profond sur vos relations.",
+      "whatToExpectSubheading": "Beaucoup.",
+      "privacyFirstSubheading": "Votre chat ne quitte pas votre appareil."
     },
     "features": [
       {
-        "title": "Informations sur les messages",
-        "description": "Obtenez des statistiques détaillées sur vos modèles de chat et vos habitudes de messagerie"
+        "title": "Tableaux de bord du chat",
+        "description": "Voyez qui mène la discussion, la répartition de la parole et comment l'élan évolue tout au long de l'année."
       },
       {
-        "title": "Partage chiffré",
-        "description": "Partagez vos résultats en toute sécurité sans stocker de données sur aucun serveur"
+        "title": "Notes vocales et appels",
+        "description": "Mesurez le temps de parole, repérez qui laisse les enregistrements les plus longs et l'ami qui lance toujours les appels."
       },
       {
-        "title": "Télécharger les résultats",
-        "description": "Exportez votre rapport enveloppé personnalisé sous forme d'image ou de PDF"
+        "title": "Analyses machine à remonter le temps",
+        "description": "Identifiez les semaines de pointe, les heures les plus actives et les périodes de silence surprise pour revivre les sommets (et rire des creux)."
+      },
+      {
+        "title": "Plongées dans le vocabulaire",
+        "description": "Affichez le nombre de mots, les séquences d'emojis et les phrases fétiches de chacun pour capturer le dialecte unique de votre chat."
+      },
+      {
+        "title": "Décomposition des médias",
+        "description": "Comptez chaque image, pièce jointe et lien sans révéler leur contenu - seulement l'histoire qu'ils racontent."
+      },
+      {
+        "title": "Archétypes de chat",
+        "description": "Étiquetez le Roi de l'emoji, le Romancier des audios ou le Ghost texter selon des seuils d'activité normalisés."
       }
     ],
     "explanations": [

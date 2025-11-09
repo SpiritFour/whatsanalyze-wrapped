@@ -35,25 +35,41 @@
   "home": {
     "hero": {
       "title": "Wrapped - pero para ",
-      "subtitle": "La historia de tus relaciones, contada a través de tus datos de chat de WhatsApp"
+      "subtitle": "La historia de tus relaciones, contada a través de tus datos de chat de WhatsApp",
+      "usedBy": "Usado por miles de personas."
     },
     "sections": {
       "whatIs": "¿Qué es WhatsApp Wrapped",
       "whatToExpect": "¿Qué esperar?",
-      "privacyFirst": "Privacidad primero"
+      "privacyFirst": "Privacidad primero",
+      "whatIsSubheading": "Una mirada más profunda a tus relaciones.",
+      "whatToExpectSubheading": "Muchísimo.",
+      "privacyFirstSubheading": "Tu chat no sale de tu dispositivo."
     },
     "features": [
       {
-        "title": "Información de mensajes",
-        "description": "Obtén estadísticas detalladas sobre tus patrones de chat y hábitos de mensajería"
+        "title": "Paneles resumen del chat",
+        "description": "Descubre quién impulsa la conversación, cómo se reparte la voz y cómo cambia el ritmo durante el año."
       },
       {
-        "title": "Intercambio encriptado",
-        "description": "Comparte tus resultados de forma segura sin almacenar datos en ningún servidor"
+        "title": "Notas de voz y llamadas",
+        "description": "Cuantifica el tiempo de conversación, detecta quién deja las grabaciones más largas y quién siempre inicia las llamadas."
       },
       {
-        "title": "Descargar resultados",
-        "description": "Exporta tu informe personalizado como imagen o PDF"
+        "title": "Ideas de máquina del tiempo",
+        "description": "Ubica las semanas pico, las horas más activas y los silencios sorpresa para revivir los mejores momentos (y reírte de los bajones)."
+      },
+      {
+        "title": "Profundidad en el vocabulario",
+        "description": "Muestra conteos de palabras, rachas de emojis y muletillas por persona para capturar el dialecto único de tu chat."
+      },
+      {
+        "title": "Desglose de medios",
+        "description": "Cuenta cada imagen, archivo y enlace sin exponer su contenido; solo la historia que cuentan."
+      },
+      {
+        "title": "Arquetipos de chat",
+        "description": "Nombra al Rey del Emoji, al Novelista de audios o al Ghost Texter según umbrales de actividad normalizados."
       }
     ],
     "explanations": [

@@ -5,17 +5,17 @@
       <div v-if="isEnglish" class="flex flex-col gap-8">
         <div>
           <div class="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-4">
-            <span class="uppercase tracking-widest text-green-400 font-semibold">2026 WhatsApp Wrapped is here</span>
+            <span class="uppercase tracking-widest text-green-400 font-semibold">{{ heroEnglishCopy?.tagline }}</span>
           </div>
           <h1 class="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight">
-            Experience Your Year in Chatting Like Never Before
+            {{ heroEnglishCopy?.headline }}
           </h1>
           <p class="text-lg md:text-xl text-gray-300 mb-6">
-            There is nothing quite like replaying the conversations that soundtracked your year. WhatsAnalyze Wrapped rebuilds your private WhatsApp chats into an immersive recap with privacy-first insights, AI commentary, and export-ready visuals.
+            {{ heroEnglishCopy?.description }}
           </p>
           <div class="flex flex-wrap gap-3 text-sm text-gray-400">
             <span
-              v-for="highlight in heroHighlights"
+              v-for="highlight in heroEnglishCopy?.highlights ?? []"
               :key="highlight"
               class="rounded-full border border-gray-700/80 px-3 py-1"
             >
@@ -26,7 +26,7 @@
         <div class="w-full">
           <Upload />
           <p class="mt-3 text-sm text-center text-gray-500">
-            Used by <i>1000s</i> of people.
+            {{ $t("home.hero.usedBy") }}
           </p>
         </div>
       </div>
@@ -39,7 +39,7 @@
           <p class="text-gray-500">
             {{ $t("home.hero.subtitle") }}
             <br />
-            Used by <i>1000s</i> of people.
+            {{ $t("home.hero.usedBy") }}
           </p>
         </div>
         <Upload />
@@ -49,8 +49,8 @@
 
   <section v-if="isEnglish" class="container card">
     <div class="text-center mb-8">
-      <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">Known from</p>
-      <h2 class="text-3xl md:text-4xl font-extrabold mt-2">Press & community love</h2>
+      <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">{{ $t("home.press.eyebrow") }}</p>
+      <h2 class="text-3xl md:text-4xl font-extrabold mt-2">{{ $t("home.press.title") }}</h2>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <article
@@ -69,7 +69,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          Read blog
+          {{ $t("home.press.cta") }}
         </a>
       </article>
     </div>
@@ -78,18 +78,18 @@
   <section v-if="isEnglish" class="container card">
     <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-8">
       <div>
-        <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">Media Gallery</p>
-        <h2 class="text-3xl md:text-5xl font-extrabold mt-2">Relive your chats in cinematic slides</h2>
+        <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">{{ $t("home.media.eyebrow") }}</p>
+        <h2 class="text-3xl md:text-5xl font-extrabold mt-2">{{ $t("home.media.title") }}</h2>
         <p class="text-lg text-gray-300 mt-4">
-          Tap through the stories behind your most active days, late-night debates, and unforgettable emojis. Everything renders locally so you can share screenshots without leaking raw chat files.
+          {{ $t("home.media.description") }}
         </p>
       </div>
-      <span class="text-sm text-gray-400">Share-ready in seconds</span>
+      <span class="text-sm text-gray-400">{{ $t("home.media.tagline") }}</span>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <article
-        v-for="card in mediaGallery"
+        v-for="card in mediaCards"
         :key="card.title"
         class="rounded-2xl border border-gray-800 p-6 bg-gray-900/30 backdrop-blur"
       >
@@ -108,7 +108,7 @@
       </h2>
 
       <p class="text-lg md:text-xl text-green-400">
-        A deeper look into your relationships.
+        {{ $t("home.sections.whatIsSubheading") }}
       </p>
     </div>
 
@@ -131,10 +131,10 @@
 
   <section v-if="isEnglish" class="container card">
     <div class="text-center mb-12">
-      <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">Fresh ways to celebrate</p>
-      <h2 class="text-3xl md:text-5xl font-extrabold mt-2">Your private chat recap keeps getting smarter</h2>
-        <p class="text-lg md:text-xl text-gray-300 mt-4">
-          From evolving moods to personalized playlists, WhatsAnalyze Wrapped mirrors everything fans love about Spotify&apos;s experience-built for the messages that define your friendships.
+      <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">{{ $t("home.celebration.eyebrow") }}</p>
+      <h2 class="text-3xl md:text-5xl font-extrabold mt-2">{{ $t("home.celebration.title") }}</h2>
+      <p class="text-lg md:text-xl text-gray-300 mt-4">
+        {{ $t("home.celebration.description") }}
       </p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -158,12 +158,12 @@
     <div class="text-center mb-12">
       <h2 class="text-3xl md:text-5xl font-extrabold mb-8">{{ $t("home.sections.whatToExpect") }}</h2>
 
-      <p class="text-lg md:text-xl text-green-400">A lot.</p>
+      <p class="text-lg md:text-xl text-green-400">{{ $t("home.sections.whatToExpectSubheading") }}</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 text-center">
       <div
-        v-for="feature in features"
+        v-for="feature in featureList"
         :key="feature.title"
         class="space-y-4"
       >
@@ -178,13 +178,13 @@
   <section v-if="isEnglish" class="container card bg-gradient">
     <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between mb-8">
       <div>
-        <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">Bringing AI magic to Wrapped</p>
-        <h2 class="text-3xl md:text-5xl font-extrabold mt-2 text-white">Future AI insights for your chats</h2>
+        <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">{{ $t("home.ai.eyebrow") }}</p>
+        <h2 class="text-3xl md:text-5xl font-extrabold mt-2 text-white">{{ $t("home.ai.title") }}</h2>
         <p class="text-lg text-gray-200 mt-4">
-          We are prototyping NotebookLM-style prompting to map chat personalities, communication patterns, and conflict cues securely on-device. These planned tools stay private until you opt in, and no raw text leaves your browser.
+          {{ $t("home.ai.description") }}
         </p>
       </div>
-      <span class="text-sm text-gray-100">Planned beta · join the English waitlist soon</span>
+      <span class="text-sm text-gray-100">{{ $t("home.ai.status") }}</span>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -201,10 +201,10 @@
 
   <section v-if="isEnglish" class="container card">
     <div class="text-center mb-10">
-      <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">Wrapped everywhere</p>
-      <h2 class="text-3xl md:text-5xl font-extrabold mt-2">Share your results across every feed</h2>
-        <p class="text-lg text-gray-300 mt-4">
-          Drop your wrapped visuals into TikTok Stories, iMessage threads, Discord servers, or email digests-each output is sized and branded automatically.
+      <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">{{ $t("home.share.eyebrow") }}</p>
+      <h2 class="text-3xl md:text-5xl font-extrabold mt-2">{{ $t("home.share.title") }}</h2>
+      <p class="text-lg text-gray-300 mt-4">
+        {{ $t("home.share.description") }}
       </p>
     </div>
 
@@ -223,8 +223,8 @@
   <section v-if="isEnglish" class="container card">
     <div class="flex flex-col gap-6">
       <div>
-        <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">Wrapped here, there, everywhere</p>
-        <h2 class="text-3xl md:text-5xl font-extrabold mt-2">Built for friends, fans, and campuses</h2>
+        <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">{{ $t("home.globalTouchpoints.eyebrow") }}</p>
+        <h2 class="text-3xl md:text-5xl font-extrabold mt-2">{{ $t("home.globalTouchpoints.title") }}</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <article
@@ -246,7 +246,7 @@
         <h2 class="text-3xl md:text-5xl font-extrabold mb-8">{{ $t("home.sections.privacyFirst") }}</h2>
       </div>
       <p class="text-lg md:text-xl text-green-400">
-        Your Chat does not leave your device.
+        {{ $t("home.sections.privacyFirstSubheading") }}
       </p>
     </div>
   </section>
@@ -266,173 +266,99 @@ import {
   LockClosedIcon,
 } from "@heroicons/vue/24/solid";
 
-const { t, locale } = useI18n();
+const { t, locale, tm } = useI18n();
 const isEnglish = computed(() => locale.value === "en");
 
-const heroHighlights = [
-  "Private by design",
-  "TXT or ZIP support",
-  "Encrypted share-links",
-  "Instant PDF + image exports",
-];
+type HeroEnglishCopy = {
+  date: string;
+  tagline: string;
+  headline: string;
+  description: string;
+  highlights: string[];
+};
 
-const pressQuotes = [
-  {
-    quote: "Fun facts and exciting visualizations",
-    source: "Chip.de",
-    href: "https://www.chip.de/downloads/webapp-WhatsAnalyze-WhatsApp-analysieren_183369368.html",
-    logo: "/img/trust-logos/chip_logo.png",
-  },
-  {
-    quote: "The analysis happens only in your browser",
-    source: "Giga.de",
-    href: "https://www.giga.de/news/ueberraschende-einblicke-whatsapp-chats-kostenlos-analysieren/",
-    logo: "/img/trust-logos/giga_logo.png",
-  },
-  {
-    quote: "Find out what time you text the most",
-    source: "Netzwelt.de",
-    href: "https://www.netzwelt.de/news/187295-whatsapp-webseite-analysiert-chats-1803.html",
-    logo: "/img/trust-logos/netzwelt.jpeg",
-  },
-];
+type PressQuote = {
+  quote: string;
+  source: string;
+  href: string;
+  logo: string;
+};
 
-const mediaGallery = [
-  {
-    eyebrow: "Peak Hours",
-    title: "Heatmaps of your loudest days",
-    description:
-      "See when the chat never slept with highlight cards for marathon message streaks, voice-note sprees, and late-night drop-ins.",
-    stat: "Auto-generated in 7 seconds",
-  },
-  {
-    eyebrow: "Relationship Loops",
-    title: "Swipe through inside jokes",
-    description:
-      "Revisit the prompts, memes, and traditions that defined 2024. Each slide spotlights quotes and emoji habits without exposing raw text.",
-    stat: "Zero data leaves your browser",
-  },
-  {
-    eyebrow: "Gallery Mix",
-    title: "Shareable story formats",
-    description:
-      "Portrait, square, and desktop canvases are rendered in one pass so you can ship your recap to Instagram, TikTok, or newsletters instantly.",
-    stat: "4 optimized aspect ratios",
-  },
-];
+type MediaCard = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  stat: string;
+};
 
-const celebrationStories = [
-  {
-    badge: "New",
-    title: "Chat Evolution Timeline",
-    description:
-      "Track how your moods, pacing, and emoji vocabulary changed month over month. Watch phases appear just like Spotify's Music Evolution-now for your conversations.",
-  },
-  {
-    badge: "Returning Favorite",
-    title: "Relationship Spotlight",
-    description:
-      "Reveal your longest listening streak-style insights for messaging. Identify who kept conversations alive and what percentile fan you are for every friend.",
-  },
-  {
-    badge: "Playlist Magic",
-    title: "Message Evolution Playlist",
-    description:
-      "Generate a curated queue of songs, reminders, or follow-up prompts that match each chat phase. Every card links back to the exact moment in your exported data.",
-  },
-  {
-    badge: "Clips & Cameos",
-    title: "Creator shoutouts",
-    description:
-      "Script short audio or video clips to sit alongside your recap. Think heartfelt notes from friends, podcast-style narrations, or AI hosts recapping the chaos.",
-  },
-];
+type StoryCard = {
+  badge: string;
+  title: string;
+  description: string;
+};
 
-const features = [
-  {
-    title: "Chat summary dashboards",
-    description: "See who drives the conversation, the share of speech, and how momentum shifts throughout the year.",
-  },
-  {
-    title: "Voice notes & calls",
-    description: "Quantify talk time, spot who leaves the longest recordings, and highlight the friend who always starts calls.",
-  },
-  {
-    title: "Time-machine insights",
-    description: "Pinpoint peak weeks, busiest hours, and surprise droughts so you can relive the highs (and roast the lows).",
-  },
-  {
-    title: "Vocabulary deep dives",
-    description: "Surface word counts, emoji streaks, and per-person catchphrases to capture your chat's unique dialect.",
-  },
-  {
-    title: "Media breakdowns",
-    description: "Count every image, attachment, and link without exposing their content-just the story they tell.",
-  },
-  {
-    title: "Chat archetypes",
-    description: "Label the Emoji King, the Voice Note Novelist, or the Ghost Texter based on normalized activity thresholds.",
-  },
-];
+type SimpleCard = {
+  title: string;
+  description: string;
+};
 
-const aiHighlights = [
-  {
-    title: "AI Persona Map",
-    description:
-      "Draft personality archetypes for every participant, revealing how tone, pacing, and emoji habits ebb and flow through the year.",
-  },
-  {
-    title: "Relationship Insight Coach",
-    description:
-      "Identify celebration moments, friction points, and mutual appreciation gaps so you can nudge healthier communication habits.",
-  },
-  {
-    title: "Conflict Resolution Prompts",
-    description:
-      "Get context-aware prompts that summarize disagreements, surface shared ground, and suggest follow-up messages without exposing raw chat logs.",
-  },
-];
+type FeatureCard = {
+  title: string;
+  description: string;
+};
 
-const shareHighlights = [
-  {
-    title: "TikTok & Reels native exports",
-    description:
-      "Portrait slides that drop perfectly into the TikTok feed, Stories, Instagram Reels, or YouTube Shorts with no additional editing.",
-  },
-  {
-    title: "Messaging app previews",
-    description:
-      "Copy-paste smart cards directly into WhatsApp, Signal, or Telegram threads. We include privacy badges so friends know their data stays local.",
-  },
-  {
-    title: "Desktop & print kits",
-    description:
-      "Wide-format PNGs and printer-friendly PDFs make it easy to recap your community Slack, alumni newsletter, or campus bulletin board.",
-  },
-];
+const heroEnglishCopy = computed<HeroEnglishCopy | null>(() => {
+  if (!isEnglish.value) {
+    return null;
+  }
+  return (tm("home.hero.english") as HeroEnglishCopy) ?? null;
+});
 
-const globalTouchpoints = [
-  {
-    title: "Creators & teams",
-    description:
-      "Influencers, podcasters, and student clubs use WhatsAnalyze to drop personalized Wrapped posts that spotlight their most loyal supporters.",
-  },
-  {
-    title: "Campus collaborations",
-    description:
-      "Bring Wrapped to dorm lobbies or hackathons. Rotate spotlight screens that show anonymized stats while keeping raw data on a local kiosk.",
-  },
-  {
-    title: "Brand partnerships",
-    description:
-      "Layer your own typography, sponsor lockups, or QR codes on top of our templates to run limited, privacy-safe activations.",
-  },
-  {
-    title: "Voice-enabled moments",
-    description:
-      "Ask your smart speaker to \"Play my 2024 WhatsApp Wrapped\" and immediately hear the AI DJ recap pulled from your encrypted share-link.",
-  },
-];
+const pressQuotes = computed<PressQuote[]>(() => {
+  if (!isEnglish.value) {
+    return [];
+  }
+  return (tm("home.press.quotes") as PressQuote[]) ?? [];
+});
+
+const mediaCards = computed<MediaCard[]>(() => {
+  if (!isEnglish.value) {
+    return [];
+  }
+  return (tm("home.media.cards") as MediaCard[]) ?? [];
+});
+
+const celebrationStories = computed<StoryCard[]>(() => {
+  if (!isEnglish.value) {
+    return [];
+  }
+  return (tm("home.celebration.items") as StoryCard[]) ?? [];
+});
+
+const featureList = computed<FeatureCard[]>(() => {
+  return (tm("home.features") as FeatureCard[]) ?? [];
+});
+
+const aiHighlights = computed<SimpleCard[]>(() => {
+  if (!isEnglish.value) {
+    return [];
+  }
+  return (tm("home.ai.cards") as SimpleCard[]) ?? [];
+});
+
+const shareHighlights = computed<SimpleCard[]>(() => {
+  if (!isEnglish.value) {
+    return [];
+  }
+  return (tm("home.share.cards") as SimpleCard[]) ?? [];
+});
+
+const globalTouchpoints = computed<SimpleCard[]>(() => {
+  if (!isEnglish.value) {
+    return [];
+  }
+  return (tm("home.globalTouchpoints.cards") as SimpleCard[]) ?? [];
+});
 
 const explanations = computed(() => [
   {
