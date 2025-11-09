@@ -34,8 +34,10 @@
   <!--  </div>-->
 
   <StoryCarousel :duration="6000">
-    <MostUsedEmojiStory />
-    <Story2 :data="data" />
+    <IntroStory />
+    
+    <EmojiStory1 />
+    <EmojiStory2 />
   </StoryCarousel>
 </template>
 
@@ -43,7 +45,7 @@
 import { useStatsStore } from "~/store/stats";
 import { useUserDataStore } from "~/store/userDataStore";
 import { parseShareInfo, serializeShareInfo } from "~/utils/sharing/param";
-import MostUsedEmojiStory from "~/components/MostUsedEmojiStory.vue";
+import IntroStory from "~/components/IntroStory.vue";
 
 const statsStore = useStatsStore();
 

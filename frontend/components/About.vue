@@ -17,8 +17,8 @@
         class="flex flex-col items-center gap-4 rounded-3xl bg-black/40 p-6 text-center shadow-lg shadow-black/30 backdrop-blur"
       >
         <img
-          :src="person.image"
           :alt="person.name"
+          :src="person.image"
           class="h-28 w-28 rounded-full border border-white/10 object-cover"
           loading="lazy"
         />
@@ -40,12 +40,12 @@
         :key="university.name"
         :href="university.url"
         class="flex items-center justify-center"
-        target="_blank"
         rel="noreferrer noopener"
+        target="_blank"
       >
         <img
-          :src="university.src"
           :alt="university.name"
+          :src="university.src"
           class="max-h-16 w-full max-w-[140px] object-contain grayscale hover:grayscale-0 transition"
           loading="lazy"
         />
@@ -54,7 +54,7 @@
   </section>
 </template>
 
-<script setup lang="ts">
+<script lang="ts" setup>
 interface Person {
   image: string;
   name: string;
