@@ -20,7 +20,7 @@ rm -r docs
 mv frontend/.output/public docs
 
 rm -r frontend/.output
-
+cp CNAME docs/
 echo "Please commit and push now"
 
 git add .

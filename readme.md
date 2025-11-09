@@ -7,7 +7,7 @@
 Based on the open-source tool whatsanalyze.com we present the new wrapped version for limited time or forever.
 
 No data about your chat is transferred to any server at all.
-![wrapped.png](docs/img/wrapped.png)
+![wrapped-readne.png](frontend/public/img/wrapped-readme.png)
 
 ## Encountered an issue?
 
@@ -31,4 +31,7 @@ $ pnpm start
 
 # generate static project
 $ pnpm generate
+
 ```
+
+Use `deploy.sh` to publish new version of the website
