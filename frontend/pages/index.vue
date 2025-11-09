@@ -79,6 +79,9 @@
       </p>
     </div>
   </section>
+  <section id="about" class="container bg-gradient card">
+  <About />
+  </section>
 
   <!--  <section id="pricing" class="container card">
       <div class="mb-12">
@@ -114,9 +117,11 @@ import {
   LockClosedIcon,
 } from "@heroicons/vue/24/solid";
 import Gradient from "~/components/Gradient.vue";
+import About from "~/components/About.vue";
 
 export default {
   components: {
+    About,
     Gradient,
     ChatBubbleLeftIcon,
     CalendarIcon,
