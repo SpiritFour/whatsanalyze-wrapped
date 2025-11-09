@@ -39,9 +39,9 @@
       "usedBy": "Usado por miles de personas.",
       "english": {
         "tagline": "Ya está aquí el WhatsApp Wrapped 2026",
-        "headline": "Vive tu año en chats como nunca antes",
-        "descriptionMobile": "No hay nada como revivir las conversaciones que marcaron tu año. WhatsAnalyze Wrapped reconstruye tus chats privados de WhatsApp en un repaso inmersivo con insights centrados en la privacidad, comentarios con IA y visuales listos para exportar.",
-        "descriptionDesktop": "No hay nada como revivir las conversaciones que marcaron tu año. WhatsAnalyze Wrapped reconstruye tus chats privados de WhatsApp en un repaso inmersivo con insights centrados en la privacidad, comentarios con IA y visuales listos para exportar.",
+        "headline": "Tu chat contado como una historia",
+        "descriptionMobile": "WhatsAnalyze convierte tus datos exportados de WhatsApp en un recap privado con formato de historias. Revive tus horas más activas, las conversaciones más divertidas y los picos emocionales sin que tus mensajes salgan del navegador.",
+        "descriptionDesktop": "WhatsAnalyze transforma tus datos exportados de WhatsApp en un repaso visual, como tu propio \"year in review\" privado. Explora tus horas más activas, los intercambios más divertidos y los momentos más intensos en un formato tipo historia. Todos los insights se procesan localmente en tu dispositivo: tus mensajes nunca salen del navegador.",
         "highlights": [
           "Privado por diseño",
           "Compatibilidad con TXT o ZIP",
@@ -97,9 +97,9 @@
         },
         {
           "eyebrow": "Bucles de relación",
-          "title": "Desliza por las bromas internas",
-          "description": "Revive los prompts, memes y rituales que definieron 2026. Cada slide resalta citas y hábitos de emoji sin exponer texto en bruto.",
-          "stat": "Cero datos salen de tu navegador"
+          "title": "Revive tu año en conversaciones",
+          "description": "Explora tus chats como si fueran historias: desde los emojis más usados hasta el mensaje que generó más reacciones. Las visualizaciones destacan momentos, ritmos y relaciones sin exponer mensajes privados.",
+          "stat": "Todo se ejecuta localmente en tu navegador para máxima privacidad."
         },
         {
           "eyebrow": "Mezcla de galería",
@@ -131,8 +131,8 @@
         },
         {
           "badge": "Clips y cameos",
-          "title": "Saludos de creadores",
-          "description": "Guioniza clips cortos de audio o vídeo junto a tu recap: notas de amigos, narraciones estilo podcast o presentadores con IA resumiendo el caos."
+          "title": "Destacados que cuentan tu historia",
+          "description": "Cada recap se cura como una historia de Instagram, con animaciones sutiles, emojis y transiciones inteligentes que dan vida a tu historial de conversaciones. Mira tus horarios más activos, los intercambios más divertidos y las rachas más largas de forma cercana y viva."
         }
       ]
     },
@@ -214,8 +214,8 @@
           "description": "Lleva Wrapped a residencias o hackatones. Rota pantallas destacadas con estadísticas anonimizadas manteniendo los datos en un quiosco local."
         },
         {
-          "title": "Alianzas con marcas",
-          "description": "Superpone tu tipografía, patrocinios o códigos QR sobre nuestras plantillas para activaciones limitadas y seguras."
+          "title": "Proyectos open source y de comunidad",
+          "description": "WhatsAnalyze es completamente open source y prioriza la privacidad. Cualquiera puede hacer un fork, extenderlo o diseñar nuevas plantillas visuales para uso personal, proyectos universitarios o experimentos creativos, sin enviar datos a ningún servidor."
         },
         {
           "title": "Magia del chat",

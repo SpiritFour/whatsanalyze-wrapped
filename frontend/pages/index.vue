@@ -1,7 +1,7 @@
 <template>
-  <section class="relative overflow-hidden pb-16">
+  <section class="relative overflow-hidden pb-0">
     <Polygon />
-    <div class="card container w-full h-full">
+    <div class="card card--flush container w-full h-full">
       <div v-if="heroCopy" class="flex flex-col gap-8">
         <div>
           <div class="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-4">
@@ -28,7 +28,7 @@
         </div>
         <div class="w-full">
           <Upload />
-          <p class="mt-3 text-sm text-center text-gray-500">
+          <p class="text-sm text-center text-gray-500">
             {{ $t("home.hero.usedBy") }}
           </p>
         </div>
@@ -178,7 +178,7 @@
     </div>
   </section>
 
-  <section v-if="aiHighlights.length" class="container card bg-gradient">
+  <section v-if="aiHighlights.length" class="container card bg-gradient py-8">
     <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between mb-8">
       <div>
         <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">{{ $t("home.ai.eyebrow") }}</p>
