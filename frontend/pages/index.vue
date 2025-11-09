@@ -1,7 +1,7 @@
 <template>
   <section class="relative overflow-hidden pb-16">
     <Polygon />
-    <div class="card container w-full h-full py-0">
+    <div class="card container w-full h-full">
       <div v-if="heroCopy" class="flex flex-col gap-8">
         <div>
           <div class="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-4">
