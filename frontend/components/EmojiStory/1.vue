@@ -5,7 +5,7 @@
     title="Your most used Emojis"
   >
     <EmojiChaos
-      :count="200"
+      :count="50"
       :emojis="result.getMostUsedEmojis.globalTop5Emojis.map((m) => m.emoji)"
     />
 
