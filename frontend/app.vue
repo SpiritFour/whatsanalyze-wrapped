@@ -4,12 +4,14 @@
       class="sticky top-0 z-50 py-6 md:py-8 border-b-2 border-gray-900 bg-black px-4 md:px-8"
     >
       <div
-        class="grid-container flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0"
+        class="grid-container flex flex-wrap items-center justify-between gap-4"
       >
-        <Logo />
+        <div class="shrink-0">
+          <Logo />
+        </div>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden md:flex items-center space-x-6">
+        <nav class="hidden md:flex items-center space-x-6 ml-auto">
           <a
             class="hover:text-gray-300 transition-colors text-sm font-semibold"
             href="#privacy"
@@ -26,12 +28,13 @@
         </nav>
 
         <!-- Mobile Navigation -->
-        <div class="md:hidden flex items-center gap-3 w-full justify-end">
+        <div class="md:hidden flex items-center gap-3 ml-auto">
           <LanguageSwitcher />
           <button
             @click="mobileMenuOpen = !mobileMenuOpen"
-            class="p-2 rounded-md hover:bg-gray-900 transition-colors"
+            class="flex h-10 w-10 items-center justify-center rounded-md border border-gray-800 hover:border-gray-600 transition-colors"
             :aria-label="mobileMenuOpen ? $t('common.close') : $t('common.menu')"
+            :aria-expanded="mobileMenuOpen"
           >
             <span v-if="!mobileMenuOpen" class="text-xl">☰</span>
             <span v-else class="text-xl">✕</span>
