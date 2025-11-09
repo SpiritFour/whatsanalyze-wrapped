@@ -34,53 +34,60 @@ import { animate } from "motion";
 const topSlider = ref<HTMLElement | null>(null);
 const bottomSlider = ref<HTMLElement | null>(null);
 
-// number of step slices per side
 const steps = 10;
 
 const stepStyle = (i: number) => {
   const index = i - 1;
-  const thickness = 18; // px height of each step
-  const inset = index * 8; // how much we move inward each step
-
-  // simple two-color horizontal gradient (tweak as desired)
+  const thickness = 18;
+  const inset = index * 8;
   const gradient =
-    "linear-gradient(90deg, #11001f 0%, #2a7dff 40%, #43f5ff 100%)";
+      "linear-gradient(90deg, #11001f 0%, #2a7dff 40%, #43f5ff 100%)";
 
   return {
     top: `${index * thickness}px`,
     height: `${thickness}px`,
     background: gradient,
     boxShadow: "0 0 8px rgba(0,0,0,0.35)",
-    // width controlled per-side in CSS; here we shift inward
     "--inset": `${inset}px`,
   } as const;
 };
 
 onMounted(() => {
-  // Minimal, subtle entrance animation
+  // 🎵 Play the whoosh sound
+
+  // Animate the top and bottom sliders
   if (topSlider.value && bottomSlider.value) {
     animate(
-      topSlider.value,
-      // @ts-ignore
-      { opacity: [0, 1], transform: ["translateX(2000px)", "translateX(0)"] },
-      { duration: 2, easing: "ease-out" },
-    );
-
-    animate(
-      bottomSlider.value,
-      {
+        topSlider.value,
         // @ts-ignore
-        opacity: [0, 1],
-        transform: [
-          "translateX(-2000px) rotate(180deg)",
-          "translateX(0) rotate(180deg)",
-        ],
-      },
-      { duration: 2, easing: "ease-out" },
+        { opacity: [0, 1], transform: ["translateX(2000px)", "translateX(0)"] },
+        { duration: 2, easing: "ease-out" },
+    );
+    animate(
+        bottomSlider.value,
+        {
+          // @ts-ignore
+          opacity: [0, 1],
+          transform: [
+            "translateX(-2000px) rotate(180deg)",
+            "translateX(0) rotate(180deg)",
+          ],
+        },
+        { duration: 2, easing: "ease-out" },
     );
   }
+  // Play whoosh sound
+  setTimeout(() => {
+    const whoosh = new Audio("/sounds/whoosh.mp3");
+    whoosh.volume = 0.5;
+    whoosh.playbackRate = 0.5;
+    whoosh.play().catch(() => {
+      console.warn("Autoplay blocked — user interaction required.");
+    });
+  }, 100);
 });
 </script>
+
 
 <style scoped>
 /* stepped blue frame container */
