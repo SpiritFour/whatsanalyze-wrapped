@@ -12,16 +12,21 @@
     "share": "Compartir",
     "yes": "Sí",
     "no": "No",
-    "or": "o"
+    "or": "o",
+    "menu": "Menú"
   },
   "nav": {
     "privacy": "Privacidad",
     "exportGuide": "Cómo exportar",
+    "selectLanguage": "Seleccionar idioma",
     "appTitle": "WhatsApp Wrapped"
   },
   "footer": {
     "privacyFirst": "Privacidad primero",
+    "privacyFirstDescription": "Todo se ejecuta localmente en tu navegador garantizando privacidad. Si creas un enlace para compartir, solo se guardan datos encriptados.",
     "openSource": "Código abierto",
+    "openSourceDescription": "Este proyecto es de código abierto y todo el código está disponible en github. Siéntete libre de ejecutarlo localmente y ver cómo funciona.",
+    "checkOnGithub": "Ver código en GitHub.",
     "madeBy": "Hecho con ❤ por amigos en Múnich",
     "copyright": "© 2024 WhatsApp Wrapped. Todos los derechos reservados."
   },
