@@ -126,23 +126,60 @@ export default {
   },
   computed: {
     features(): Array<{ title: string; description: string }> {
-      return [];
+      return [
+        {
+          title: "Summary of your chat data.",
+          description: "Who dominates the chat? # and % of messages and",
+        },
+        {
+          title: "Wer redet gern?",
+          description: "Länge der Sprachnachrichten.",
+        },
+        {
+          title: "Wieviel wird telefoniert (Anrufe)",
+          description: "Wieviel wird telefoniert (Anrufe), wer ruft immer an?",
+        },
+        {
+          title: "When did you chat the most?",
+          description: "Month & date and time of day.",
+        },
+        {
+          title: "Total and most used words",
+          description:
+              "Total messages per person, top 3 used words and emojis per person.",
+        },
+        {
+          title: "Images",
+          description: "Number of images per person.",
+        },
+        {
+          title: "Chat Type",
+          description:
+              "Klassifizierung / Typeneinteilung / Chat-Persönlichkeit: Schwafler (>4h pro Jahr Sprachnachricht), Emoji-King (>20 verschiedene Emojis), Emoji-Spammer (mehr als 200× das gleiche Emoji).",
+        },
+      ];
     },
     explanations() {
       return [
         {
           title: this.$t("home.explanations.0.title") || "Message Insights",
-          description: this.$t("home.explanations.0.description") || "Analyze your messaging frequency, peak times, and communication patterns",
+          description:
+              this.$t("home.explanations.0.description") ||
+              "Analyze your messaging frequency, peak times, and communication patterns",
           icon: "LightBulbIcon",
         },
         {
           title: this.$t("home.explanations.1.title") || "Encrypted Sharing",
-          description: this.$t("home.explanations.1.description") || "Your data is encrypted end-to-end. Share your wrapped results without privacy concerns",
+          description:
+              this.$t("home.explanations.1.description") ||
+              "Your data is encrypted end-to-end. Share your wrapped results without privacy concerns",
           icon: "ChatBubbleLeftIcon",
         },
         {
           title: this.$t("home.explanations.2.title") || "Download Results",
-          description: this.$t("home.explanations.2.description") || "Get your personalized wrapped report in multiple formats for easy sharing",
+          description:
+              this.$t("home.explanations.2.description") ||
+              "Get your personalized wrapped report in multiple formats for easy sharing",
           icon: "DocumentArrowDownIcon",
         },
       ];
