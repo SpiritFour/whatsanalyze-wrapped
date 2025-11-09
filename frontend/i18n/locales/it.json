@@ -30,6 +30,8 @@
     "madeBy": "Fatto con ❤ da amici a Monaco di Baviera",
     "copyright": "© 2024 WhatsApp Wrapped. Tutti i diritti riservati."
   },
+  "about": "Chi siamo",
+  "aboutPoints": "<p>Siamo un gruppo di amici universitari con una passione condivisa per la tecnologia e una curiosità per le interazioni umane. Dopo anni di utilizzo di WhatsApp, volevamo capire come le nostre conversazioni e i nostri legami si fossero evoluti nel tempo.</p><p>Da studenti di Informatica abbiamo naturalmente pensato di poter costruire qualcosa di migliore: un modo incentrato sulla privacy per analizzare le nostre chat senza condividere né esporre dati personali. Da questa idea è nato WhatsAnalyze, uno strumento creato da utenti per utenti per esplorare insight significativi mantenendo sempre il pieno controllo delle proprie informazioni.</p>",
   "home": {
     "hero": {
       "title": "Wrapped - ma per ",
