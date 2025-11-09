@@ -1,11 +1,11 @@
 <template>
   <StoryContainer
     v-if="result"
-    class="bg-black flex flex-col gap-2 relative"
+    class="bg-black flex flex-col gap-2 text-blue-600"
     title="Your most used Emojis"
   >
     <EmojiChaos
-      :count="40"
+      :count="200"
       :emojis="result.getMostUsedEmojis.globalTop5Emojis.map((m) => m.emoji)"
     />
 
