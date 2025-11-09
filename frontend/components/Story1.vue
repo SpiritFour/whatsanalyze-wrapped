@@ -10,10 +10,6 @@
     />
 
     <EmojiPodium :top-three-emojies="topThreeEmojies" />
-
-    <!--    {{ result.getMostUsedEmojis.authors }}-->
-    <!--    {{ result.getMostUsedEmojis.globalMessageWithMostEmojis }}-->
-    <!--    {{ result.getMostUsedEmojis.globalTop5Emojis }}-->
   </StoryContainer>
 </template>
 <script lang="ts" setup>
