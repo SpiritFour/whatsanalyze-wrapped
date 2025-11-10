@@ -267,6 +267,10 @@
       "Seleziona come condividere il file",
       "Condividi il file .txt esportato con WhatsApp Wrapped"
     ],
+    "info": {
+      "title": "Gestisci gli export pesanti dal computer",
+      "description": "WhatsAnalyze elabora tutto localmente nel browser, quindi file TXT o ZIP molto grandi possono rallentare il telefono. Per un processo più fluido invia prima il file esportato al computer ed esegui l’analisi da lì."
+    },
     "coming_soon": "Guida Android in arrivo"
   },
   "results": {

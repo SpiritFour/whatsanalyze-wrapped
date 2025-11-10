@@ -31,25 +31,61 @@
       </div>
 
       <ol class="mt-4">
-        <li
+        <template
           v-for="(instruction, idx) in instructions[selectedSystem]"
-          :class="{
-            'bg-gradient-red': selectedStep === idx,
-            'font-bold': selectedStep === idx,
-          }"
-          class="p-2 rounded-xl cursor-pointer flex items-center"
-          @mouseover="selectedStep = idx"
+          :key="`${selectedSystem}-${idx}`"
         >
-          <span
-            class="w-8 h-8 border-2 text-center rounded-full inline-block mr-2"
+          <li
+            :class="{
+              'bg-gradient-red': selectedStep === idx,
+              'font-bold': selectedStep === idx,
+            }"
+            class="p-2 rounded-xl cursor-pointer"
+            @mouseover="selectedStep = idx"
+            @click="selectedStep = idx"
           >
-            {{ idx + 1 }}
-          </span>
-          <div>
-            {{ instruction.text }}
-          </div>
-        </li>
+            <div class="flex items-center">
+              <span
+                class="w-8 h-8 border-2 text-center rounded-full inline-block mr-2"
+              >
+                {{ idx + 1 }}
+              </span>
+              <div>
+                {{ instruction.text }}
+              </div>
+            </div>
+            <div
+              v-if="isMobile && selectedStep === idx"
+              class="mb-2 mt-4 pl-10"
+            >
+              <div class="relative max-w-[320px]">
+                <div class="max-w-full">
+                  <img
+                    :src="`/img/instructions/frame${selectedSystem}.png`"
+                    class="absolute max-w-full"
+                  />
+                  <img
+                    :src="instruction.img"
+                    class="relative rounded-2xl border border-white/30 shadow-lg"
+                  />
+                </div>
+              </div>
+            </div>
+          </li>
+        </template>
       </ol>
+
+      <div
+        v-if="shouldShowMobileInfo"
+        class="mt-6 rounded-2xl border border-green-200 bg-green-50/80 p-4 text-sm leading-relaxed text-green-900 dark:border-green-600/50 dark:bg-green-900/10 dark:text-green-50/90"
+      >
+        <p class="mb-1 text-base font-semibold">
+          {{ infoContent.title }}
+        </p>
+        <p>
+          {{ infoContent.description }}
+        </p>
+      </div>
 
       <div class="font-bold text-xl flex justify-between mx-auto w-20 my-8">
         <ArrowLeftCircleIcon
@@ -62,7 +98,7 @@
         />
       </div>
     </div>
-    <div class="flex items-center justify-center">
+    <div v-if="!isMobile" class="flex items-center justify-center">
       <div class="relative max-w-[350px]">
         <div class="max-w-full">
           <img
@@ -111,10 +147,53 @@ export default {
         this.instructions[this.selectedSystem].length - 1,
       );
     },
+    handleBreakpointChange(event: MediaQueryListEvent) {
+      this.isMobile = event.matches;
+    },
+    registerBreakpointListener() {
+      if (typeof window === "undefined") {
+        return;
+      }
+      this.mobileQuery = window.matchMedia("(max-width: 767px)");
+      this.isMobile = this.mobileQuery.matches;
+      if (this.mobileQuery.addEventListener) {
+        this.mobileQuery.addEventListener("change", this.handleBreakpointChange);
+      } else {
+        this.mobileQuery.addListener(this.handleBreakpointChange);
+      }
+    },
+    unregisterBreakpointListener() {
+      if (!this.mobileQuery) {
+        return;
+      }
+      if (this.mobileQuery.removeEventListener) {
+        this.mobileQuery.removeEventListener(
+          "change",
+          this.handleBreakpointChange,
+        );
+      } else {
+        this.mobileQuery.removeListener(this.handleBreakpointChange);
+      }
+    },
+  },
+  mounted() {
+    this.registerBreakpointListener();
+  },
+  beforeUnmount() {
+    this.unregisterBreakpointListener();
   },
   computed: {
     activeInstructions() {
       return this.instructions[this.selectedSystem][this.selectedStep];
+    },
+    shouldShowMobileInfo() {
+      return this.isMobile;
+    },
+    infoContent() {
+      return {
+        title: this.$t("exportGuide.info.title") as string,
+        description: this.$t("exportGuide.info.description") as string,
+      };
     },
     instructions() {
       // iOS: 7 steps, Android: 6 steps
@@ -138,6 +217,8 @@ export default {
     return {
       selectedSystem: "iOS" as "iOS" | "Android",
       selectedStep: 0,
+      isMobile: false,
+      mobileQuery: null as MediaQueryList | null,
     };
   },
 };

@@ -267,6 +267,10 @@
       "Sélectionnez comment partager le fichier",
       "Partagez le fichier .txt exporté avec WhatsApp Wrapped"
     ],
+    "info": {
+      "title": "Traitez les exports volumineux sur un ordinateur",
+      "description": "WhatsAnalyze fonctionne localement dans votre navigateur, ce qui peut ralentir le téléphone avec de gros fichiers TXT ou ZIP. Pour une analyse plus fluide, transférez d’abord l’export sur votre ordinateur puis lancez-y le traitement."
+    },
     "coming_soon": "Guide Android bientôt disponible"
   },
   "results": {

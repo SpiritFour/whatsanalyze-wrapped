@@ -267,6 +267,10 @@
       "Seleciona como queres partilhar o ficheiro",
       "Partilha o ficheiro .txt exportado com o WhatsApp Wrapped"
     ],
+    "info": {
+      "title": "Trata exports grandes no computador",
+      "description": "O WhatsAnalyze processa tudo localmente no navegador, por isso ficheiros TXT ou ZIP enormes podem deixar o telemóvel lento. Para uma experiência mais suave, envia primeiro o ficheiro exportado para o computador e faz a análise por lá."
+    },
     "coming_soon": "Guia Android em breve"
   },
   "results": {
