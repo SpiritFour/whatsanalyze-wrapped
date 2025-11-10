@@ -54,21 +54,16 @@
                 {{ instruction.text }}
               </div>
             </div>
-            <div
-              v-if="isMobile && selectedStep === idx"
-              class="mb-2 mt-4 pl-10"
-            >
+            <div v-if="isMobile && selectedStep === idx" class="mb-2 mt-4 pl-10">
               <div class="relative max-w-[320px]">
-                <div class="max-w-full">
-                  <img
-                    :src="`/img/instructions/frame${selectedSystem}.png`"
-                    class="absolute max-w-full"
-                  />
-                  <img
-                    :src="instruction.img"
-                    class="relative rounded-2xl border border-white/30 shadow-lg"
-                  />
-                </div>
+                <img
+                  :src="`/img/instructions/frame${selectedSystem}.png`"
+                  class="pointer-events-none absolute inset-0 z-10 w-full select-none"
+                />
+                <img
+                  :src="instruction.img"
+                  class="relative z-0 w-full rounded-2xl shadow-lg"
+                />
               </div>
             </div>
           </li>
@@ -100,13 +95,14 @@
     </div>
     <div v-if="!isMobile" class="flex items-center justify-center">
       <div class="relative max-w-[350px]">
-        <div class="max-w-full">
-          <img
-            :src="`/img/instructions/frame${selectedSystem}.png`"
-            class="absolute max-w-full"
-          />
-          <img :src="activeInstructions.img" />
-        </div>
+        <img
+          :src="`/img/instructions/frame${selectedSystem}.png`"
+          class="pointer-events-none absolute inset-0 z-10 w-full select-none"
+        />
+        <img
+          :src="activeInstructions.img"
+          class="relative z-0 w-full rounded-2xl shadow-lg"
+        />
       </div>
     </div>
   </div>
