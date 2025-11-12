@@ -56,6 +56,13 @@
             </div>
             <div v-if="isMobile && selectedStep === idx" class="mb-2 mt-4 pl-10">
               <div class="relative max-w-[320px]">
+                <span
+                  aria-hidden="true"
+                  class="absolute z-20 text-4xl drop-shadow pointer-events-none animate-bounce"
+                  :style="pointerStyle(instruction.pointer)"
+                >
+                  👇
+                </span>
                 <img
                   :src="`/img/instructions/frame${selectedSystem}.png`"
                   class="pointer-events-none absolute inset-0 z-10 w-full select-none"
@@ -95,6 +102,13 @@
     </div>
     <div v-if="!isMobile" class="flex items-center justify-center">
       <div class="relative max-w-[350px]">
+        <span
+          aria-hidden="true"
+          class="absolute z-20 text-5xl drop-shadow pointer-events-none animate-bounce"
+          :style="pointerStyle(activeInstructions.pointer)"
+        >
+          👇
+        </span>
         <img
           :src="`/img/instructions/frame${selectedSystem}.png`"
           class="pointer-events-none absolute inset-0 z-10 w-full select-none"
@@ -116,9 +130,11 @@ import {
   ChatBubbleLeftIcon,
   LightBulbIcon,
 } from "@heroicons/vue/24/solid";
+import type { CSSProperties } from "vue";
 import Gradient from "~/components/Gradient.vue";
 
 type System = "iOS" | "Android";
+type PointerStyle = CSSProperties | null;
 
 export default {
   components: {
@@ -171,6 +187,22 @@ export default {
         this.mobileQuery.removeListener(this.handleBreakpointChange);
       }
     },
+    pointerStyle(pointerOverrides?: PointerStyle) {
+      const baseStyle: CSSProperties = {
+        top: "1rem",
+        left: "50%",
+        transform: "translate(-50%, 0)",
+      };
+
+      if (!pointerOverrides) {
+        return baseStyle;
+      }
+
+      return {
+        ...baseStyle,
+        ...pointerOverrides,
+      };
+    },
   },
   mounted() {
     this.registerBreakpointListener();
@@ -196,11 +228,13 @@ export default {
       const iosSteps = Array.from({ length: 7 }, (_, idx) => ({
         text: this.$t(`exportGuide.iosSteps.${idx}`) as string,
         img: `/img/instructions/iOS/Frame${idx + 1}.png`,
+        pointer: this.pointerLayouts.iOS[idx],
       }));
 
       const androidSteps = Array.from({ length: 6 }, (_, idx) => ({
         text: this.$t(`exportGuide.androidSteps.${idx}`) as string,
         img: `/img/instructions/Android/${idx + 1}.png`,
+        pointer: this.pointerLayouts.Android[idx],
       }));
 
       return {
@@ -215,6 +249,26 @@ export default {
       selectedStep: 0,
       isMobile: false,
       mobileQuery: null as MediaQueryList | null,
+      // Adjust these coordinates to move the 👇 overlay for specific steps.
+      pointerLayouts: {
+        iOS: [
+          { top: "0%"},
+          { top: "0%"},
+          { top: "62%", left: "20%" },
+          { top: "73%", left: "40%"  },
+          { top: "60%", left: "10%" },
+          { top: "28%", left: "20%" },
+          { top: "82%" },
+        ] as PointerStyle[],
+        Android: [
+          { top: "50%", left: "70%" },
+          { top: "7%", left: "80%" },
+          { top: "32%" },
+          { top: "22%" },
+          { top: "45%", left: "20%" },
+          { top: "75%", left: "10%" },
+        ] as PointerStyle[],
+      } as Record<System, PointerStyle[]>,
     };
   },
 };
