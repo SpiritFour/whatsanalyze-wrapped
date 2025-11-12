@@ -267,6 +267,10 @@
       "Wähle, wie du die Datei teilen möchtest",
       "Teile die exportierte .txt-Datei mit WhatsApp Wrapped"
     ],
+    "info": {
+      "title": "Große Exporte besser am Computer bearbeiten",
+      "description": "WhatsAnalyze verarbeitet alles lokal in deinem Browser, daher können riesige TXT- oder ZIP-Exporte Smartphones ausbremsen. Für eine flüssigere Analyse schicke die exportierte Datei zuerst an deinen Computer und starte sie dort."
+    },
     "coming_soon": "Android-Anleitung folgt bald"
   },
   "results": {

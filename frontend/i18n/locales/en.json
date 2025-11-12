@@ -267,6 +267,10 @@
       "Select how you want to share the file",
       "Share the exported .txt file with WhatsApp Wrapped"
     ],
+    "info": {
+      "title": "Handle large exports on a computer",
+      "description": "WhatsAnalyze processes everything locally in your browser, so huge TXT or ZIP exports can slow down phones. For smoother processing, send the exported file to your computer first and run the analysis there."
+    },
     "coming_soon": "Android guide coming soon"
   },
   "results": {
