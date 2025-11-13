@@ -55,7 +55,7 @@
               </div>
             </div>
             <div v-if="isMobile && selectedStep === idx" class="mb-2 mt-4 pl-10">
-              <div class="relative max-w-[320px]">
+              <div class="relative max-w-[320px]" :style="frameWrapperStyle">
                 <span
                   aria-hidden="true"
                   class="absolute z-20 text-4xl drop-shadow pointer-events-none animate-bounce"
@@ -65,11 +65,14 @@
                 </span>
                 <img
                   :src="`/img/instructions/frame${selectedSystem}.png`"
+                  :alt="`${selectedSystem} frame overlay`"
                   class="pointer-events-none absolute inset-0 z-10 w-full select-none"
                 />
                 <img
                   :src="instruction.img"
+                  :alt="`Step ${idx + 1} screenshot for ${selectedSystem}`"
                   class="relative z-0 w-full rounded-2xl shadow-lg"
+                  :style="screenStyle(selectedSystem)"
                 />
               </div>
             </div>
@@ -101,7 +104,7 @@
       </div>
     </div>
     <div v-if="!isMobile" class="flex items-center justify-center">
-      <div class="relative max-w-[350px]">
+      <div class="relative max-w-[350px]" :style="frameWrapperStyle">
         <span
           aria-hidden="true"
           class="absolute z-20 text-5xl drop-shadow pointer-events-none animate-bounce"
@@ -111,11 +114,14 @@
         </span>
         <img
           :src="`/img/instructions/frame${selectedSystem}.png`"
+          :alt="`${selectedSystem} frame overlay`"
           class="pointer-events-none absolute inset-0 z-10 w-full select-none"
         />
         <img
           :src="activeInstructions.img"
+          :alt="`Step ${selectedStep + 1} screenshot for ${selectedSystem}`"
           class="relative z-0 w-full rounded-2xl shadow-lg"
+          :style="screenStyle(selectedSystem)"
         />
       </div>
     </div>
@@ -203,6 +209,27 @@ export default {
         ...pointerOverrides,
       };
     },
+    screenStyle(system: System) {
+      const baseStyle: CSSProperties = {
+        display: "block",
+        marginLeft: "auto",
+        marginRight: "auto",
+      };
+
+      const desktopStyle = this.screenStyles[system];
+      const mobileStyle = this.screenStylesMobile[system];
+      const style =
+        this.isMobile && mobileStyle !== undefined ? mobileStyle : desktopStyle;
+
+      if (!style) {
+        return baseStyle;
+      }
+
+      return {
+        ...baseStyle,
+        ...style,
+      };
+    },
   },
   mounted() {
     this.registerBreakpointListener();
@@ -221,6 +248,12 @@ export default {
       return {
         title: this.$t("exportGuide.info.title") as string,
         description: this.$t("exportGuide.info.description") as string,
+      };
+    },
+    frameWrapperStyle(): CSSProperties {
+      return {
+        width: "100%",
+        aspectRatio: "854 / 1716",
       };
     },
     instructions() {
@@ -252,13 +285,13 @@ export default {
       // Adjust these coordinates to move the 👇 overlay for specific steps.
       pointerLayouts: {
         iOS: [
-          { top: "0%"},
-          { top: "0%"},
-          { top: "62%", left: "20%" },
-          { top: "73%", left: "40%"  },
-          { top: "60%", left: "10%" },
-          { top: "28%", left: "20%" },
-          { top: "82%" },
+          { top: "20%", left: "20%" },
+          { top: "3%"},
+          { top: "77%", left: "20%" },
+          { top: "83%", left: "40%"  },
+          { top: "45%", left: "53%" },
+          { top: "40%", left: "20%" },
+          { top: "60%" },
         ] as PointerStyle[],
         Android: [
           { top: "50%", left: "70%" },
@@ -269,6 +302,23 @@ export default {
           { top: "75%", left: "10%" },
         ] as PointerStyle[],
       } as Record<System, PointerStyle[]>,
+      screenStyles: {
+        iOS: {
+          width: "88%",
+          marginTop: "5.3%",
+        },
+        Android: {
+          width: "100%",
+          marginTop: "0%",
+        },
+      } as Record<System, CSSProperties | undefined>,
+      screenStylesMobile: {
+        iOS: {
+          width: "88%",
+          transform: "translateY(2.8%)",
+        },
+        Android: undefined,
+      } as Record<System, CSSProperties | undefined>,
     };
   },
 };
