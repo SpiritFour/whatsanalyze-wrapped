@@ -1,1 +1,5 @@
+<<<<<<<< HEAD:docs/_nuxt/9BCQB_id.js
 import{f as i,S as d,m as f,c as n,v as t,u as p,o as a}from"./BBh8vumc.js";const u=["id"],h=["href"],k=i({__name:"ProseH1",props:{id:{}},setup(r){const o=r,{headings:e}=d().public.mdc,c=f(()=>o.id&&(typeof e?.anchorLinks=="boolean"&&e?.anchorLinks===!0||typeof e?.anchorLinks=="object"&&e?.anchorLinks?.h1));return(s,l)=>(a(),n("h1",{id:o.id},[p(c)?(a(),n("a",{key:0,href:`#${o.id}`},[t(s.$slots,"default")],8,h)):t(s.$slots,"default",{key:1})],8,u))}});export{k as default};
+========
+import{f as i,W as d,l as f,c as n,N as t,u as p,o as a}from"./B2qsYMj1.js";const u=["id"],h=["href"],k=i({__name:"ProseH1",props:{id:{}},setup(r){const o=r,{headings:e}=d().public.mdc,c=f(()=>o.id&&(typeof e?.anchorLinks=="boolean"&&e?.anchorLinks===!0||typeof e?.anchorLinks=="object"&&e?.anchorLinks?.h1));return(s,l)=>(a(),n("h1",{id:o.id},[p(c)?(a(),n("a",{key:0,href:`#${o.id}`},[t(s.$slots,"default")],8,h)):t(s.$slots,"default",{key:1})],8,u))}});export{k as default};
+>>>>>>>> 0bc9ba9 (feat: rebuild frontend):docs/_nuxt/gu5arK6c.js

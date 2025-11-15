@@ -12,7 +12,8 @@ echo "Starting Deploy"
 cd frontend
 
 rm -r .output
-pnpx nuxt build --preset github_pages
+# currently build for firebase dev project
+NUXT_ENV_ENV=dev pnpx nuxt build --preset github_pages
 
 cd ..
 
