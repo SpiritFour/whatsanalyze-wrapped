@@ -16,7 +16,7 @@ Please report bugs in the github issues.
 # Running whatsanalyze wrapped locally
 
 ## Build Setup
-We use node 22
+We use node 24
 
 ```bash
 # install dependencies
@@ -35,3 +35,15 @@ $ pnpm generate
 ```
 
 Use `deploy.sh` to publish new version of the website
+
+## running together with firebase functions
+1. terminal:
+```bash
+cd functions
+pnpm dev
+```
+2. terminal
+```bash
+cd frontend
+pnpm dev_with_functions
+```
