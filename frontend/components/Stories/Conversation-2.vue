@@ -41,7 +41,7 @@
           {{ prettyMonth(summary.firstMonth) }}
         </span>
       </p>
-      <div class="h-64">
+      <div class="h-64 w-full px-2">
         <Line :data="chartData" :options="chartOptions" />
       </div>
     </template>
