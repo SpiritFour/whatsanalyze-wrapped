@@ -184,20 +184,12 @@
     },
     "share": {
       "eyebrow": "Wrapped everywhere",
-      "title": "Share your results across every feed",
-      "description": "Drop your wrapped visuals into TikTok Stories, iMessage threads, Discord servers, or email digests-each output is sized and branded automatically.",
+      "title": "Share your results privately",
+      "description": "Post your Wrapped visuals to your chat partner via a secret link. Data is end-to-end encrypted.",
       "cards": [
         {
-          "title": "TikTok & Reels native exports",
-          "description": "Portrait slides that drop perfectly into the TikTok feed, Stories, Instagram Reels, or YouTube Shorts with no additional editing."
-        },
-        {
-          "title": "Messaging app previews",
-          "description": "Copy-paste smart cards directly into WhatsApp, Signal, or Telegram threads. We include privacy badges so friends know their data stays local."
-        },
-        {
-          "title": "Desktop & print kits",
-          "description": "Wide-format PNGs and printer-friendly PDFs make it easy to recap your community Slack, alumni newsletter, or campus bulletin board."
+          "title": "End-to-end encrypted share link",
+          "description": "Let your chat partners join the fun by sending them a link to your Whatsanalyze Wrapped!"
         }
       ]
     },

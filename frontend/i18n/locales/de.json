@@ -184,20 +184,12 @@
     },
     "share": {
       "eyebrow": "Wrapped überall",
-      "title": "Teile deine Ergebnisse auf jedem Kanal",
-      "description": "Poste deine Wrapped-Visuals auf TikTok, iMessage, Discord oder per E-Mail - alles ist automatisch optimiert.",
+      "title": "Teile deine Ergebnisse privat",
+      "description": "Poste deine Wrapped-Visuals an deinen Chat Partner per geheimen Link. Daten sind End-To-End verschlüsselt.",
       "cards": [
         {
-          "title": "TikTok & Reels-Exporte",
-          "description": "Hochformatige Slides, perfekt zugeschnitten für TikTok, Reels und YouTube Shorts."
-        },
-        {
-          "title": "Messaging-App-Vorschauen",
-          "description": "Teile Smartcards direkt in WhatsApp, Signal oder Telegram mit Datenschutz-Hinweis."
-        },
-        {
-          "title": "Desktop & Print-Kits",
-          "description": "Breitformatige PNGs und druckfertige PDFs für Newsletter, Communities oder Campus-Wände."
+          "title": "End-to-end verschlüsselter Share-Link",
+          "description": "Lass deine Chat Partner an dem Spaß teilhaben und schicke ihnen einen Link für dein Whatsanalyze Wrapped!"
         }
       ]
     },

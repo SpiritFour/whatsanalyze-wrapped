@@ -183,21 +183,13 @@
       ]
     },
     "share": {
-      "eyebrow": "Wrapped em todo o lado",
-      "title": "Partilha os teus resultados em qualquer feed",
-      "description": "Coloca os teus visuais em Histórias do TikTok, conversas do iMessage, servidores Discord ou newsletters — cada saída vem dimensionada e com marca automaticamente.",
+      "eyebrow": "Wrapped em todo lugar",
+      "title": "Compartilhe seus resultados de forma privada",
+      "description": "Envie seus visuais Wrapped ao seu parceiro de chat por meio de um link secreto. Os dados são criptografados de ponta a ponta.",
       "cards": [
         {
-          "title": "Exportações nativas para TikTok & Reels",
-          "description": "Slides verticais que entram na perfeição no TikTok, Stories, Instagram Reels ou YouTube Shorts sem edição adicional."
-        },
-        {
-          "title": "Pré-visualizações para apps de mensagens",
-          "description": "Copia e cola cartões inteligentes diretamente no WhatsApp, Signal ou Telegram. Incluímos badges de privacidade para que os amigos saibam que os dados ficam locais."
-        },
-        {
-          "title": "Kits para desktop & impressão",
-          "description": "PNGs em formato largo e PDFs prontos a imprimir para o Slack da comunidade, newsletters ou quadros do campus."
+          "title": "Link de compartilhamento criptografado de ponta a ponta",
+          "description": "Deixe seus parceiros de chat participarem da diversão enviando um link para o seu Whatsanalyze Wrapped!"
         }
       ]
     },
