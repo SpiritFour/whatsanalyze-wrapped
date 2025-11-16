@@ -46,18 +46,15 @@
       </div>
     </template>
 
-    <div class="flex items-center gap-5 text-xs mt-6">
-      <div class="flex items-center gap-2">
-        <span
-          class="h-2.5 w-2.5 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,0.9)]"
-        />
-        <span class="text-slate-100">Jane Doe</span>
-      </div>
-      <div class="flex items-center gap-2">
-        <span
-          class="h-2.5 w-2.5 rounded-full bg-rose-300 shadow-[0_0_12px_rgba(251,113,133,0.9)]"
-        />
-        <span class="text-slate-100">John Doe</span>
+    <!-- dynamic legend based on authors -->
+    <div class="flex flex-wrap items-center gap-5 text-xs mt-6">
+      <div
+        v-for="item in legendMeta"
+        :key="item.name"
+        class="flex items-center gap-2"
+      >
+        <span :class="item.dotClass" class="h-2.5 w-2.5 rounded-full" />
+        <span class="text-slate-100">{{ item.name }}</span>
       </div>
     </div>
   </StoryContainer>
@@ -97,6 +94,34 @@ ChartJS.register(
 const statsStore = useStatsStore();
 const { result } = storeToRefs(statsStore);
 
+// dynamic authors from store
+const authors = statsStore.getAuthors as string[];
+
+// shared color palette (cycled by index)
+const authorColors = [
+  {
+    borderColor: "#22d3ee",
+    backgroundColor: "rgba(45,212,191,0.16)",
+    dotClass: "bg-cyan-300 shadow-[0_0_12px_rgba(103,232,249,0.9)]",
+  },
+  {
+    borderColor: "#fb7185",
+    backgroundColor: "rgba(251,113,133,0.14)",
+    dotClass: "bg-rose-300 shadow-[0_0_12px_rgba(251,113,133,0.9)]",
+  },
+  // add more colors if needed
+  {
+    borderColor: "#a855f7",
+    backgroundColor: "rgba(168,85,247,0.16)",
+    dotClass: "bg-purple-300 shadow-[0_0_12px_rgba(196,181,253,0.9)]",
+  },
+  {
+    borderColor: "#4ade80",
+    backgroundColor: "rgba(74,222,128,0.16)",
+    dotClass: "bg-emerald-300 shadow-[0_0_12px_rgba(74,222,128,0.9)]",
+  },
+];
+
 type MessagesPerMonth = Record<string, number>;
 
 const prettyMonth = (value: string) => {
@@ -113,52 +138,42 @@ const prettyMonth = (value: string) => {
 };
 
 const chartData = computed<ChartData<"line">>(() => {
-  if (!result.value) return { labels: [], datasets: [] };
+  if (!result.value || !authors?.length) return { labels: [], datasets: [] };
 
   const messagesData = result.value.getNumberOfMessagesPerMonth as Record<
     string,
     MessagesPerMonth
   >;
 
-  const janeData: MessagesPerMonth = messagesData["Jane Doe"] ?? {};
-  // Handle possible trailing space typo in the key
-  const johnKey =
-    Object.keys(messagesData).find((k) => k.startsWith("John Doe")) ??
-    "John Doe";
-  const johnData: MessagesPerMonth = messagesData[johnKey] ?? {};
+  // collect per-author data
+  const perAuthorData = authors.map(
+    (name) => messagesData[name] ?? ({} as MessagesPerMonth),
+  );
 
+  // union of all months across authors
   const labels = Array.from(
-    new Set([...Object.keys(janeData), ...Object.keys(johnData)]),
+    new Set(perAuthorData.flatMap((data) => Object.keys(data))),
   ).sort();
 
   return {
     labels,
-    datasets: [
-      {
-        label: "Jane Doe",
-        data: labels.map((month) => janeData[month] ?? 0),
-        borderColor: "#22d3ee",
-        backgroundColor: "rgba(45,212,191,0.16)",
+    datasets: authors.map((name, index) => {
+      const authorData = perAuthorData[index];
+      const color = authorColors[index % authorColors.length];
+
+      return {
+        label: name,
+        data: labels.map((month) => authorData[month] ?? 0),
+        borderColor: color.borderColor,
+        backgroundColor: color.backgroundColor,
         borderWidth: 3,
         fill: true,
         tension: 0.35,
         pointRadius: 0,
         pointHitRadius: 12,
         pointHoverRadius: 4,
-      },
-      {
-        label: "John Doe",
-        data: labels.map((month) => johnData[month] ?? 0),
-        borderColor: "#fb7185",
-        backgroundColor: "rgba(251,113,133,0.14)",
-        borderWidth: 3,
-        fill: true,
-        tension: 0.35,
-        pointRadius: 0,
-        pointHitRadius: 12,
-        pointHoverRadius: 4,
-      },
-    ],
+      };
+    }),
   };
 });
 
@@ -187,7 +202,7 @@ const chartOptions: ChartOptions<"line"> = {
       callbacks: {
         title: (items) => {
           if (!items[0]?.chart?.data?.labels) return "";
-          const index = items[0].dataIndex; // ← this is reliable
+          const index = items[0].dataIndex;
           const rawLabel = items[0]?.chart?.data?.labels[index] as string;
           return prettyMonth(rawLabel);
         },
@@ -239,21 +254,19 @@ const chartOptions: ChartOptions<"line"> = {
 };
 
 const summary = computed(() => {
-  if (!result.value) return null;
+  if (!result.value || !authors?.length) return null;
 
   const messagesData = result.value.getNumberOfMessagesPerMonth as Record<
     string,
     MessagesPerMonth
   >;
 
-  const jane: MessagesPerMonth = messagesData["Jane Doe"] ?? {};
-  const johnKey =
-    Object.keys(messagesData).find((k) => k.startsWith("John Doe")) ??
-    "John Doe";
-  const john: MessagesPerMonth = messagesData[johnKey] ?? {};
+  const perAuthorData = authors.map(
+    (name) => messagesData[name] ?? ({} as MessagesPerMonth),
+  );
 
   const labels = Array.from(
-    new Set([...Object.keys(jane), ...Object.keys(john)]),
+    new Set(perAuthorData.flatMap((data) => Object.keys(data))),
   ).sort();
 
   if (!labels.length) return null;
@@ -263,10 +276,13 @@ const summary = computed(() => {
   let totalMessages = 0;
 
   for (const month of labels) {
-    const total = (jane[month] ?? 0) + (john[month] ?? 0);
-    totalMessages += total;
-    if (total > max) {
-      max = total;
+    const totalForMonth = perAuthorData.reduce(
+      (sum, authorData) => sum + (authorData[month] ?? 0),
+      0,
+    );
+    totalMessages += totalForMonth;
+    if (totalForMonth > max) {
+      max = totalForMonth;
       maxMonth = month;
     }
   }
@@ -278,4 +294,15 @@ const summary = computed(() => {
     firstMonth: labels[0],
   };
 });
+
+// legend metadata for template
+const legendMeta = computed(() =>
+  authors.map((name, index) => {
+    const color = authorColors[index % authorColors.length];
+    return {
+      name,
+      dotClass: color.dotClass,
+    };
+  }),
+);
 </script>
