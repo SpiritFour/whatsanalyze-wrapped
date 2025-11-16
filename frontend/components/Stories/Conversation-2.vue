@@ -46,7 +46,6 @@
       </div>
     </template>
 
-    <!-- dynamic legend based on authors -->
     <div class="flex flex-wrap items-center gap-5 text-xs mt-6">
       <div
         v-for="item in legendMeta"
@@ -94,10 +93,8 @@ ChartJS.register(
 const statsStore = useStatsStore();
 const { result } = storeToRefs(statsStore);
 
-// dynamic authors from store
 const authors = statsStore.getAuthors as string[];
 
-// shared color palette (cycled by index)
 const authorColors = [
   {
     borderColor: "#22d3ee",
