@@ -7,6 +7,7 @@ import { getNumberOfMessagesPerMonth } from "~/utils/parsing/analyzer/messagesPe
 import JSZip from "jszip";
 import * as whatsapp from "whatsapp-chat-parser";
 import { z } from "zod";
+import { getFirstMessages } from "~/utils/parsing/analyzer/firstMessagesAnalyzer";
 
 class Parser<A extends Record<string, (messages: Message[]) => any>> {
   private readonly schema: z.ZodType<{ [K in keyof A]: ReturnType<A[K]> }>;
@@ -24,13 +25,12 @@ class Parser<A extends Record<string, (messages: Message[]) => any>> {
 
     const result: any = {};
     for (const key in this.analyzers) {
-      result[key] = this.analyzers[key](messages); // Execute function and store result
+      result[key] = this.analyzers[key](validMessages);
     }
     return result;
   }
 
   serialize(data: { [K in keyof A]: ReturnType<A[K]> }): string {
-    // Convert the data to a JSON string
     return JSON.stringify(data);
   }
 
@@ -93,6 +93,7 @@ export const parser = new Parser({
   getWordUsage,
   getTimeData,
   getActiveDates,
+  getFirstMessages,
 });
 
 export type ParserResult = Awaited<ReturnType<typeof parser.run>>;

@@ -16,7 +16,11 @@
       <div class="mt-6 flex items-end justify-center gap-10">
         <div class="text-left">
           <div class="text-3xl font-bold leading-none text-emerald-300">
-            {{ data.relativeWords * result.getWordUsage.totalWordCount }}
+            {{
+              Math.round(
+                data.relativeWords * result.getWordUsage.totalWordCount,
+              )
+            }}
           </div>
           <div class="mt-1 text-[0.65rem] tracking-[0.25em] text-slate-400">
             words
@@ -25,7 +29,11 @@
 
         <div class="text-left">
           <div class="text-3xl font-bold leading-none text-white">
-            {{ data.relativeMessages * result.getWordUsage.totalMessagesCount }}
+            {{
+              Math.round(
+                data.relativeMessages * result.getWordUsage.totalMessagesCount,
+              )
+            }}
           </div>
           <div class="mt-1 text-[0.65rem] tracking-[0.25em] text-slate-400">
             messages

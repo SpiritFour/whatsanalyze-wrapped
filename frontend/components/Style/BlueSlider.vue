@@ -1,30 +1,22 @@
-<!-- components/LeaderboardCard.vue -->
 <template>
-  <StoryContainer class="text-6xl">
-    <!-- stepped gradient frame -->
-    <div ref="topSlider" class="lc-steps inset-4">
-      <div>
-        <div
-          v-for="i in steps"
-          :key="`left-${i}`"
-          :style="stepStyle(i)"
-          class="lc-step lc-step-left"
-        />
-      </div>
-    </div>
-
-    <Logo />
-
-    <div ref="bottomSlider" class="lc-steps top-2/3 inset-0">
+  <div ref="topSlider" class="lc-steps inset-4">
+    <div>
       <div
         v-for="i in steps"
-        :key="`right-${i}`"
+        :key="`left-${i}`"
         :style="stepStyle(i)"
-        class="lc-step lc-step-right"
+        class="lc-step lc-step-left"
       />
     </div>
-    <!-- yellow diamond -->
-  </StoryContainer>
+  </div>
+  <div ref="bottomSlider" class="lc-steps top-2/3 inset-0">
+    <div
+      v-for="i in steps"
+      :key="`right-${i}`"
+      :style="stepStyle(i)"
+      class="lc-step lc-step-right"
+    />
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -35,6 +27,8 @@ const topSlider = ref<HTMLElement | null>(null);
 const bottomSlider = ref<HTMLElement | null>(null);
 
 const steps = 10;
+
+const { reverse } = defineProps<{ reverse?: boolean }>();
 
 const stepStyle = (i: number) => {
   const index = i - 1;
@@ -57,27 +51,39 @@ onMounted(() => {
 
   // Animate the top and bottom sliders
   if (topSlider.value && bottomSlider.value) {
+    let transformTop = ["translateX(2000px)", "translateX(0)"];
+    let transformBottom = [
+      "translateX(-2000px) rotate(180deg)",
+      "translateX(0) rotate(180deg)",
+    ];
+    if (reverse) {
+      transformTop = transformTop.reverse();
+      transformBottom = transformBottom.reverse();
+    }
+
+    const duration = reverse ? 40 : 2;
+    const opacity = reverse ? [1, 0] : [0, 1];
+
     animate(
       topSlider.value,
       // @ts-ignore
-      { opacity: [0, 1], transform: ["translateX(2000px)", "translateX(0)"] },
-      { duration: 2, easing: "ease-out" },
+      { opacity, transform: transformTop },
+      { duration, easing: "ease-out" },
     );
     animate(
       bottomSlider.value,
       {
         // @ts-ignore
-        opacity: [0, 1],
-        transform: [
-          "translateX(-2000px) rotate(180deg)",
-          "translateX(0) rotate(180deg)",
-        ],
+        opacity,
+        transform: transformBottom,
       },
-      { duration: 2, easing: "ease-out" },
+      { duration, easing: "ease-out" },
     );
   }
   // Play whoosh sound
   setTimeout(() => {
+    if (reverse) return;
+
     const whoosh = new Audio("/sounds/whoosh.mp3");
     whoosh.volume = 0.5;
     whoosh.playbackRate = 0.5;

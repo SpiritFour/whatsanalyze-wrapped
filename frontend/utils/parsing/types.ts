@@ -7,6 +7,8 @@ export interface EmojiStats {
   count: number;
 }
 
+export type FirstMessageAnalytics = Record<string, Message>;
+
 export interface AuthorEmojiData {
   emojiCountMap: Map<string, number>;
   maxEmojiCount: number;

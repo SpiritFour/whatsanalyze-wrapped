@@ -279,13 +279,3 @@ const summary = computed(() => {
   };
 });
 </script>
-
-<style scoped>
-.card1 {
-  @apply rounded-2xl bg-white/5 px-4 py-2 shadow-[0_18px_55px_rgba(0,0,0,0.75)] backdrop-blur-2xl;
-}
-
-.card-dark {
-  @apply rounded-2xl bg-black/40 px-4 py-2 text-right shadow-inner shadow-black/60;
-}
-</style>

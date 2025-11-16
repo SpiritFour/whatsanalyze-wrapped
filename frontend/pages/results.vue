@@ -34,7 +34,8 @@
   <!--  </div>-->
 
   <StoryCarousel :duration="6000">
-    <IntroStory />
+    <StoriesIntro1 />
+    <StoriesIntro2 />
 
     <StoriesEmoji1 />
     <StoriesEmoji2 />
@@ -52,7 +53,6 @@
 import { useStatsStore } from "~/store/stats";
 import { useUserDataStore } from "~/store/userDataStore";
 import { parseShareInfo, serializeShareInfo } from "~/utils/sharing/param";
-import IntroStory from "~/components/IntroStory.vue";
 
 const statsStore = useStatsStore();
 
