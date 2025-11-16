@@ -38,7 +38,7 @@
 
 <script lang="ts" setup>
 import { useStatsStore } from "~/store/stats";
-import Glow from "~/components/Stories/Glow.vue";
+import Glow from "~/components/Style/Glow.vue";
 
 const statsStore = useStatsStore();
 

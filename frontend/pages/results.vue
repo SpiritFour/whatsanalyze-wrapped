@@ -14,7 +14,7 @@
   <!--    zahlen haben outline und werden dann angeleuchtet - getippt-->
   <!--  </div>-->
 
-  <!--  <div></div>-->
+  <!--  <div/>-->
 
   <!--  &lt;!&ndash; colorful eye catcher area with some stats and big animation&ndash;&gt;-->
   <!--  graph of chat frequency per week builds up from left to right (line graph)-->
@@ -42,9 +42,12 @@
     <StoriesWords1 />
     <StoriesWords2 />
     <StoriesWords3 />
+
+    <StoriesConversation1 />
+    <StoriesConversation2 />
   </StoryCarousel>
 </template>
-
+<StoriesConversation2 />
 <script lang="ts" setup>
 import { useStatsStore } from "~/store/stats";
 import { useUserDataStore } from "~/store/userDataStore";

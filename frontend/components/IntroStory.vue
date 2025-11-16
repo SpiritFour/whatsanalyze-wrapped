@@ -1,6 +1,6 @@
 <!-- components/LeaderboardCard.vue -->
 <template>
-  <StoryContainer class="bg-black text-6xl">
+  <StoryContainer class="text-6xl">
     <!-- stepped gradient frame -->
     <div ref="topSlider" class="lc-steps inset-4">
       <div>
@@ -41,7 +41,7 @@ const stepStyle = (i: number) => {
   const thickness = 18;
   const inset = index * 8;
   const gradient =
-      "linear-gradient(90deg, #11001f 0%, #2a7dff 40%, #43f5ff 100%)";
+    "linear-gradient(90deg, #11001f 0%, #2a7dff 40%, #43f5ff 100%)";
 
   return {
     top: `${index * thickness}px`,
@@ -58,22 +58,22 @@ onMounted(() => {
   // Animate the top and bottom sliders
   if (topSlider.value && bottomSlider.value) {
     animate(
-        topSlider.value,
-        // @ts-ignore
-        { opacity: [0, 1], transform: ["translateX(2000px)", "translateX(0)"] },
-        { duration: 2, easing: "ease-out" },
+      topSlider.value,
+      // @ts-ignore
+      { opacity: [0, 1], transform: ["translateX(2000px)", "translateX(0)"] },
+      { duration: 2, easing: "ease-out" },
     );
     animate(
-        bottomSlider.value,
-        {
-          // @ts-ignore
-          opacity: [0, 1],
-          transform: [
-            "translateX(-2000px) rotate(180deg)",
-            "translateX(0) rotate(180deg)",
-          ],
-        },
-        { duration: 2, easing: "ease-out" },
+      bottomSlider.value,
+      {
+        // @ts-ignore
+        opacity: [0, 1],
+        transform: [
+          "translateX(-2000px) rotate(180deg)",
+          "translateX(0) rotate(180deg)",
+        ],
+      },
+      { duration: 2, easing: "ease-out" },
     );
   }
   // Play whoosh sound
@@ -87,7 +87,6 @@ onMounted(() => {
   }, 100);
 });
 </script>
-
 
 <style scoped>
 /* stepped blue frame container */

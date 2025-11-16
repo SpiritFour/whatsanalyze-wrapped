@@ -1,5 +1,5 @@
 <template>
-  <StoryContainer class="relative overflow-hidden text-white" title="">
+  <StoryContainer title="">
     <Glow />
     <Polygon />
 
@@ -32,6 +32,6 @@
 </template>
 
 <script lang="ts" setup>
-import Glow from "~/components/Stories/Glow.vue";
-import AnimatedDots from "~/components/Stories/AnimatedDots.vue";
+import Glow from "~/components/Style/Glow.vue";
+import AnimatedDots from "~/components/Style/AnimatedDots.vue";
 </script>

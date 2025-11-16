@@ -1,6 +1,6 @@
 <template>
   <article id="gallery">
-    <div class="progress"></div>
+    <div class="progress" />
     <section class="slider-group-container">
       <div>
         <ul class="img-group">

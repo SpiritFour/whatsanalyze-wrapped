@@ -1,11 +1,11 @@
 <template>
-  <StoryContainer class="bg-black" title="Message with most emojis:">
+  <StoryContainer title="Message with most emojis:">
     <div class="relative w-full p-8 text-2xl text-white">
       <!-- Corner brackets -->
-      <div ref="cornerTL" class="corner corner-tl"></div>
-      <div ref="cornerTR" class="corner corner-tr"></div>
-      <div ref="cornerBL" class="corner corner-bl"></div>
-      <div ref="cornerBR" class="corner corner-br"></div>
+      <div ref="cornerTL" class="corner corner-tl" />
+      <div ref="cornerTR" class="corner corner-tr" />
+      <div ref="cornerBL" class="corner corner-bl" />
+      <div ref="cornerBR" class="corner corner-br" />
 
       <!-- Message -->
       <div class="relative z-10 text-center">
