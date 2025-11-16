@@ -1,24 +1,44 @@
 <template>
   <StoryContainer title="Message with most emojis:">
-    <div class="relative w-full p-8 text-2xl text-white">
-      <!-- Corner brackets -->
-      <div ref="cornerTL" class="corner corner-tl" />
-      <div ref="cornerTR" class="corner corner-tr" />
-      <div ref="cornerBL" class="corner corner-bl" />
-      <div ref="cornerBR" class="corner corner-br" />
+    <div class="relative w-full max-w-xl py-12 text-2xl md:text-3xl">
+      <div
+        ref="cornerTL"
+        class="pointer-events-none absolute left-6 top-4 h-6 w-6 border-l-2 border-t-2 border-sky-400/60"
+      />
+      <div
+        ref="cornerTR"
+        class="pointer-events-none absolute right-6 top-4 h-6 w-6 border-r-2 border-t-2 border-sky-400/60"
+      />
+      <div
+        ref="cornerBL"
+        class="pointer-events-none absolute bottom-4 left-6 h-6 w-6 border-b-2 border-l-2 border-sky-400/60"
+      />
+      <div
+        ref="cornerBR"
+        class="pointer-events-none absolute bottom-4 right-6 h-6 w-6 border-b-2 border-r-2 border-sky-400/60"
+      />
 
-      <!-- Message -->
-      <div class="relative z-10 text-center">
-        {{ message?.message }}
+      <div
+        ref="messageViewport"
+        class="relative z-10 mx-6 max-h-80 overflow-hidden text-center text-4xl leading-snug md:mx-10 md:max-h-52 md:text-5xl"
+      >
+        <div
+          ref="messageContent"
+          class="inline-block align-top whitespace-pre-line break-words"
+        >
+          {{ message?.message }}
+        </div>
       </div>
     </div>
 
-    <div class="font-bold text-center pb-6">from {{ message?.author }}</div>
+    <div class="pb-10 text-center text-lg font-semibold tracking-wide">
+      from <span class="font-bold">{{ message?.author }}</span>
+    </div>
   </StoryContainer>
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, nextTick, onMounted, ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { animate } from "motion";
 import { useStatsStore } from "~/store/stats";
@@ -37,7 +57,13 @@ const cornerTR = ref<HTMLElement | null>(null);
 const cornerBL = ref<HTMLElement | null>(null);
 const cornerBR = ref<HTMLElement | null>(null);
 
-onMounted(() => {
+// Message scrolling refs
+const messageViewport = ref<HTMLElement | null>(null);
+const messageContent = ref<HTMLElement | null>(null);
+
+let scrollAnimation: ReturnType<typeof animate> | null = null;
+
+const setupCornerGlow = () => {
   const corners = [
     cornerTL.value,
     cornerTR.value,
@@ -45,58 +71,66 @@ onMounted(() => {
     cornerBR.value,
   ].filter(Boolean) as HTMLElement[];
 
-  // Subtle breathing glow animation
   corners.forEach((el, i) => {
     animate(
       el,
       // @ts-ignore
-      { opacity: [0.2, 0.6, 0.2] },
+      { opacity: [0.2, 0.7, 0.2] },
       {
         duration: 2.4,
         delay: i * 0.2,
         repeat: Infinity,
-        // @ts-ignore
         easing: "ease-in-out",
       },
     );
   });
+};
+
+const setupAutoScroll = () => {
+  const viewport = messageViewport.value;
+  const content = messageContent.value;
+  if (!viewport || !content) return;
+
+  // cancel previous animation if any
+  if (scrollAnimation && typeof scrollAnimation.cancel === "function") {
+    scrollAnimation.cancel();
+  }
+
+  const overflow = content.scrollHeight - viewport.clientHeight;
+
+  if (overflow <= 0) {
+    // no overflow, ensure content is reset
+    content.style.transform = "";
+    return;
+  }
+
+  // slow, continuous up-and-down scroll
+  scrollAnimation = animate(
+    content,
+    // @ts-ignore
+    { y: [0, -overflow] },
+    {
+      duration: Math.min(overflow * 0.06, 30), // scale duration with overflow
+      repeat: Infinity,
+      direction: "alternate",
+      easing: "linear",
+      delay: 0.8,
+    },
+  );
+};
+
+onMounted(async () => {
+  setupCornerGlow();
+  await nextTick();
+  setupAutoScroll();
 });
+
+// Recalculate scrolling whenever the message text changes
+watch(
+  () => message.value?.message,
+  async () => {
+    await nextTick();
+    setupAutoScroll();
+  },
+);
 </script>
-
-<style scoped>
-.corner {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  color: #3b82f6; /* Tailwind blue-500 */
-  opacity: 0.2;
-}
-
-.corner-tl {
-  top: 0;
-  left: 20px;
-  border-top: 2px solid currentColor;
-  border-left: 2px solid currentColor;
-}
-
-.corner-tr {
-  top: 0;
-  right: 20px;
-  border-top: 2px solid currentColor;
-  border-right: 2px solid currentColor;
-}
-
-.corner-bl {
-  bottom: 0;
-  left: 20px;
-  border-bottom: 2px solid currentColor;
-  border-left: 2px solid currentColor;
-}
-
-.corner-br {
-  bottom: 0;
-  right: 20px;
-  border-bottom: 2px solid currentColor;
-  border-right: 2px solid currentColor;
-}
-</style>
