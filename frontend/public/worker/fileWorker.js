@@ -159,7 +159,7 @@ const STOP_WORDS = new Set([
     "_attached",
 ]);
 
-function getRelativeWordUsage(messages) {
+function getWordUsage(messages) {
     const totalMessages = messages.length;
     let globalLongestMessage = null;
     let globalLongestLength = 0;
@@ -372,7 +372,7 @@ self.addEventListener('message', async (event) => {
 
         const emoji = getMostUsedEmojis(validMessages);
         const messagesPerMonth = getNumberOfMessagesPerMonth(validMessages);
-        const wordUsage = getRelativeWordUsage(validMessages)
+        const wordUsage = getWordUsage(validMessages)
         const time = getTimeData(messages)
         const active = getActiveDates(messages);
         // TODO: anzahl der Bilder, Videos

@@ -35,9 +35,13 @@
 
   <StoryCarousel :duration="6000">
     <IntroStory />
-    
-    <EmojiStory1 />
-    <EmojiStory2 />
+
+    <StoriesEmoji1 />
+    <StoriesEmoji2 />
+
+    <StoriesWords1 />
+    <StoriesWords2 />
+    <StoriesWords3 />
   </StoryCarousel>
 </template>
 

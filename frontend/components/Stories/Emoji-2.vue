@@ -13,9 +13,7 @@
       </div>
     </div>
 
-    <div class="text-blue-600 font-bold text-center pb-6">
-      from {{ message?.author }}
-    </div>
+    <div class="font-bold text-center pb-6">from {{ message?.author }}</div>
   </StoryContainer>
 </template>
 

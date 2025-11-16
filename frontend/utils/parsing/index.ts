@@ -1,6 +1,6 @@
 import type { Message } from "./types";
 import { getMostUsedEmojis } from "~/utils/parsing/analyzer/emojiAnalyzer";
-import { getRelativeWordUsage } from "~/utils/parsing/analyzer/wordUsageAnalyzer";
+import { getWordUsage } from "~/utils/parsing/analyzer/wordUsageAnalyzer";
 import { getTimeData } from "~/utils/parsing/analyzer/timeDeltaAnalyzer";
 import { getActiveDates } from "~/utils/parsing/analyzer/activeDatesAnalyzer";
 import { getNumberOfMessagesPerMonth } from "~/utils/parsing/analyzer/messagesPerMonthAnalyzer";
@@ -10,6 +10,7 @@ import { z } from "zod";
 
 class Parser<A extends Record<string, (messages: Message[]) => any>> {
   private readonly schema: z.ZodType<{ [K in keyof A]: ReturnType<A[K]> }>;
+
   constructor(private readonly analyzers: A) {
     this.schema = this.createSchemaFromAnalyzers(analyzers);
   }
@@ -70,6 +71,7 @@ class Parser<A extends Record<string, (messages: Message[]) => any>> {
   private filterValidMessages(messages: Message[]): Message[] {
     return messages.filter((msg) => msg.author !== null);
   }
+
   private createSchemaFromAnalyzers(
     analyzers: A,
   ): z.ZodType<{ [K in keyof A]: ReturnType<A[K]> }> {
@@ -88,7 +90,7 @@ class Parser<A extends Record<string, (messages: Message[]) => any>> {
 export const parser = new Parser({
   getMostUsedEmojis,
   getNumberOfMessagesPerMonth,
-  getRelativeWordUsage,
+  getWordUsage,
   getTimeData,
   getActiveDates,
 });

@@ -25,7 +25,7 @@ const STOP_WORDS = new Set([
   "_attached",
 ]);
 
-export function getRelativeWordUsage(messages: Message[]): WordUsageAnalysis {
+export function getWordUsage(messages: Message[]): WordUsageAnalysis {
   const totalMessages = messages.length;
   let globalLongestMessage: Message | null = null;
   let globalLongestLength = 0;
@@ -120,5 +120,7 @@ export function getRelativeWordUsage(messages: Message[]): WordUsageAnalysis {
     authors: resultByAuthor,
     globalLongestMessage,
     globalTop5Words,
+    totalWordCount,
+    totalMessagesCount: totalMessages,
   };
 }

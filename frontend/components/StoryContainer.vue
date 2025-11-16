@@ -4,7 +4,7 @@
   >
     <h2
       v-if="title"
-      class="font-extrabold z-50 break-words w-3/4 text-shadow-lg text-shadow-white"
+      class="font-extrabold break-words w-3/4 text-shadow-lg text-shadow-white z-50"
       style="text-shadow: 0 0 3px black"
     >
       {{ title }}

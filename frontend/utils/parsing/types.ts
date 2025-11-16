@@ -50,6 +50,8 @@ export interface WordUsageAnalysis {
   >;
   globalLongestMessage: Message | null;
   globalTop5Words: WordUsageStats[];
+  totalWordCount: number;
+  totalMessagesCount: number;
 }
 
 export interface TimeData {

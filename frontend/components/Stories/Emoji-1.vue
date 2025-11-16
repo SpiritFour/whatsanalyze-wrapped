@@ -1,13 +1,13 @@
 <template>
   <StoryContainer
     v-if="result"
-    class="bg-black text-blue-600 text-6xl"
+    class="bg-black text-6xl"
     title="Your most used Emojis"
   >
-    <EmojiChaos
-      :count="50"
-      :emojis="result.getMostUsedEmojis.globalTop5Emojis.map((m) => m.emoji)"
-    />
+    <!--    <EmojiChaos-->
+    <!--      :count="50"-->
+    <!--      :emojis="result.getMostUsedEmojis.globalTop5Emojis.map((m) => m.emoji)"-->
+    <!--    />-->
 
     <EmojiPodium :top-three-emojies="topThreeEmojies" />
   </StoryContainer>
