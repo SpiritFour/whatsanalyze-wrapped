@@ -69,7 +69,11 @@ class Parser<A extends Record<string, (messages: Message[]) => any>> {
   }
 
   private filterValidMessages(messages: Message[]): Message[] {
-    return messages.filter((msg) => msg.author !== null);
+    return messages.filter(
+      (msg) =>
+        msg.author !== null &&
+        msg.date.getFullYear() === new Date().getFullYear(),
+    );
   }
 
   private createSchemaFromAnalyzers(
