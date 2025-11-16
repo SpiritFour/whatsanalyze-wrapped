@@ -8,6 +8,19 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
 
+  app: {
+    head: {
+      meta: [
+        {
+          name: 'viewport',
+          content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover'
+        },
+        {name: 'color-scheme', content: 'dark'},
+        {name: 'theme-color', content: '#000'}, // status bar / PWA tint
+      ]
+    }
+  },
+
   /* full static rendering */
   ssr: false,
 
