@@ -1,14 +1,25 @@
-import {HttpsError, onRequest} from "firebase-functions/v2/https";
+import {HttpsError, onRequest, onCall} from "firebase-functions/v2/https";
 import {defineSecret, defineString} from "firebase-functions/params";
 import * as logger from "firebase-functions/logger";
 import Stripe from "stripe";
-import {onCall} from "firebase-functions/https";
 
 const stripeSecretKey = defineSecret("STRIPE_SECRET_KEY");
 const stripeWebhookSecret = defineSecret("STRIPE_WEBHOOK_SECRET");
 const stripePublishableKey = defineString("STRIPE_PUBLISHABLE_KEY");
 const basicPriceId = defineString("BASIC_PRICE_ID");
 const proPriceId = defineString("PRO_PRICE_ID");
+const allowedOrigins = defineString("ALLOWED_ORIGINS");
+
+function validateOrigin(origin?: string): string {
+  if (!origin) {
+    throw new HttpsError("failed-precondition", "Origin missing.");
+  }
+  const allowed = allowedOrigins.value().split(",").map(o => o.trim());
+  if (!allowed.includes(origin)) {
+    throw new HttpsError("failed-precondition", `Origin not allowed: ${origin}`);
+  }
+  return origin;
+}
 
 export const getCheckoutSession = onCall(
     { secrets: [stripeSecretKey] },
@@ -51,19 +62,14 @@ export const createCheckoutSession = onCall(
             },
         });
 
+        // Validate origin from request headers
+        const origin = validateOrigin(request.rawRequest.get("origin"));
+
         // Data sent from the client
         const { priceId } = request.data;
 
         if (!priceId) {
-            throw new Error("priceId is required");
-        }
-        const origin = request.rawRequest.get("origin");
-
-        if (!origin) {
-            throw new HttpsError(
-                "failed-precondition",
-                "Was not able to determine callbackURL."
-            );
+            throw new HttpsError("invalid-argument", "priceId is required");
         }
 
         try {
@@ -83,23 +89,21 @@ export const createCheckoutSession = onCall(
             return { url: session.url };
         } catch (error: any) {
             logger.error("Error creating checkout session:", error);
-            throw new Error(error.message);
+            throw new HttpsError("internal", error.message);
         }
     }
 );
 
-export const getConfig = onRequest({cors: true}, async (req, res) => {
-  if (req.method !== "GET") {
-    res.status(405).send("Method Not Allowed");
-    return;
-  }
-
-  res.json({
-    publishableKey: stripePublishableKey.value(),
-    basicPrice: basicPriceId.value(),
-    proPrice: proPriceId.value(),
-  });
-});
+export const getConfig = onCall(
+    { secrets: [] },
+    async (request) => {
+        return {
+            publishableKey: stripePublishableKey.value(),
+            basicPrice: basicPriceId.value(),
+            proPrice: proPriceId.value(),
+        };
+    }
+);
 
 // also in stripe example
 export const createCustomerPortal = onCall(
@@ -113,14 +117,8 @@ export const createCustomerPortal = onCall(
             },
         });
 
-        // Get origin header
-        const origin = request.rawRequest.get("origin");
-        if (!origin) {
-            throw new HttpsError(
-                "failed-precondition",
-                "Was not able to determine callbackURL."
-            );
-        }
+        // Validate origin from request headers
+        const origin = validateOrigin(request.rawRequest.get("origin"));
 
         const { sessionId } = request.data;
         if (!sessionId) {
@@ -134,7 +132,7 @@ export const createCustomerPortal = onCall(
             // Create billing portal session
             const portalSession = await stripe.billingPortal.sessions.create({
                 customer: checkoutSession.customer as string,
-                return_url: `${origin}/dashboard.html`, // adjust return URL
+                return_url: `${origin}/dashboard.html`,
             });
 
             // Return the URL to client
