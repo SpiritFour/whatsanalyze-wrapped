@@ -8,7 +8,9 @@
     "start": "npm run shell",
     "deploy:dev": "npm run build && firebase deploy --only functions --project dev",
     "deploy:prod": "npm run build && firebase deploy --only functions --project prod",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "secrets:set:dev": "firebase --project dev functions:secrets:set",
+    "secrets:set:prod": "firebase --project prod functions:secrets:set"
   },
   "engines": {
     "node": "22"
@@ -16,11 +18,12 @@
   "main": "lib/index.js",
   "dependencies": {
     "firebase-admin": "^12.6.0",
-    "firebase-functions": "^6.0.1"
+    "firebase-functions": "^6.0.1",
+    "stripe": "^20.0.0"
   },
   "devDependencies": {
-    "typescript": "^5.7.3",
-    "firebase-functions-test": "^3.1.0"
+    "firebase-functions-test": "^3.1.0",
+    "typescript": "^5.7.3"
   },
   "private": true
 }

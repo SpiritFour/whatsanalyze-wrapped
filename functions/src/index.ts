@@ -41,3 +41,12 @@ export const helloHttp = onRequest({ cors: true }, (request, response) => {
       timestamp: new Date().toISOString(),
   });
 });
+
+// Export Stripe functions
+export {
+  getCheckoutSession,
+  createCheckoutSession,
+  getConfig,
+  createCustomerPortal,
+  stripeWebhook,
+} from "./stripe";

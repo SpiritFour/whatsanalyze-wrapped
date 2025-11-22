@@ -8,6 +8,7 @@ firebase use prod
 - Node 22 or higher
 - Firebase CLI: `npm install -g firebase-tools`
 - both are installed already with nix
+- install stripe cli
 
 ## Quick Start
 
@@ -98,6 +99,23 @@ Access in functions via `params.RECAPTCHA_V3_SITE_KEY.value()` (for v2 functions
 
 # Troubleshooting
 
-If you get cors issues when trying to invoke the firebase Callable Cloud Function the most likely issue is that 
+If you get cors issues when trying to invoke the firebase Callable Cloud Function the most likely issue is that
 anonymous access is not allow and needs ot be enabled in gcp.
 ![img.png](img.png)
+
+
+# Stripe Firebase Functions
+
+Firebase Cloud Functions for handling Stripe checkout and subscriptions, translated from the [Stripe checkout-single-subscription sample](https://github.com/stripe-samples/checkout-single-subscription).
+
+## Quick Start
+
+### 1. Stripe Local testing
+- stripe login
+- stripe listen --forward-to http://127.0.0.1:5001/whatsanalyze-wrapped/us-central1/stripeWebhook
+  - add "Your webhook signing secret is `whsec_2f7....`" output to `.secret.local` file
+    - `STRIPE_WEBHOOK_SECRET=`whsec_2f7....``
+- stripe trigger checkout.session.completed
+
+### 2. Stripe dev testing
+- setup-stripe.sh to set the stripe keys (secret + api)
