@@ -48,3 +48,11 @@ npm dev
 cd frontend
 pnpm dev_with_functions
 ```
+
+### Testing the payment process
+1. start functions in local mode (also with stripe forewarding to local)
+1. start fe in local mode
+1. click on create session on main screen
+1. pay with email, 4242 4242 4242 4242 12/40 111
+1. redirect to our page, should automatically pull session info also with email of customer
+1. in the function terminal you should also find the call for the successfull subscription creation
