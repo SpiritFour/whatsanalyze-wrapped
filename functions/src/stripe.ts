@@ -2,6 +2,7 @@ import {onRequest} from "firebase-functions/v2/https";
 import {defineSecret, defineString} from "firebase-functions/params";
 import * as logger from "firebase-functions/logger";
 import Stripe from "stripe";
+import {onCall} from "firebase-functions/https";
 
 const stripeSecretKey = defineSecret("STRIPE_SECRET_KEY");
 const stripeWebhookSecret = defineSecret("STRIPE_WEBHOOK_SECRET");
@@ -10,85 +11,75 @@ const basicPriceId = defineString("BASIC_PRICE_ID");
 const proPriceId = defineString("PRO_PRICE_ID");
 const domain = defineString("DOMAIN");
 
-export const getCheckoutSession = onRequest(
-  {cors: true, secrets: [stripeSecretKey]},
-  async (req, res) => {
-    const stripe = new Stripe(stripeSecretKey.value(), {
-      apiVersion: "2025-11-17.clover",
-      appInfo: {
-        name: "whatsanalyze-wrapped",
-        version: "0.0.1",
-      },
-    });
-    if (req.method !== "GET") {
-      res.status(405).send("Method Not Allowed");
-      return;
-    }
+export const getCheckoutSession = onCall(
+    { secrets: [stripeSecretKey] },
+    async (request) => {
+        const stripe = new Stripe(stripeSecretKey.value(), {
+            apiVersion: "2025-11-17.clover",
+            appInfo: {
+                name: "whatsanalyze-wrapped",
+                version: "0.0.1",
+            },
+        });
 
-    const {sessionId} = req.query;
+        const { sessionId } = request.data;
 
-    if (!sessionId || typeof sessionId !== "string") {
-      res.status(400).json({error: "sessionId is required"});
-      return;
-    }
+        if (!sessionId || typeof sessionId !== "string") {
+            throw new Error("sessionId is required");
+        }
 
-    try {
-      const session = await stripe.checkout.sessions.retrieve(sessionId);
-      res.json(session);
-    } catch (error: any) {
-      logger.error("Error retrieving checkout session:", error);
-      res.status(500).json({error: error.message});
+        try {
+            const session = await stripe.checkout.sessions.retrieve(sessionId);
+
+            // onCall must *return* results, not send JSON
+            return session;
+        } catch (error: any) {
+            logger.error("Error retrieving checkout session:", error);
+            throw new Error(error.message);
+        }
     }
-  }
 );
 
 // also in stripe example
-export const createCheckoutSession = onRequest(
-  {cors: true, secrets: [stripeSecretKey]},
-  async (req, res) => {
-    const stripe = new Stripe(stripeSecretKey.value(), {
-      apiVersion: "2025-11-17.clover",
-      appInfo: {
-        name: "whatsanalyze-wrapped",
-        version: "0.0.1",
-      },
-    });
-    if (req.method !== "POST") {
-      res.status(405).send("Method Not Allowed");
-      return;
+export const createCheckoutSession = onCall(
+    { secrets: [stripeSecretKey] },
+    async (request) => {
+        const stripe = new Stripe(stripeSecretKey.value(), {
+            apiVersion: "2025-11-17.clover",
+            appInfo: {
+                name: "whatsanalyze-wrapped",
+                version: "0.0.1",
+            },
+        });
+
+        // Data sent from the client
+        const { priceId } = request.data;
+        const domainURL = domain.value();
+
+        if (!priceId) {
+            throw new Error("priceId is required");
+        }
+
+        try {
+            const session = await stripe.checkout.sessions.create({
+                mode: "subscription",
+                line_items: [
+                    {
+                        price: priceId,
+                        quantity: 1,
+                    },
+                ],
+                success_url: `${domainURL}/subscription/success?session_id={CHECKOUT_SESSION_ID}`,
+                cancel_url: `${domainURL}/subscription/canceled`,
+            });
+
+            // ❗ onCall cannot redirect → return the URL.
+            return { url: session.url };
+        } catch (error: any) {
+            logger.error("Error creating checkout session:", error);
+            throw new Error(error.message);
+        }
     }
-
-    const {priceId} = req.body;
-    const domainURL = domain.value();
-
-    if (!priceId) {
-      res.status(400).json({error: "priceId is required"});
-      return;
-    }
-
-    try {
-      const session = await stripe.checkout.sessions.create({
-        mode: "subscription",
-        line_items: [
-          {
-            price: priceId,
-            quantity: 1,
-          },
-        ],
-        success_url: `${domainURL}/success.html?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${domainURL}/canceled.html`,
-      });
-
-      res.redirect(303, session.url!);
-    } catch (error: any) {
-      logger.error("Error creating checkout session:", error);
-      res.status(400).json({
-        error: {
-          message: error.message,
-        },
-      });
-    }
-  }
 );
 
 export const getConfig = onRequest({cors: true}, async (req, res) => {

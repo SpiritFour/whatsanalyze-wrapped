@@ -1,15 +1,15 @@
 <template>
   <div class="rounded-lg border border-gray-700 bg-gray-900/50 p-6 max-w-md mx-auto my-8">
     <h3 class="text-lg font-semibold mb-4">🧪 Firebase Functions Test</h3>
-    
+
     <p class="text-sm text-gray-400 mb-4">
       Test the connection to Firebase Cloud Functions with App Check verification.
     </p>
     <div class="space-y-4">
       <button
-        @click="testCallable"
-        :disabled="loading"
-        class="w-full px-4 py-2 bg-green-600 hover:bg-green-700 disabled:bg-gray-600 text-white font-semibold rounded-lg transition-colors"
+          @click="testCallable"
+          :disabled="loading"
+          class="w-full px-4 py-2 bg-green-600 hover:bg-green-700 disabled:bg-gray-600 text-white font-semibold rounded-lg transition-colors"
       >
         {{ loading ? "Loading..." : "Test Callable Function" }}
       </button>
@@ -28,18 +28,24 @@
       ℹ️ Running in development mode — connected to local emulator
     </p>
     <p v-else class="text-xs text-yellow-500 mt-4">
-      ℹ️ Connected to {{connected_env}}
+      ℹ️ Connected to {{ connected_env }}
     </p>
+
+    <button @click="createSession">
+      Create Session
+    </button>
+
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from "vue";
-import { getFunctions, httpsCallable, connectFunctionsEmulator } from "firebase/functions";
-import { initializeAppCheck, ReCaptchaV3Provider, getToken } from "firebase/app-check";
-import { getApp } from "firebase/app";
-import type { AppCheck } from "firebase/app-check";
+import {ref, onMounted, computed} from "vue";
+import {getFunctions, httpsCallable, connectFunctionsEmulator} from "firebase/functions";
+import {initializeAppCheck, ReCaptchaV3Provider, getToken} from "firebase/app-check";
+import {getApp} from "firebase/app";
+import type {AppCheck} from "firebase/app-check";
 
+const router = useRouter()
 const loading = ref(false);
 const result = ref("");
 const error = ref("");
@@ -55,7 +61,7 @@ let appCheckInstance: AppCheck | null = null;
 const getAppCheckToken = async (): Promise<string> => {
   try {
     const app = getApp();
-    
+
     // Initialize App Check if not already done
     if (!appCheckInstance) {
       try {
@@ -73,7 +79,7 @@ const getAppCheckToken = async (): Promise<string> => {
     if (!appCheckInstance) {
       throw new Error("App Check instance is null");
     }
-    
+
     const tokenResult = await getToken(appCheckInstance, true);
     return tokenResult.token;
   } catch (err: any) {
@@ -87,11 +93,6 @@ const testCallable = async () => {
   error.value = "";
 
   try {
-    // const functions = getFunctions();
-    console.log("functions",useNuxtApp().$firestore)
-    console.log("functions",useNuxtApp().$functions)
-
-    // console.log("functions",$this)
     const hello = httpsCallable(useNuxtApp().$functions, "hello");
     const response = await hello();
     result.value = JSON.stringify(response.data, null, 2);
@@ -102,4 +103,24 @@ const testCallable = async () => {
     loading.value = false;
   }
 };
+
+const createSession = async () => {
+  result.value = "";
+  try {
+    const createCheckoutSession = httpsCallable(useNuxtApp().$functions, "createCheckoutSession");
+    const response = await createCheckoutSession({priceId: "price_1SWEfW74KJ57kF2w44iNywtI"});
+    result.value = JSON.stringify(response.data, null, 2);
+
+
+    const { url } = response.data as { url: string };
+    window.location.assign(url);
+
+  } catch (err: any) {
+    error.value = err.message || "Unknown error";
+    console.error("Callable error:", err);
+  } finally {
+    loading.value = false;
+  }
+};
+
 </script>

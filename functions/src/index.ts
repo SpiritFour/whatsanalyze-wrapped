@@ -48,5 +48,5 @@ export {
   createCheckoutSession,
   getConfig,
   createCustomerPortal,
-  stripeWebhook,
+  stripeWebhook
 } from "./stripe";

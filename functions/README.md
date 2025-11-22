@@ -119,3 +119,4 @@ Firebase Cloud Functions for handling Stripe checkout and subscriptions, transla
 
 ### 2. Stripe dev testing
 - setup-stripe.sh to set the stripe keys (secret + api)
+- stripe trigger checkout.session.completed
