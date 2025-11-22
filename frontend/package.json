@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
+    "start": "nuxt start",
     "dev": "NUXT_ENV_ENV=dev nuxt dev",
     "dev_with_functions": "NUXT_ENV_WITH_FUNCTIONS=1 NUXT_ENV_ENV=dev nuxt dev",
     "generate": "nuxt generate",

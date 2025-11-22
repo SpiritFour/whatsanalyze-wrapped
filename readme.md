@@ -40,7 +40,8 @@ Use `deploy.sh` to publish new version of the website
 1. terminal:
 ```bash
 cd functions
-pnpm dev
+npm i
+npm dev
 ```
 2. terminal
 ```bash
