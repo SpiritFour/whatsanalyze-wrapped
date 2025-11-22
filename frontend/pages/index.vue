@@ -43,6 +43,7 @@
             {{ $t("home.hero.usedBy") }}
           </p>
         </div>
+        <FunctionTest />
       </div>
     </div>
   </section>

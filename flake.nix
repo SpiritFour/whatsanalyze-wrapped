@@ -21,8 +21,8 @@
           ];
           shellHook = ''
               mkdir -p .out
-              ln -s  ${pkgs.nodejs_24.out}/bin/node .out/node
-              ln -s  ${pkgs.pkgs.pnpm.out}/bin/pnpm .out/pnpm
+              ln -sf  ${pkgs.nodejs_24.out}/bin/node .out/node
+              ln -sf  ${pkgs.pkgs.pnpm.out}/bin/pnpm .out/pnpm
           '';
         };
 

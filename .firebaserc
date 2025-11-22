@@ -1,0 +1,9 @@
+{
+  "projects": {
+    "dev": "whatsanalyze-wrapped",
+    "prod": "whatsanalyze-wrapped-prod",
+    "default": "whatsanalyze-wrapped"
+  },
+  "targets": {},
+  "etags": {}
+}
