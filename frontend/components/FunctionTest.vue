@@ -5,7 +5,6 @@
     <p class="text-sm text-gray-400 mb-4">
       Test the connection to Firebase Cloud Functions with App Check verification.
     </p>
-    {{isDev}}
     <div class="space-y-4">
       <button
         @click="testCallable"
@@ -25,9 +24,11 @@
       <p class="text-xs text-red-400 mb-2">Error:</p>
       <p class="text-sm text-red-300 font-mono break-words">{{ error }}</p>
     </div>
-
-    <p v-if="isDev" class="text-xs text-yellow-500 mt-4">
-      ℹ️ Running in development mode — connecting to local emulator
+    <p v-if="use_local_emulator" class="text-xs text-yellow-500 mt-4">
+      ℹ️ Running in development mode — connected to local emulator
+    </p>
+    <p v-else class="text-xs text-yellow-500 mt-4">
+      ℹ️ Connected to {{connected_env}}
     </p>
   </div>
 </template>
@@ -42,7 +43,11 @@ import type { AppCheck } from "firebase/app-check";
 const loading = ref(false);
 const result = ref("");
 const error = ref("");
-const isDev = computed(() => import.meta.env.DEV);
+
+const config = useRuntimeConfig().public
+
+const use_local_emulator = computed(() => config.run_with_functions);
+const connected_env = computed(() => config.env);
 
 let appCheckInstance: AppCheck | null = null;
 
