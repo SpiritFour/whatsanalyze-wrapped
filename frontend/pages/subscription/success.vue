@@ -1,63 +1,80 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8">
-      <div v-if="loading" class="text-center">
-        <p class="text-gray-600">Loading...</p>
-      </div>
+  <div class="container flex justify-center items-center">
+    <div v-if="loading" class="text-center">
+      <p class="text-gray-600">Loading...</p>
+    </div>
 
-      <div v-else-if="error" class="text-center">
-        <p class="text-red-600">{{ error }}</p>
-      </div>
+    <div v-else-if="error" class="text-center">
+      <XCircleIcon class="h-16 w-16 inline-block text-red-400" />
 
-      <div v-else-if="result" class="text-center space-y-6">
+      <p class="text-red-600"></p>
+
+      <div>
+        <h2 class="text-2xl font-bold">Payment not successfull</h2>
+        <p class="mt-2 text-gray-400">{{ error }}</p>
+      </div>
+    </div>
+
+    <div
+      v-else-if="result"
+      class="space-y-8 flex flex-col max-w-xl justify-center w-fit min-w-2xl"
+    >
+      <div class="flex gap-2">
+        <CheckCircleIcon class="h-16 w-16 inline-block text-green-400" />
         <div>
-          <h2 class="text-2xl font-bold text-gray-900">Payment Successful!</h2>
-          <p class="mt-2 text-gray-600">Thank you for your subscription.</p>
+          <h2 class="text-2xl font-bold">Payment Successful!</h2>
+          <p class="mt-2 text-gray-400">Thank you for your subscription.</p>
         </div>
-
-        <div class="bg-gray-100 p-4 rounded-lg text-sm text-gray-700 break-all space-y-2">
-          <p><strong>Email:</strong> {{ (result as any).customer_details?.email }}</p>
-          <p><strong>Verification Code:</strong> {{ (result as any).subscription }}</p>
-          <p><strong>Status:</strong> {{ (result as any).payment_status }}</p>
-        </div>
-
-        <button
-          @click="goToVerification"
-          class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        >
-          Verify Subscription
-        </button>
       </div>
+
+      <div class="text-sm space-y-2">
+        <p>
+          <strong>Email:</strong> {{ (result as any).customer_details?.email }}
+        </p>
+        <p>
+          <strong>Verification Code:</strong> {{ (result as any).subscription }}
+        </p>
+        <p><strong>Status:</strong> {{ (result as any).payment_status }}</p>
+      </div>
+
+      <button
+        class="py-2 px-4 rounded-md text-sm border-2 text-green-500 border-green-500 hover:bg-green-500 hover:text-white w-80 text-center"
+        @click="goToVerification"
+      >
+        Verify Subscription
+      </button>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-import {ref, onMounted} from "vue";
-import { httpsCallable} from "firebase/functions";
-
+<script lang="ts" setup>
+import { onMounted, ref } from "vue";
+import { httpsCallable } from "firebase/functions";
+import { CheckCircleIcon, XCircleIcon } from "@heroicons/vue/24/solid";
 
 const route = useRoute();
 const router = useRouter();
 const loading = ref(false);
-const result = ref({} as unknown );
+const result = ref({} as unknown);
 const error = ref("");
 
 onMounted(() => {
-  const session_id  = route.query.session_id as string;
+  const session_id = route.query.session_id as string;
   console.log("session_id", session_id, route);
   if (session_id) {
     _getCheckoutSession(session_id);
   }
-})
-
+});
 
 const _getCheckoutSession = async (sessionId: string) => {
   loading.value = true;
   try {
-    const getCheckoutSession = httpsCallable(useNuxtApp().$functions, "getCheckoutSession");
-    const {data} = await getCheckoutSession({sessionId});
-    console.log("data",data)
+    const getCheckoutSession = httpsCallable(
+      useNuxtApp().$functions,
+      "getCheckoutSession",
+    );
+    const { data } = await getCheckoutSession({ sessionId });
+    console.log("data", data);
     result.value = data;
   } catch (err: any) {
     error.value = err.message || "Unknown error";
@@ -82,5 +99,4 @@ const goToVerification = () => {
     router.push("/subscription/verify");
   }
 };
-
 </script>

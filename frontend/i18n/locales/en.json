@@ -16,6 +16,7 @@
     "menu": "Menu"
   },
   "nav": {
+    "subscription": "Pro Subscription",
     "privacy": "Privacy",
     "exportGuide": "How to export",
     "selectLanguage": "Select language",

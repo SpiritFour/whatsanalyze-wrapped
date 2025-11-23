@@ -43,7 +43,6 @@
             {{ $t("home.hero.usedBy") }}
           </p>
         </div>
-        <FunctionTest />
       </div>
     </div>
   </section>
@@ -329,12 +328,7 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 import { useI18n } from "#imports";
-import {
-  ChatBubbleLeftIcon,
-  DocumentArrowDownIcon,
-  LightBulbIcon,
-  LockClosedIcon,
-} from "@heroicons/vue/24/solid";
+import { ChatBubbleLeftIcon, DocumentArrowDownIcon, LightBulbIcon, LockClosedIcon } from "@heroicons/vue/24/solid";
 
 const { t, tm } = useI18n();
 

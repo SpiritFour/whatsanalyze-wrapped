@@ -1,108 +1,114 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8">
-      <div v-if="verified === null" class="space-y-6">
-        <div>
-          <h2 class="text-center text-2xl font-bold text-gray-900">Verify Your Subscription</h2>
-          <p class="mt-2 text-center text-sm text-gray-600">
-            Enter your email and verification code to access your subscription.
-          </p>
-        </div>
+  <div class="container flex flex-col justify-center items-center">
 
-        <form @submit.prevent="handleVerification" class="mt-8 space-y-6">
-          <div>
-            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-            <input
-              id="email"
-              v-model="email"
-              type="email"
-              required
-              :readonly="!!route.query.email"
-              class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm disabled:bg-gray-100"
-              placeholder="your@email.com"
-            />
-          </div>
 
-          <div v-if="showTokenInput || subscriptionId">
-            <label for="token" class="block text-sm font-medium text-gray-700">Verification Code</label>
-            <input
-              id="token"
-              v-model="subscriptionId"
-              type="text"
-              required
-              :readonly="!!route.query.token"
-              class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm disabled:bg-gray-100 break-all"
-              placeholder="Enter verification code"
-            />
-            <p v-if="!route.query.token" class="mt-1 text-sm text-gray-500">Check your email for this code</p>
-          </div>
 
-          <div v-if="error" class="rounded-md bg-red-50 p-4">
-            <p class="text-sm text-red-700">{{ error }}</p>
-          </div>
-
-          <button
-            type="submit"
-            :disabled="loading"
-            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {{ loading ? "Verifying..." : "Verify Subscription" }}
-          </button>
-        </form>
+    <div v-if="verified === null" class="space-y-6">
+      <div>
+        <h2 class="text-2xl font-bold">Verify Your Subscription</h2>
+        <p class="mt-2 text-center text-sm">
+          Enter your email and verification code to access your subscription.
+        </p>
       </div>
 
-      <div v-else-if="verified" class="text-center space-y-6">
-        <div class="rounded-full bg-green-100 p-4 inline-block">
-          <svg class="h-8 w-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
+      <form class="mt-8 space-y-6" @submit.prevent="handleVerification">
+        <div>
+          <label class="block text-sm font-medium" for="email">Email</label>
+          <input
+            id="email"
+            v-model="email"
+            :readonly="!!route.query.email"
+            class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm disabled:bg-gray-100"
+            placeholder="your@email.com"
+            required
+            type="email"
+          />
         </div>
 
         <div>
-          <h2 class="text-2xl font-bold text-gray-900">Subscription Verified!</h2>
-          <p class="mt-2 text-gray-600">Your subscription is active and valid.</p>
+          <div class="flex items-center justify-between">
+            <label class="block text-sm font-medium" for="token">
+              Verification Code
+            </label>
+            <p v-if="!route.query.token" class="mt-1 text-xs text-gray-400">
+              You have got an email with this code
+            </p>
+          </div>
+          <input
+            id="token"
+            v-model="subscriptionId"
+            :readonly="!!route.query.token"
+            class="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 focus:z-10 sm:text-sm disabled:bg-gray-100 break-all"
+            placeholder="Enter verification code"
+            required
+            type="text"
+          />
         </div>
 
-        <div v-if="verificationData" class="bg-gray-100 p-4 rounded-lg text-sm text-gray-700 space-y-2">
-          <p><strong>Email:</strong> {{ email }}</p>
-          <p v-if="verificationData.customerName"><strong>Name:</strong> {{ verificationData.customerName }}</p>
-          <p><strong>Expires:</strong> {{ formatDate(verificationData.expiresAt) }}</p>
-        </div>
-
-        <NuxtLink
-          to="/"
-          class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        >
-          Continue to App
-        </NuxtLink>
-      </div>
-
-      <div v-else class="text-center space-y-6">
-        <div class="rounded-full bg-red-100 p-4 inline-block">
-          <svg class="h-8 w-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </div>
-
-        <div>
-          <h2 class="text-2xl font-bold text-gray-900">Verification Failed</h2>
-          <p class="mt-2 text-gray-600">{{ error }}</p>
-        </div>
+        <p v-if="error" class="text-sm text-red-700">{{ error }}</p>
 
         <button
-          @click="resetVerification"
-          class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          :disabled="loading"
+          class="py-2 px-4 rounded-md text-sm border-2 text-green-500 border-green-500 hover:bg-green-500 hover:text-white w-full text-center"
+          type="submit"
         >
-          Try Again
+
+          {{ loading ? "Verifying..." : "Verify Subscription" }}
         </button>
+      </form>
+
+    </div>
+
+    <div
+      v-else-if="verified"
+      class="space-y-8 flex flex-col max-w-xl justify-center w-fit min-w-2xl"
+    >
+      <div class="flex gap-2">
+        <CheckCircleIcon class="h-16 w-16 inline-block text-green-400" />
+        <div>
+          <h2 class="text-2xl font-bold">Subscription Verified!</h2>
+          <p class="text-gray-400">Your subscription is active and valid.</p>
+        </div>
       </div>
+
+      <div v-if="verificationData" class="text-sm space-y-2">
+        <p v-if="email"><b>Email:</b> {{ email }}</p>
+        <p v-if="verificationData.customerName">
+          <b>Name:</b> {{ verificationData.customerName }}
+        </p>
+        <p><b>Expires:</b> {{ formatDate(verificationData.expiresAt) }}</p>
+      </div>
+
+      <NuxtLink
+        class="py-2 px-4 rounded-md text-sm border-2 text-green-500 border-green-500 hover:bg-green-500 hover:text-white w-80 text-center"
+        to="/"
+      >
+        Continue to App
+      </NuxtLink>
+    </div>
+
+    <div v-else class="text-center space-y-6">
+      <XCircleIcon class="h-16 w-16 inline-block text-red-400" />
+
+      <div>
+        <h2 class="text-2xl font-bold">Verification Failed</h2>
+        <p class="mt-2">{{ error }}</p>
+      </div>
+
+      <button
+        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium bg-green-500 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-200"
+        @click="resetVerification"
+      >
+        Try Again
+      </button>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted } from "vue";
+<script lang="ts" setup>
+import { onMounted, ref } from "vue";
 import { httpsCallable } from "firebase/functions";
+import { CheckCircleIcon, XCircleIcon } from "@heroicons/vue/24/solid";
 
 const route = useRoute();
 const subscriptionStore = useSubscriptionStore();
@@ -112,37 +118,21 @@ const subscriptionId = ref("");
 const verified = ref<boolean | null>(null);
 const error = ref("");
 const verificationData = ref<any>(null);
-const showTokenInput = ref(false);
 
 onMounted(async () => {
-  // Check if already have valid subscription in store
+  subscriptionId.value = route.query.token as string;
+  email.value = route.query.email as string;
+
   if (subscriptionStore.isSubscriptionValid) {
     verified.value = true;
     verificationData.value = subscriptionStore.getSubscription;
     return;
   }
 
-  // Try to read from query params first
-  const token = route.query.token as string;
-  const emailParam = route.query.email as string;
-
-  if (token) {
-    subscriptionId.value = token;
-  }
-
-  if (emailParam) {
-    email.value = emailParam;
-  } else {
-    // If no email in params, user needs to enter it manually
-    showTokenInput.value = true;
-  }
-
   // If both email and token are present, auto-submit
-  if (token && emailParam) {
-    await new Promise(resolve => setTimeout(resolve, 500)); // Small delay for smooth UX
+  if (subscriptionId.value && email.value) {
+    await new Promise((resolve) => setTimeout(resolve, 500)); // Small delay for smooth UX
     await handleVerification();
-  } else if (!emailParam) {
-    showTokenInput.value = true;
   }
 });
 
@@ -158,7 +148,7 @@ const handleVerification = async () => {
   try {
     const verifySubscription = httpsCallable(
       useNuxtApp().$functions,
-      "verifySubscription"
+      "verifySubscription",
     );
 
     const { data } = await verifySubscription({
@@ -196,7 +186,6 @@ const resetVerification = () => {
   error.value = "";
   email.value = "";
   subscriptionId.value = "";
-  showTokenInput.value = true;
   subscriptionStore.clearSubscription();
 };
 

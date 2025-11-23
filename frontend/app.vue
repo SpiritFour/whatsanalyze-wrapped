@@ -12,15 +12,24 @@
 
         <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center space-x-6 ml-auto">
+          <NuxtLink
+            :to="`/${locale}/subscription/verify`"
+            class="hover:text-gray-300 transition-colors text-sm font-semibold flex gap-2 items-center cursor-pointer hover:scale-105"
+          >
+            <CheckCircleIcon v-if="isVerified" class="w-4 h-4 text-green-400" />
+            <InformationCircleIcon v-else class="w-4 h-4 text-blue-400" />
+            {{ $t("nav.subscription") }}
+          </NuxtLink>
+
           <a
-            class="hover:text-gray-300 transition-colors text-sm font-semibold"
-            href="#privacy"
+            class="hover:text-gray-300 transition-colors text-sm font-semibold hover:scale-105"
+            href="/#privacy"
           >
             {{ $t("nav.privacy") }}
           </a>
           <a
-            class="hover:text-gray-300 transition-colors text-sm font-semibold"
-            href="#guide"
+            class="hover:text-gray-300 transition-colors text-sm font-semibold hover:scale-105"
+            href="/#guide"
           >
             {{ $t("nav.exportGuide") }}
           </a>
@@ -31,10 +40,12 @@
         <div class="md:hidden flex items-center gap-3 ml-auto">
           <LanguageSwitcher />
           <button
-            @click="mobileMenuOpen = !mobileMenuOpen"
-            class="flex h-10 w-10 items-center justify-center rounded-md border border-gray-800 hover:border-gray-600 transition-colors"
-            :aria-label="mobileMenuOpen ? $t('common.close') : $t('common.menu')"
             :aria-expanded="mobileMenuOpen"
+            :aria-label="
+              mobileMenuOpen ? $t('common.close') : $t('common.menu')
+            "
+            class="flex h-10 w-10 items-center justify-center rounded-md border border-gray-800 hover:border-gray-600 transition-colors"
+            @click="mobileMenuOpen = !mobileMenuOpen"
           >
             <span v-if="!mobileMenuOpen" class="text-xl">☰</span>
             <span v-else class="text-xl">✕</span>
@@ -43,17 +54,29 @@
       </div>
 
       <!-- Mobile Menu (collapsible) -->
-      <nav v-if="mobileMenuOpen" class="md:hidden mt-4 pt-4 border-t border-gray-900 flex flex-col gap-3">
+      <nav
+        v-if="mobileMenuOpen"
+        class="md:hidden mt-4 pt-4 border-t border-gray-900 flex flex-col gap-3"
+      >
+        <NuxtLink
+          :to="`/${locale}/subscription/verify`"
+          class="hover:text-gray-300 transition-colors text-sm font-semibold flex gap-2 items-center cursor-pointer hover:scale-105"
+        >
+          <CheckCircleIcon v-if="isVerified" class="w-4 h-4 text-green-400" />
+          <InformationCircleIcon v-else class="w-4 h-4 text-blue-400" />
+          {{ $t("nav.subscription") }}
+        </NuxtLink>
+
         <a
           class="hover:text-gray-300 transition-colors text-sm font-semibold py-2 px-2 rounded hover:bg-gray-900"
-          href="#privacy"
+          href="/#privacy"
           @click="mobileMenuOpen = false"
         >
           {{ $t("nav.privacy") }}
         </a>
         <a
           class="hover:text-gray-300 transition-colors text-sm font-semibold py-2 px-2 rounded hover:bg-gray-900"
-          href="#guide"
+          href="/#guide"
           @click="mobileMenuOpen = false"
         >
           {{ $t("nav.exportGuide") }}
@@ -61,7 +84,7 @@
       </nav>
     </header>
     <!--    <FeedbackBtn/>-->
-    <main class="text-white font-sans px-4 md:px-0 min-h-screen">
+    <main class="text-white font-sans px-4 md:px-0">
       <NuxtPage class="" />
     </main>
 
@@ -72,8 +95,12 @@
         <div class="flex flex-col md:flex-row flex-wrap w-full">
           <div id="privacy" class="p-4 md:p-8 flex-1 min-w-full md:min-w-0">
             <div class="w-max mb-4">
-              <div class="flex flex-col md:flex-row items-start md:items-center justify-start gap-2 md:gap-8">
-                <h2 class="text-lg font-semibold">{{ $t("footer.privacyFirst") }}</h2>
+              <div
+                class="flex flex-col md:flex-row items-start md:items-center justify-start gap-2 md:gap-8"
+              >
+                <h2 class="text-lg font-semibold">
+                  {{ $t("footer.privacyFirst") }}
+                </h2>
               </div>
 
               <hr class="border-gray-900 border-t-2 w-full" />
@@ -89,8 +116,12 @@
 
           <div id="code" class="p-4 md:p-8 flex-1 min-w-full md:min-w-0">
             <div class="w-max mb-4">
-              <div class="flex flex-col md:flex-row items-start md:items-center justify-start gap-2 md:gap-8">
-                <h2 class="text-lg font-semibold">{{ $t("footer.openSource") }}</h2>
+              <div
+                class="flex flex-col md:flex-row items-start md:items-center justify-start gap-2 md:gap-8"
+              >
+                <h2 class="text-lg font-semibold">
+                  {{ $t("footer.openSource") }}
+                </h2>
                 <div>
                   <a
                     class="hover:underline text-blue-400"
@@ -114,7 +145,12 @@
         <div class="text-xs mt-12">{{ $t("footer.madeBy") }}</div>
 
         <p class="text-xs text-center md:text-right">
-          &copy; {{ new Date().getFullYear() }} WhatsAnalyze. {{ $t("footer.copyright").split(". All rights reserved.")[1] ? "All rights reserved." : "" }}
+          &copy; {{ new Date().getFullYear() }} WhatsAnalyze.
+          {{
+            $t("footer.copyright").split(". All rights reserved.")[1]
+              ? "All rights reserved."
+              : ""
+          }}
         </p>
       </div>
     </footer>
@@ -124,8 +160,16 @@
 <style scoped></style>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { useI18n } from "vue-i18n";
+import { ref } from "vue";
 import LanguageSwitcher from "./components/LanguageSwitcher.vue";
+import { useSubscriptionStore } from "~/store/subscriptionStore";
+import { CheckCircleIcon, InformationCircleIcon } from "@heroicons/vue/16/solid";
 
+const { locale } = useI18n();
+
+const subscriptionStore = useSubscriptionStore();
+
+const { isVerified } = storeToRefs(subscriptionStore);
 const mobileMenuOpen = ref(false);
 </script>

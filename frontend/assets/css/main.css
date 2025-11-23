@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+.container {
+    @apply min-h-[40vh] max-w-2xl m-auto my-8;
+}
 
 .bg-whatsapp {
     background: url('/backgrounds/light.png') repeat;
