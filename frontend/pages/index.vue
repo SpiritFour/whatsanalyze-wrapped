@@ -1,5 +1,5 @@
 <template>
-  <section class="relative overflow-hidden pb-0">
+  <section id="top" class="relative overflow-hidden pb-0">
     <Polygon />
     <div class="card card--flush container w-full h-full">
       <div class="flex flex-col gap-8">
@@ -306,6 +306,8 @@
   </section>
   <!-- END  currently disabled-->
 
+  <SubscriptionAd/>
+
   <section id="privacy" class="container card">
     <div class="text-center mb-12">
       <div class="flex flex-col items-center justify-center">
@@ -329,6 +331,7 @@
 import { computed } from "vue";
 import { useI18n } from "#imports";
 import { ChatBubbleLeftIcon, DocumentArrowDownIcon, LightBulbIcon, LockClosedIcon } from "@heroicons/vue/24/solid";
+import Polygon from "~/components/Style/Polygon.vue";
 
 const { t, tm } = useI18n();
 
