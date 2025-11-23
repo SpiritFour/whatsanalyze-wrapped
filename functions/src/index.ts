@@ -43,11 +43,8 @@ export const helloHttp = onRequest({ cors: true }, (request, response) => {
 });
 
 // Export Stripe functions
-export {
-  getCheckoutSession,
-  createCheckoutSession,
-  getConfig,
-  createCustomerPortal,
-  stripeWebhook,
-  verifySubscription
-} from "./stripe";
+export {stripeWebhook} from "./stripe/webhook";
+export {getCheckoutSession} from "./stripe/getCheckoutSession";
+export {createCheckoutSession} from "./stripe/createCheckoutSession";
+export {createCustomerPortal} from "./stripe/createCustomerPortal";
+export {verifySubscription} from "./stripe/verifySubscription";

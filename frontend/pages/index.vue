@@ -46,7 +46,7 @@
       </div>
     </div>
   </section>
-
+<FunctionTest/>
   <section v-if="pressQuotes.length" class="container card py-8">
     <div class="text-center mb-8">
       <p class="text-sm uppercase tracking-widest text-green-400 font-semibold">

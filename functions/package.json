@@ -10,7 +10,10 @@
     "deploy:prod": "npm run build && firebase deploy --only functions --project prod",
     "logs": "firebase functions:log",
     "secrets:set:dev": "firebase --project dev functions:secrets:set",
-    "secrets:set:prod": "firebase --project prod functions:secrets:set"
+    "secrets:set:prod": "firebase --project prod functions:secrets:set",
+    "init:templates:dev": "ts-node scripts/initializeTemplates.ts dev",
+    "init:templates:prod": "ts-node scripts/initializeTemplates.ts prod",
+    "subscribe": "stripe trigger subscription.payment_succeeded --add \"customer:email=stripe@whatsanalyze.com\""
   },
   "engines": {
     "node": "22"
@@ -23,6 +26,7 @@
   },
   "devDependencies": {
     "firebase-functions-test": "^3.1.0",
+    "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   },
   "private": true

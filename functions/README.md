@@ -101,7 +101,7 @@ Access in functions via `params.RECAPTCHA_V3_SITE_KEY.value()` (for v2 functions
 
 If you get cors issues when trying to invoke the firebase Callable Cloud Function the most likely issue is that
 anonymous access is not allow and needs ot be enabled in gcp.
-![img.png](img.png)
+![gcloud_function_allow_public_access.png](docs/gcloud_function_allow_public_access.png)
 
 
 # Stripe Firebase Functions
@@ -119,4 +119,14 @@ Firebase Cloud Functions for handling Stripe checkout and subscriptions, transla
 
 ### 2. Stripe dev testing
 - setup-stripe.sh to set the stripe keys (secret + api)
-- stripe trigger checkout.session.completed
+- stripe trigger subscription.payment_succeeded --add "customer:email=stripe@whatsanalyze.com"
+
+### Init mail templates
+Install the extension in the firebase console first:
+![firebase_email_extension.png](docs/firebase_email_extension.png)
+```bash
+firebase login
+# authenticate gcloud
+gcloud auth application-default login
+npm run init:templates:dev
+```
