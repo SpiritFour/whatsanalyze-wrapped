@@ -110,6 +110,44 @@
         }
       ]
     },
+    "subscriptionAd": {
+      "eyebrow": "Whatsanalyse Pro",
+      "headline": "Desbloquea toda la experiencia narrativa",
+      "description": "Empieza gratis o actualiza para obtener cargas ilimitadas, exportaciones premium y procesamiento más rápido.",
+      "free": {
+        "badge": "Gratis",
+        "headline": "Explora a tu ritmo",
+        "description": "Perfecto para probar Whatsanalyse o crear un resumen puntual.",
+        "priceSuffix": "/ para siempre",
+        "cta": "Empezar gratis",
+        "features": [
+          "Compartir historias y enlaces ilimitados",
+          "Primer análisis de chat gratis",
+          "No necesitas tarjeta de crédito"
+        ]
+      },
+      "pro": {
+        "badge": "El favorito",
+        "label": "Pro",
+        "headline": "Para storytellers y equipos",
+        "description": "Cargas ilimitadas, exportaciones premium y procesamiento más rápido para usuarios intensivos.",
+        "priceSuffix": "/ mes",
+        "note": "Cancela cuando quieras · compártelo con amigos",
+        "cta": "Actualizar a Pro",
+        "loading": "Redirigiendo a Stripe…",
+        "features": [
+          "Cargas ilimitadas de chats y generación de historias",
+          "Procesamiento prioritario y acceso temprano a funciones",
+          "Comparte tu suscripción con hasta 3 amigos",
+          "Exportaciones PDF / HD para resúmenes pulidos"
+        ]
+      },
+      "footnote": "Checkout seguro con Stripe · sin cargos ocultos",
+      "errors": {
+        "checkoutLinkMissing": "Falta el enlace de pago. Inténtalo de nuevo.",
+        "general": "Algo salió mal. Inténtalo de nuevo."
+      }
+    },
     "celebration": {
       "eyebrow": "Nuevas formas de celebrar",
       "title": "Tu repaso privado de chats no deja de mejorar",

@@ -110,6 +110,44 @@
         }
       ]
     },
+    "subscriptionAd": {
+      "eyebrow": "Whatsanalyse Pro",
+      "headline": "Unlock the full storytelling experience",
+      "description": "Start for free or upgrade for unlimited uploads, premium exports, and faster processing.",
+      "free": {
+        "badge": "Free",
+        "headline": "Explore at your own pace",
+        "description": "Perfect for testing Whatsanalyse or creating a one-off recap.",
+        "priceSuffix": "/ forever",
+        "cta": "Start for free",
+        "features": [
+          "Unlimited story sharing and link views",
+          "First chat analysis for free",
+          "No credit card required"
+        ]
+      },
+      "pro": {
+        "badge": "Most popular",
+        "label": "Pro",
+        "headline": "For storytellers & teams",
+        "description": "Unlimited uploads, premium exports, and faster processing for power users.",
+        "priceSuffix": "/ month",
+        "note": "Cancel anytime · share with friends",
+        "cta": "Upgrade to Pro",
+        "loading": "Redirecting to Stripe…",
+        "features": [
+          "Unlimited chat uploads & story generations",
+          "Priority processing and exclusive early features",
+          "Share your subscription with up to 3 friends",
+          "PDF / HD exports for polished recaps"
+        ]
+      },
+      "footnote": "Secure Stripe checkout · no hidden fees",
+      "errors": {
+        "checkoutLinkMissing": "Checkout link missing. Please try again.",
+        "general": "Something went wrong. Please try again."
+      }
+    },
     "celebration": {
       "eyebrow": "Fresh ways to celebrate",
       "title": "Your private chat recap keeps getting smarter",

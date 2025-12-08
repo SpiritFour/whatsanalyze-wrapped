@@ -110,6 +110,44 @@
         }
       ]
     },
+    "subscriptionAd": {
+      "eyebrow": "Whatsanalyse Pro",
+      "headline": "Entfessle das volle Storytelling-Erlebnis",
+      "description": "Starte gratis oder upgrade für unbegrenzte Uploads, Premium-Exporte und schnellere Verarbeitung.",
+      "free": {
+        "badge": "Gratis",
+        "headline": "Erkunde alles in deinem Tempo",
+        "description": "Perfekt, um Whatsanalyse zu testen oder ein einzelnes Recap zu erstellen.",
+        "priceSuffix": "/ für immer",
+        "cta": "Kostenlos starten",
+        "features": [
+          "Unbegrenzt Storys teilen und Links ansehen",
+          "Erste Chat-Analyse kostenlos",
+          "Keine Kreditkarte nötig"
+        ]
+      },
+      "pro": {
+        "badge": "Am beliebtesten",
+        "label": "Pro",
+        "headline": "Für Storyteller & Teams",
+        "description": "Unbegrenzte Uploads, Premium-Exporte und schnellere Verarbeitung für Power-User.",
+        "priceSuffix": "/ Monat",
+        "note": "Jederzeit kündbar · mit Freunden teilen",
+        "cta": "Upgrade auf Pro",
+        "loading": "Weiter zu Stripe…",
+        "features": [
+          "Unbegrenzte Chat-Uploads & Story-Generierungen",
+          "Priorisierte Verarbeitung und neue Features zuerst",
+          "Teile dein Abo mit bis zu 3 Freund:innen",
+          "PDF- / HD-Exporte für polierte Recaps"
+        ]
+      },
+      "footnote": "Sicherer Stripe-Checkout · keine versteckten Gebühren",
+      "errors": {
+        "checkoutLinkMissing": "Checkout-Link fehlt. Bitte erneut versuchen.",
+        "general": "Etwas ist schiefgelaufen. Bitte erneut versuchen."
+      }
+    },
     "celebration": {
       "eyebrow": "Neue Wege zum Feiern",
       "title": "Dein privater Chat-Rückblick wird immer smarter",
