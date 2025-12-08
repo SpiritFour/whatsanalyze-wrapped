@@ -2,7 +2,7 @@ import {onRequest} from "firebase-functions/https";
 import Stripe from "stripe";
 import * as logger from "firebase-functions/logger";
 import {getStripe, stripeSecretKey, stripeWebhookSecret} from "./common";
-import {sendSubscriptionConfirmationEmail} from "../mail";
+import {Customer, sendSubscriptionConfirmationEmail} from "../mail";
 import {db} from "../firebase";
 
 
@@ -45,14 +45,22 @@ export const stripeWebhook = onRequest(
             if (invoice.billing_reason === 'subscription_create') {
                 logger.info("Subscription was created and payed!");
                 // store user data in db and send them an email with the login link
-                await handleNewSubscription(invoice);
+                await handleInvoiceForSubscription(invoice, true);
             } else if (invoice.billing_reason === 'subscription_cycle') {
                 logger.info("Reoccurring payment for Subscription!");
-                // todo we have to implement this, otherwise users can not login after 1 month
+                await handleInvoiceForSubscription(invoice, false);
             } else {
                 logger.info("Unknown billing reason", invoice.billing_reason);
             }
         }
+
+        if (event.type === 'checkout.session.completed') {
+            const session = event.data.object;
+            if (session.mode === 'payment') {
+                logger.info("One time payment successfully!");
+            }
+        }
+
 
         res.sendStatus(200);
     }
@@ -65,19 +73,15 @@ function calculateExpirationDate(): Date {
     return date;
 }
 
-export async function handleNewSubscription(invoice: Stripe.Invoice) {
+async function getCustomer(invoice: Stripe.Invoice): Promise<Customer | undefined> {
     const stripe = getStripe();
-    const invoiceId = invoice.id;
     const customerId = invoice.customer as string;
-    logger.info("🔔 Payment received!", {
-        invoiceId,
-    });
 
     const customer = (await stripe.customers.retrieve(customerId)) as Stripe.Customer;
 
     const customerEmail = customer.email;
-    const customerName = customer.name;
-    const subscriptionId =  invoice.parent?.subscription_details?.subscription
+    const customerName = customer.name as string;
+    const subscriptionId = invoice.parent?.subscription_details?.subscription as string
 
 
     if (!customerEmail) {
@@ -86,24 +90,48 @@ export async function handleNewSubscription(invoice: Stripe.Invoice) {
     }
     if (!subscriptionId) {
         logger.error("This invoice seems to have been triggered not by a subscription?", invoice);
+        return
     }
 
-    // Persist subscription to Firestore
-    await db.collection("subscriptions").doc(customerId).set({
-        email: customerEmail,
-        subscriptionId: subscriptionId,
-        customerId: customerId,
-        customerName: customerName || "",
+    return {name: customerName, email: customerEmail, id: customerId, subscriptionId};
+}
+
+
+async function persistCustomer(customer: Customer) {
+    // can we do also just an update of fields? so existing fields are not overwritten?
+    await db.collection("subscriptions").doc(customer.id).set({
+        email: customer.email,
+        subscriptionId: customer.subscriptionId,
+        customerId: customer.id,
+        customerName: customer.name,
         expiresAt: calculateExpirationDate(),
         createdAt: new Date(),
-        stripeCustomerId: customerId,
+    });
+}
+
+export async function handleInvoiceForSubscription(invoice: Stripe.Invoice, sendSubscriptionConfirmationMail:Boolean = false) {
+    const invoiceId = invoice.id;
+    logger.info("🔔Payment for Subscription received!", {
+        invoiceId,
     });
 
-    logger.info("✅ Subscription persisted to Firestore", {
-        customerId,
-        email: customerEmail,
-    });
+    const customer = await getCustomer(invoice);
 
-    // Send subscription confirmation email
-    await sendSubscriptionConfirmationEmail(customerEmail, customerName || "Subscriber");
+    if (customer) {
+        // Persist subscription to Firestore
+        // if the customer was already there, we just overwrite it with a new expriation date
+        await persistCustomer(customer);
+
+        logger.info("✅ Customer persisted to Firestore", {
+            id: customer.id,
+            email: customer.email,
+        });
+        if (sendSubscriptionConfirmationMail) {
+            // Send subscription confirmation email
+            await sendSubscriptionConfirmationEmail(customer);
+        }
+    } else {
+        logger.warn("Was not able to extract customer from invoice.")
+        // todo send mail to us?
+    }
 }

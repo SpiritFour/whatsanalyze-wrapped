@@ -118,7 +118,7 @@ Firebase Cloud Functions for handling Stripe checkout and subscriptions, transla
 - stripe trigger checkout.session.completed
 
 ### 2. Stripe dev testing
-- setup-stripe.sh to set the stripe keys (secret + api)
+- ./scripts/setup-stripe.sh to set the stripe keys (secret + api)
 - stripe trigger subscription.payment_succeeded --add "customer:email=stripe@whatsanalyze.com"
 
 ### Init mail templates
@@ -130,3 +130,15 @@ firebase login
 gcloud auth application-default login
 npm run init:templates:dev
 ```
+
+## Stripe Subscription Renewal testing
+In theory it should be enough to set the renewal date to now with this command:
+```bash
+stripe subscriptions update "$SUB_ID" --billing-cycle-anchor=now --proration-behavior=none 
+```
+And stripe would then handle the rest in the background (automatic invoice creation and payment of that).
+But I was not able to make it work. The anchor is successfully set, but the subscription cycle is not happening.
+
+What was working is following this tutorial:
+https://docs.stripe.com/billing/testing/test-clocks/simulate-subscriptions
+It simulates what would happen by forwarding the time at stripe BE.
