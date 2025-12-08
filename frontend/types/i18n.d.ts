@@ -54,6 +54,12 @@ declare module 'vue-i18n' {
       loading: string
       processingYourData: string
       selectChatFile: string
+      paywall: {
+        title: string
+        description: string
+        cta: string
+        secondary: string
+      }
     }
     exportGuide: {
       title: string

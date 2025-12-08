@@ -128,10 +128,9 @@
 
 <script lang="ts" setup>
 import { computed, ref } from "vue";
-import { httpsCallable } from "firebase/functions";
 import { useI18n } from "vue-i18n";
+import { fetchSubscriptionCheckoutUrl } from "~/utils/subscription";
 
-const PRO_PRICE_ID = "price_1SWEfW74KJ57kF2w44iNywtI";
 const isStarting = ref(false);
 const checkoutError = ref("");
 const { t, tm } = useI18n();
@@ -150,13 +149,7 @@ const startSubscription = async () => {
   try {
     isStarting.value = true;
 
-    const createCheckoutSession = httpsCallable(
-      useNuxtApp().$functions,
-      "createCheckoutSession"
-    );
-
-    const response = await createCheckoutSession({ priceId: PRO_PRICE_ID });
-    const { url } = response.data as { url?: string };
+    const url = await fetchSubscriptionCheckoutUrl();
 
     if (!url) {
       throw new Error(t("home.subscriptionAd.errors.checkoutLinkMissing"));

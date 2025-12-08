@@ -275,7 +275,13 @@
     "fileFormats": "TXT oder ZIP",
     "loading": "Wird geladen...",
     "processingYourData": "Deine Daten werden verarbeitet...",
-    "selectChatFile": "Wähle deine WhatsApp-Chatdatei aus"
+    "selectChatFile": "Wähle deine WhatsApp-Chatdatei aus",
+    "paywall": {
+      "title": "Schalte unbegrenzte Analysen frei",
+      "description": "Du hast bereits einen Chat kostenlos analysiert. Abonniere jetzt, um sofort weitere Wrapped-Storys zu erzeugen.",
+      "cta": "Auf Pro upgraden",
+      "secondary": "Vielleicht später"
+    }
   },
   "exportGuide": {
     "title": "Wie exportierst du deinen WhatsApp-Chat?",

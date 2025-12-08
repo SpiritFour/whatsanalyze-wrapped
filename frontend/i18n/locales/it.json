@@ -275,7 +275,13 @@
     "fileFormats": "TXT o ZIP",
     "loading": "Caricamento...",
     "processingYourData": "Elaborazione dei tuoi dati...",
-    "selectChatFile": "Seleziona il file chat di WhatsApp"
+    "selectChatFile": "Seleziona il file chat di WhatsApp",
+    "paywall": {
+      "title": "Sblocca analisi illimitate",
+      "description": "Hai già analizzato una chat gratuitamente. Abbonati per continuare a generare nuove storie Wrapped all'istante.",
+      "cta": "Passa a Pro",
+      "secondary": "Magari dopo"
+    }
   },
   "exportGuide": {
     "title": "Come esportare la tua chat WhatsApp?",

@@ -34,12 +34,7 @@
         accept=".txt,.zip"
         class="hidden"
         type="file"
-        @change="
-          (e) => {
-            isLoading = true;
-            handleFile(e);
-          }
-        "
+        @change="handleFile"
       />
     </label>
   </div>
@@ -47,29 +42,62 @@
   <div v-if="isLoading" class="bg-blue-500">
     <pre>{{ $t("upload.loading") }}</pre>
   </div>
+
+  <SubscriptionPaywall :open="showPaywall" @close="showPaywall = false" />
 </template>
 
 <script lang="ts" setup>
+import { ref, watch } from "vue";
+import { storeToRefs } from "pinia";
 import { sendFile } from "assets/workers";
 import { useStatsStore } from "~/store/stats";
+import { useSubscriptionStore } from "~/store/subscriptionStore";
+import { useUploadAccessStore } from "~/store/uploadAccessStore";
 
 const statsStore = useStatsStore();
+const subscriptionStore = useSubscriptionStore();
+const uploadAccessStore = useUploadAccessStore();
 
 const { result, isLoading } = storeToRefs(statsStore);
+const { isSubscriptionValid } = storeToRefs(subscriptionStore);
+const { hasFreeUploadRemaining } = storeToRefs(uploadAccessStore);
+const showPaywall = ref(false);
+
+watch(isSubscriptionValid, (isValid) => {
+  if (isValid) {
+    showPaywall.value = false;
+  }
+});
 
 const handleFile = async (e: Event): Promise<void> => {
   const input = e.target as HTMLInputElement;
   if (!input.files || !input.files.length) return;
   const file = input.files[0];
 
+  if (!hasFreeUploadRemaining.value && !isSubscriptionValid.value) {
+    showPaywall.value = true;
+    input.value = "";
+    return;
+  }
+
   statsStore.$reset();
   isLoading.value = true;
-  result.value = (await sendFile(file)) ?? undefined;
 
-  isLoading.value = false;
+  try {
+    result.value = (await sendFile(file)) ?? undefined;
 
-  navigateTo({
-    path: "/results",
-  });
+    if (hasFreeUploadRemaining.value) {
+      uploadAccessStore.markFreeUploadUsed();
+    }
+
+    navigateTo({
+      path: "/results",
+    });
+  } catch (err) {
+    console.error("Failed to process chat upload:", err);
+  } finally {
+    isLoading.value = false;
+    input.value = "";
+  }
 };
 </script>
