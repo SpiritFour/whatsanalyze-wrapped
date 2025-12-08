@@ -148,6 +148,16 @@
         "general": "Qualcosa è andato storto. Riprova."
       }
     },
+    "subscription": {
+      "manage": {
+        "title": "Gestisci il tuo piano",
+        "description": "Gestisci il tuo piano direttamente dal portale Stripe: aggiorna il pagamento o annulla quando vuoi.",
+        "button": "Gestisci abbonamento",
+        "buttonLoading": "Apertura del portale Stripe...",
+        "missingDetails": "Dati dell'abbonamento mancanti. Verifica di nuovo.",
+        "portalError": "Impossibile aprire il portale di fatturazione Stripe. Riprova."
+      }
+    },
     "celebration": {
       "eyebrow": "Nuovi modi per festeggiare",
       "title": "Il tuo recap privato diventa sempre più intelligente",

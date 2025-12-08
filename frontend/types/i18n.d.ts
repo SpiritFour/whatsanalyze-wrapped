@@ -38,6 +38,16 @@ declare module 'vue-i18n' {
         whatToExpect: string
         privacyFirst: string
       }
+      subscription: {
+        manage: {
+          title: string
+          description: string
+          button: string
+          buttonLoading: string
+          missingDetails: string
+          portalError: string
+        }
+      }
       features: Array<{
         title: string
         description: string

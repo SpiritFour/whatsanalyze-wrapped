@@ -148,6 +148,16 @@
         "general": "Algo correu mal. Tenta novamente."
       }
     },
+    "subscription": {
+      "manage": {
+        "title": "Gere o teu plano",
+        "description": "Gere o teu plano diretamente no portal da Stripe: atualiza o pagamento ou cancela quando quiseres.",
+        "button": "Gerir subscrição",
+        "buttonLoading": "A abrir o portal da Stripe...",
+        "missingDetails": "Dados da subscrição em falta. Verifica novamente.",
+        "portalError": "Não foi possível abrir o portal de faturação da Stripe. Tenta outra vez."
+      }
+    },
     "celebration": {
       "eyebrow": "Novas formas de celebrar",
       "title": "O teu recap privado fica cada vez mais inteligente",

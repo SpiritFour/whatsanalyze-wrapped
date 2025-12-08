@@ -148,6 +148,16 @@
         "general": "Something went wrong. Please try again."
       }
     },
+    "subscription": {
+      "manage": {
+        "title": "Manage your plan",
+        "description": "Manage your plan directly in the Stripe portal—update payment details or cancel whenever you need.",
+        "button": "Manage Subscription",
+        "buttonLoading": "Opening Stripe Portal...",
+        "missingDetails": "Missing subscription details. Please verify again.",
+        "portalError": "Unable to open the Stripe billing portal. Please try again."
+      }
+    },
     "celebration": {
       "eyebrow": "Fresh ways to celebrate",
       "title": "Your private chat recap keeps getting smarter",

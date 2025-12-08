@@ -148,6 +148,16 @@
         "general": "Un problème est survenu. Réessayez."
       }
     },
+    "subscription": {
+      "manage": {
+        "title": "Gérez votre offre",
+        "description": "Gérez votre offre directement depuis le portail Stripe : mettez à jour vos paiements ou annulez quand vous le souhaitez.",
+        "button": "Gérer l'abonnement",
+        "buttonLoading": "Ouverture du portail Stripe...",
+        "missingDetails": "Informations d'abonnement manquantes. Veuillez revérifier.",
+        "portalError": "Impossible d'ouvrir le portail de facturation Stripe. Veuillez réessayer."
+      }
+    },
     "celebration": {
       "eyebrow": "De nouvelles façons de célébrer",
       "title": "Votre récap privé devient toujours plus malin",

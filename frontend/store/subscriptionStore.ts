@@ -5,6 +5,7 @@ type SubscriptionData = {
   subscriptionId: string;
   customerName?: string;
   expiresAt: string;
+  customerId?: string;
 };
 
 type SubscriptionStoreState = {
@@ -31,6 +32,9 @@ export const useSubscriptionStore = defineStore("subscription", {
     },
     getExpiresAt(state: SubscriptionStoreState) {
       return state.subscription?.expiresAt;
+    },
+    getCustomerId(state: SubscriptionStoreState) {
+      return state.subscription?.customerId;
     },
     isSubscriptionValid(state: SubscriptionStoreState) {
       if (!state.subscription?.expiresAt) return false;

@@ -148,6 +148,16 @@
         "general": "Algo salió mal. Inténtalo de nuevo."
       }
     },
+    "subscription": {
+      "manage": {
+        "title": "Administra tu plan",
+        "description": "Gestiona tu plan directamente en el portal de Stripe: actualiza el método de pago o cancela cuando quieras.",
+        "button": "Administrar suscripción",
+        "buttonLoading": "Abriendo el portal de Stripe...",
+        "missingDetails": "Faltan datos de la suscripción. Vuelve a verificar.",
+        "portalError": "No se puede abrir el portal de facturación de Stripe. Inténtalo otra vez."
+      }
+    },
     "celebration": {
       "eyebrow": "Nuevas formas de celebrar",
       "title": "Tu repaso privado de chats no deja de mejorar",

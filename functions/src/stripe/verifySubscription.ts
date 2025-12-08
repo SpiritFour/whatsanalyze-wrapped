@@ -53,6 +53,7 @@ export const verifySubscription = onCall(
                 isValid: true,
                 expiresAt: expiresAt.toISOString(),
                 customerName: data.customerName,
+                customerId: data.customerId,
             };
         } catch (error: any) {
             logger.error("Error verifying subscription", {error: error.message});

@@ -148,6 +148,16 @@
         "general": "Etwas ist schiefgelaufen. Bitte erneut versuchen."
       }
     },
+    "subscription": {
+      "manage": {
+        "title": "Verwalte deinen Plan",
+        "description": "Verwalte deinen Plan direkt im Stripe-Portal – aktualisiere Zahlungsdaten oder kündige jederzeit.",
+        "button": "Abo verwalten",
+        "buttonLoading": "Stripe-Portal wird geöffnet...",
+        "missingDetails": "Abonnementdaten fehlen. Bitte erneut verifizieren.",
+        "portalError": "Stripe-Abrechnungsportal konnte nicht geöffnet werden. Bitte erneut versuchen."
+      }
+    },
     "celebration": {
       "eyebrow": "Neue Wege zum Feiern",
       "title": "Dein privater Chat-Rückblick wird immer smarter",
