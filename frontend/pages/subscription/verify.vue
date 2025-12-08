@@ -79,6 +79,30 @@
         <p><b>Expires:</b> {{ formatDate(verificationData.expiresAt) }}</p>
       </div>
 
+      <div class="w-full rounded-lg border border-green-500/30 bg-green-50/20 p-5 space-y-3">
+        <div>
+          <p class="text-sm font-semibold">{{ t("home.subscription.manage.title") }}</p>
+          <p class="text-sm text-gray-500">
+            {{ t("home.subscription.manage.description") }}
+          </p>
+        </div>
+        <button
+          :disabled="isPortalLoading"
+          class="py-2 px-4 rounded-md text-sm border-2 border-red-500 text-red-500 hover:bg-red-500 hover:text-white disabled:opacity-60 disabled:cursor-not-allowed w-full"
+          type="button"
+          @click="openCustomerPortal"
+        >
+          {{
+            isPortalLoading
+              ? t("home.subscription.manage.buttonLoading")
+              : t("home.subscription.manage.button")
+          }}
+        </button>
+        <p v-if="portalError" class="text-sm text-red-700">
+          {{ portalError }}
+        </p>
+      </div>
+
       <NuxtLink
         class="py-2 px-4 rounded-md text-sm border-2 text-green-500 border-green-500 hover:bg-green-500 hover:text-white w-80 text-center"
         to="/"
@@ -109,6 +133,7 @@
 import { onMounted, ref } from "vue";
 import { httpsCallable } from "firebase/functions";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/vue/24/solid";
+import { useI18n } from "vue-i18n";
 
 const route = useRoute();
 const subscriptionStore = useSubscriptionStore();
@@ -118,6 +143,9 @@ const subscriptionId = ref("");
 const verified = ref<boolean | null>(null);
 const error = ref("");
 const verificationData = ref<any>(null);
+const isPortalLoading = ref(false);
+const portalError = ref("");
+const { t } = useI18n();
 
 onMounted(async () => {
   subscriptionId.value = route.query.token as string;
@@ -126,6 +154,8 @@ onMounted(async () => {
   if (subscriptionStore.isSubscriptionValid) {
     verified.value = true;
     verificationData.value = subscriptionStore.getSubscription;
+    email.value = subscriptionStore.getEmail || "";
+    subscriptionId.value = subscriptionStore.getSubscriptionId || "";
     return;
   }
 
@@ -167,6 +197,7 @@ const handleVerification = async () => {
         subscriptionId: subscriptionId.value,
         customerName: (data as any).customerName,
         expiresAt: (data as any).expiresAt,
+        customerId: (data as any).customerId,
       });
     } else {
       verified.value = false;
@@ -187,6 +218,7 @@ const resetVerification = () => {
   email.value = "";
   subscriptionId.value = "";
   subscriptionStore.clearSubscription();
+  portalError.value = "";
 };
 
 const formatDate = (dateString: string) => {
@@ -195,5 +227,42 @@ const formatDate = (dateString: string) => {
     month: "long",
     day: "numeric",
   });
+};
+
+const openCustomerPortal = async () => {
+  const activeEmail = email.value || subscriptionStore.getEmail;
+  const activeSubscriptionId = subscriptionId.value || subscriptionStore.getSubscriptionId;
+
+  if (!activeEmail || !activeSubscriptionId) {
+    portalError.value = t("home.subscription.manage.missingDetails");
+    return;
+  }
+
+  portalError.value = "";
+  isPortalLoading.value = true;
+
+  try {
+    const createCustomerPortal = httpsCallable(
+      useNuxtApp().$functions,
+      "createCustomerPortal",
+    );
+
+    const { data } = await createCustomerPortal({
+      email: activeEmail,
+      subscriptionId: activeSubscriptionId,
+    });
+
+    const portalUrl = (data as any)?.url;
+    if (!portalUrl) {
+      throw new Error("Stripe portal URL missing.");
+    }
+
+    window.location.href = portalUrl;
+  } catch (err: any) {
+    portalError.value = err?.message || t("home.subscription.manage.portalError");
+    console.error("Customer portal error:", err);
+  } finally {
+    isPortalLoading.value = false;
+  }
 };
 </script>

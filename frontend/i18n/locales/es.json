@@ -110,6 +110,54 @@
         }
       ]
     },
+    "subscriptionAd": {
+      "eyebrow": "Whatsanalyse Pro",
+      "headline": "Desbloquea toda la experiencia narrativa",
+      "description": "Empieza gratis o actualiza para obtener cargas ilimitadas, exportaciones premium y procesamiento más rápido.",
+      "free": {
+        "badge": "Gratis",
+        "headline": "Explora a tu ritmo",
+        "description": "Perfecto para probar Whatsanalyse o crear un resumen puntual.",
+        "priceSuffix": "/ para siempre",
+        "cta": "Empezar gratis",
+        "features": [
+          "Compartir historias y enlaces ilimitados",
+          "Primer análisis de chat gratis",
+          "No necesitas tarjeta de crédito"
+        ]
+      },
+      "pro": {
+        "badge": "El favorito",
+        "label": "Pro",
+        "headline": "Para storytellers y equipos",
+        "description": "Cargas ilimitadas, exportaciones premium y procesamiento más rápido para usuarios intensivos.",
+        "priceSuffix": "/ mes",
+        "note": "Cancela cuando quieras · compártelo con amigos",
+        "cta": "Actualizar a Pro",
+        "loading": "Redirigiendo a Stripe…",
+        "features": [
+          "Cargas ilimitadas de chats y generación de historias",
+          "Procesamiento prioritario y acceso temprano a funciones",
+          "Comparte tu suscripción con hasta 3 amigos",
+          "Exportaciones PDF / HD para resúmenes pulidos"
+        ]
+      },
+      "footnote": "Checkout seguro con Stripe · sin cargos ocultos",
+      "errors": {
+        "checkoutLinkMissing": "Falta el enlace de pago. Inténtalo de nuevo.",
+        "general": "Algo salió mal. Inténtalo de nuevo."
+      }
+    },
+    "subscription": {
+      "manage": {
+        "title": "Administra tu plan",
+        "description": "Gestiona tu plan directamente en el portal de Stripe: actualiza el método de pago o cancela cuando quieras.",
+        "button": "Administrar suscripción",
+        "buttonLoading": "Abriendo el portal de Stripe...",
+        "missingDetails": "Faltan datos de la suscripción. Vuelve a verificar.",
+        "portalError": "No se puede abrir el portal de facturación de Stripe. Inténtalo otra vez."
+      }
+    },
     "celebration": {
       "eyebrow": "Nuevas formas de celebrar",
       "title": "Tu repaso privado de chats no deja de mejorar",
@@ -237,7 +285,13 @@
     "fileFormats": "TXT o ZIP",
     "loading": "Cargando...",
     "processingYourData": "Procesando tus datos...",
-    "selectChatFile": "Selecciona tu archivo de chat de WhatsApp"
+    "selectChatFile": "Selecciona tu archivo de chat de WhatsApp",
+    "paywall": {
+      "title": "Desbloquea análisis ilimitados",
+      "description": "Ya has analizado un chat gratis. Suscríbete para seguir generando nuevas historias Wrapped al instante.",
+      "cta": "Hazte Pro",
+      "secondary": "Quizás después"
+    }
   },
   "exportGuide": {
     "title": "¿Cómo exportar tu chat de WhatsApp?",

@@ -1,44 +1,55 @@
-// also in stripe example
 import {HttpsError, onCall} from "firebase-functions/https";
-import {stripeSecretKey, validateOrigin} from "./common";
-import Stripe from "stripe";
+import {getStripe, stripeSecretKey, validateOrigin} from "./common";
 import * as logger from "firebase-functions/logger";
+import {db} from "../firebase";
 
-// todo use the customer id here instead, and also store the customerid in firebase;
-//  might be also a better thing for auth
 export const createCustomerPortal = onCall(
     {secrets: [stripeSecretKey]},
     async (request) => {
-        const stripe = new Stripe(stripeSecretKey.value(), {
-            apiVersion: "2025-11-17.clover",
-            appInfo: {
-                name: "whatsanalyze-wrapped",
-                version: "0.0.1",
-            },
-        });
+        const stripe = getStripe();
 
-        // Validate origin from request headers
         const origin = validateOrigin(request.rawRequest.get("origin"));
 
-        const {sessionId} = request.data;
-        if (!sessionId) {
-            throw new HttpsError("invalid-argument", "sessionId is required");
+        const {subscriptionId, email} = request.data;
+
+        if (!subscriptionId || typeof subscriptionId !== "string") {
+            throw new HttpsError("invalid-argument", "subscriptionId is required");
+        }
+
+        if (!email || typeof email !== "string") {
+            throw new HttpsError("invalid-argument", "email is required");
         }
 
         try {
-            // Retrieve the checkout session
-            const checkoutSession = await stripe.checkout.sessions.retrieve(sessionId);
+            const snapshot = await db
+                .collection("subscriptions")
+                .where("email", "==", email)
+                .where("subscriptionId", "==", subscriptionId)
+                .limit(1)
+                .get();
 
-            // Create billing portal session
+            if (snapshot.empty) {
+                throw new HttpsError("not-found", "Subscription not found");
+            }
+
+            const data = snapshot.docs[0].data();
+            const customerId = data.customerId as string | undefined;
+
+            if (!customerId) {
+                throw new HttpsError("failed-precondition", "Customer ID missing");
+            }
+
             const portalSession = await stripe.billingPortal.sessions.create({
-                customer: checkoutSession.customer as string,
-                return_url: `${origin}/dashboard.html`,
+                customer: customerId,
+                return_url: `${origin}/subscription/verify?token=${subscriptionId}&email=${encodeURIComponent(email)}`,
             });
 
-            // Return the URL to client
             return {url: portalSession.url};
         } catch (error: any) {
             logger.error("Error creating customer portal session:", error);
+            if (error instanceof HttpsError) {
+                throw error;
+            }
             throw new HttpsError("internal", error.message);
         }
     }
