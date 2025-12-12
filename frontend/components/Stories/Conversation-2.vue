@@ -93,7 +93,7 @@ ChartJS.register(
 const statsStore = useStatsStore();
 const { result } = storeToRefs(statsStore);
 
-const authors = statsStore.getAuthors as string[];
+const authors = computed(() => statsStore.getAuthors ?? []);
 
 const authorColors = [
   {
@@ -135,7 +135,8 @@ const prettyMonth = (value: string) => {
 };
 
 const chartData = computed<ChartData<"line">>(() => {
-  if (!result.value || !authors?.length) return { labels: [], datasets: [] };
+  const authorList = authors.value;
+  if (!result.value || !authorList.length) return { labels: [], datasets: [] };
 
   const messagesData = result.value.getNumberOfMessagesPerMonth as Record<
     string,
@@ -143,7 +144,7 @@ const chartData = computed<ChartData<"line">>(() => {
   >;
 
   // collect per-author data
-  const perAuthorData = authors.map(
+  const perAuthorData = authorList.map(
     (name) => messagesData[name] ?? ({} as MessagesPerMonth),
   );
 
@@ -154,7 +155,7 @@ const chartData = computed<ChartData<"line">>(() => {
 
   return {
     labels,
-    datasets: authors.map((name, index) => {
+    datasets: authorList.map((name, index) => {
       const authorData = perAuthorData[index];
       const color = authorColors[index % authorColors.length];
 
@@ -251,14 +252,15 @@ const chartOptions: ChartOptions<"line"> = {
 };
 
 const summary = computed(() => {
-  if (!result.value || !authors?.length) return null;
+  const authorList = authors.value;
+  if (!result.value || !authorList.length) return null;
 
   const messagesData = result.value.getNumberOfMessagesPerMonth as Record<
     string,
     MessagesPerMonth
   >;
 
-  const perAuthorData = authors.map(
+  const perAuthorData = authorList.map(
     (name) => messagesData[name] ?? ({} as MessagesPerMonth),
   );
 
@@ -294,7 +296,7 @@ const summary = computed(() => {
 
 // legend metadata for template
 const legendMeta = computed(() =>
-  authors.map((name, index) => {
+  authors.value.map((name, index) => {
     const color = authorColors[index % authorColors.length];
     return {
       name,

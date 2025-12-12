@@ -33,6 +33,19 @@
   <!--    scrolling takes emojies apart and shows number of usages-->
   <!--  </div>-->
 
+  <div
+    v-if="shareError"
+    class="mx-auto mt-6 max-w-lg rounded-2xl border border-rose-500/40 bg-rose-500/10 px-4 py-3 text-center text-sm text-rose-100"
+  >
+    {{ shareError }}
+  </div>
+  <div
+    v-else-if="shareLoading"
+    class="mx-auto mt-6 max-w-lg rounded-2xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-3 text-center text-sm text-emerald-100"
+  >
+    Preparing your shared story…
+  </div>
+
   <StoryCarousel :duration="6000">
     <StoriesIntro1 />
     <StoriesIntro2 />
@@ -46,60 +59,76 @@
 
     <StoriesConversation1 />
     <StoriesConversation2 />
+    <StoriesShareInvite />
   </StoryCarousel>
 </template>
-<StoriesConversation2 />
 <script lang="ts" setup>
 import { useStatsStore } from "~/store/stats";
 import { useUserDataStore } from "~/store/userDataStore";
-import { parseShareInfo, serializeShareInfo } from "~/utils/sharing/param";
+import { parseShareInfo } from "~/utils/sharing/param";
+
+const route = useRoute();
 
 const statsStore = useStatsStore();
 
 const { result } = storeToRefs(statsStore);
-const data = result;
 // ######## data loading part
 const userDataStore = useUserDataStore();
 
-const share_info = ref("");
+const shareLoading = ref(false);
+const shareError = ref("");
 
-const save = async () => {
-  if (data.value) {
-    const link = await userDataStore.saveData(data.value);
-    console.log("Shareable Link:", link);
-    share_info.value = serializeShareInfo(link);
-  } else {
-    alert("You did create a chat!");
+const buildSearchFromQuery = () => {
+  const params = new URLSearchParams();
+  const uuidParam = route.query.uuid;
+  const ivParam = route.query.iv;
+  const keyParam = route.query.key;
+
+  if (
+    typeof uuidParam !== "string" ||
+    typeof ivParam !== "string" ||
+    typeof keyParam !== "string"
+  ) {
+    return null;
+  }
+
+  params.set("uuid", uuidParam);
+  params.set("iv", ivParam);
+  params.set("key", keyParam);
+  return params.toString();
+};
+
+const loadSharedStory = async () => {
+  const queryString = buildSearchFromQuery();
+  if (!queryString) {
+    shareError.value = "";
+    shareLoading.value = false;
+    return;
+  }
+
+  shareLoading.value = true;
+  shareError.value = "";
+
+  try {
+    const shareInfo = parseShareInfo(queryString);
+    const loadedData = await userDataStore.loadData(shareInfo);
+    result.value = loadedData;
+  } catch (error) {
+    console.error("Failed to load shared story", error);
+    shareError.value =
+      "We couldn't decrypt this share link. Please make sure it wasn't modified.";
+  } finally {
+    shareLoading.value = false;
   }
 };
 
-onMounted(() => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const uuidParam = urlParams.get("uuid");
-  const ivParam = urlParams.get("iv");
-  const keyParam = urlParams.get("key");
-
-  if (uuidParam && ivParam && keyParam) {
-    try {
-      const shareInfo = parseShareInfo(window.location.search);
-      console.log("Parsed ShareInfo:", shareInfo);
-
-      // Use userDataStore to load the data using shareInfo
-      userDataStore
-        .loadData(shareInfo)
-        .then((loadedData) => {
-          result.value = loadedData;
-        })
-        .catch((error) => {
-          console.error("Error loading data:", error);
-        });
-    } catch (error) {
-      console.error("Failed to parse share info:", error);
-    }
-  } else {
-    console.log("No share info found in URL");
-  }
-});
+watch(
+  () => ({ ...route.query }),
+  () => {
+    loadSharedStory();
+  },
+  { immediate: true },
+);
 </script>
 
 <script lang="ts">
