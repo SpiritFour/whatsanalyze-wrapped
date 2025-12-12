@@ -352,6 +352,64 @@
     "quietestHour": "Ruhigste Stunde",
     "busiesDay": "Aktivster Tag",
     "quietestDay": "Ruhigster Tag",
-    "messageFrequency": "Nachrichtenfrequenz"
+    "messageFrequency": "Nachrichtenfrequenz",
+    "status": {
+      "loadingSharedStory": "Deine geteilte Story wird vorbereitet ...",
+      "decryptError": "Wir konnten diesen Freigabelink nicht entschlüsseln. Bitte prüfe, ob er unverändert ist."
+    },
+    "intro": {
+      "headline": "{year} Rückblick",
+      "firstMessagesTitle": "Euer Jahr begann mit"
+    },
+    "emoji": {
+      "topTitle": "Deine meistgenutzten Emojis",
+      "messageTitle": "Nachricht mit den meisten Emojis",
+      "from": "von"
+    },
+    "words": {
+      "banner": {
+        "first": "Auch wenn es",
+        "second": "kein",
+        "third": "Wettbewerb ist"
+      },
+      "duel": {
+        "messagedLabel": "schrieb",
+        "moreWordsThan": "mehr Wörter als"
+      },
+      "breakdown": {
+        "title": "Die Aufschlüsselung",
+        "wordsLabel": "Wörter",
+        "messagesLabel": "Nachrichten"
+      }
+    },
+    "conversation": {
+      "changeTitle": "Ihr habt euch verändert – und eure Gespräche auch.",
+      "rhythm": {
+        "title": "Euer Chat-Rhythmus",
+        "mostActiveMonth": "Aktivster Monat",
+        "mostMessages": "Die meisten Nachrichten",
+        "maxMessagesPerMonth": "Max. Nachrichten/Monat",
+        "messagesInMonth": "Nachrichten im {month}",
+        "totalMessagesSince": "{count} Nachrichten seit <month></month>",
+        "tooltip": "{name}: {value} Nachrichten"
+      }
+    },
+    "share": {
+      "title": "Halte die Story am Laufen",
+      "description": "Sende deine Wrapped-Story mit einem Ende-zu-Ende-verschlüsselten Link oder starte eine neue Analyse.",
+      "preparing": "Sicherer Link wird vorbereitet ...",
+      "buttons": {
+        "shareNative": "Mit Freund:innen teilen",
+        "shareCopy": "Sicheren Link kopieren",
+        "analyzeAnother": "Weitere Chats analysieren"
+      },
+      "messages": {
+        "nativeShare": "Freigabedialog auf deinem Gerät geöffnet.",
+        "linkCopied": "Sicherer Link wurde in die Zwischenablage kopiert.",
+        "unableToPrepare": "Der Freigabelink konnte nicht erstellt werden. Bitte versuche es erneut."
+      },
+      "nativeShareTitle": "WhatsAnalyze Wrapped",
+      "nativeShareText": "Öffne unsere verschlüsselte WhatsApp-Wrapped-Story."
+    }
   }
 }

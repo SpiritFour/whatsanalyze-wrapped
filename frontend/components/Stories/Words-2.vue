@@ -17,7 +17,9 @@
         </span>
       </div>
 
-      <div class="text-xl text-slate-200">messaged</div>
+      <div class="text-xl text-slate-200">
+        {{ t('results.words.duel.messagedLabel') }}
+      </div>
 
       <div
         class="py-6 text-[5rem] font-extrabold leading-none tracking-tight md:text-[6rem] lg:text-[7rem]"
@@ -25,7 +27,9 @@
         {{ data.difference }}
       </div>
 
-      <div class="text-xl font-medium text-slate-200 mb-2">more words than</div>
+      <div class="text-xl font-medium text-slate-200 mb-2">
+        {{ t('results.words.duel.moreWordsThan') }}
+      </div>
 
       <div
         class="text-4xl font-semibold tracking-tight md:text-5xl lg:text-6xl"
@@ -41,12 +45,14 @@
 </template>
 
 <script lang="ts" setup>
+import { useI18n } from "vue-i18n";
 import { useStatsStore } from "~/store/stats";
 import Glow from "~/components/Style/Glow.vue";
 
 const statsStore = useStatsStore();
 
 const { result } = storeToRefs(statsStore);
+const { t } = useI18n();
 
 const data = computed(() => {
   const wordUsage = result.value?.getWordUsage;

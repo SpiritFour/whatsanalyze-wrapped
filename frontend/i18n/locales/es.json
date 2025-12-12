@@ -352,6 +352,64 @@
     "quietestHour": "Hora más tranquila",
     "busiesDay": "Día más activo",
     "quietestDay": "Día más tranquilo",
-    "messageFrequency": "Frecuencia de mensajes"
+    "messageFrequency": "Frecuencia de mensajes",
+    "status": {
+      "loadingSharedStory": "Preparando tu historia compartida...",
+      "decryptError": "No pudimos descifrar este enlace compartido. Asegúrate de que no se haya modificado."
+    },
+    "intro": {
+      "headline": "{year} Resumen",
+      "firstMessagesTitle": "Tu año comenzó con"
+    },
+    "emoji": {
+      "topTitle": "Tus emojis más usados",
+      "messageTitle": "Mensaje con más emojis",
+      "from": "de"
+    },
+    "words": {
+      "banner": {
+        "first": "Aunque",
+        "second": "no es",
+        "third": "una competencia"
+      },
+      "duel": {
+        "messagedLabel": "escribió",
+        "moreWordsThan": "más palabras que"
+      },
+      "breakdown": {
+        "title": "El desglose",
+        "wordsLabel": "palabras",
+        "messagesLabel": "mensajes"
+      }
+    },
+    "conversation": {
+      "changeTitle": "Tú cambiaste, y tus conversaciones también.",
+      "rhythm": {
+        "title": "Tu ritmo de chat",
+        "mostActiveMonth": "Mes más activo",
+        "mostMessages": "Más mensajes",
+        "maxMessagesPerMonth": "Máximo de mensajes/mes",
+        "messagesInMonth": "mensajes en {month}",
+        "totalMessagesSince": "{count} mensajes desde <month></month>",
+        "tooltip": "{name}: {value} mensajes"
+      }
+    },
+    "share": {
+      "title": "Mantén viva la historia",
+      "description": "Envía tu historia Wrapped con un enlace cifrado de extremo a extremo o vuelve a analizar un chat nuevo.",
+      "preparing": "Preparando enlace seguro...",
+      "buttons": {
+        "shareNative": "Compartir con amigos",
+        "shareCopy": "Copiar enlace seguro",
+        "analyzeAnother": "Analizar otro chat"
+      },
+      "messages": {
+        "nativeShare": "La hoja para compartir se abrió en tu dispositivo.",
+        "linkCopied": "Enlace seguro copiado al portapapeles.",
+        "unableToPrepare": "No pudimos preparar el enlace de uso compartido. Inténtalo de nuevo."
+      },
+      "nativeShareTitle": "WhatsAnalyze Wrapped",
+      "nativeShareText": "Abre nuestra historia de WhatsApp Wrapped cifrada."
+    }
   }
 }

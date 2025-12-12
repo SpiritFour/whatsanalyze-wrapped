@@ -2,7 +2,7 @@
   <StoryContainer
     v-if="result"
     class="bg-black text-6xl"
-    title="Your most used Emojis"
+    :title="t('results.emoji.topTitle')"
   >
     <EmojiChaos
       :count="50"
@@ -14,11 +14,13 @@
 </template>
 
 <script lang="ts" setup>
+import { useI18n } from "vue-i18n";
 import { useStatsStore } from "~/store/stats";
 
 const statsStore = useStatsStore();
 
 const { result } = storeToRefs(statsStore);
+const { t } = useI18n();
 
 const topThreeEmojies = computed(() => {
   if (!result.value) return [];

@@ -12,17 +12,17 @@
         <span
           class="bg-gradient-to-br from-white via-slate-200 to-slate-300 bg-clip-text text-transparent drop-shadow-xl"
         >
-          While it is
+          {{ bannerLines.first }}
         </span>
         <br />
 
-        not a
+        {{ bannerLines.second }}
 
         <br />
         <span
           class="bg-gradient-to-br from-red-500 via-yellow-500 to-red-400 bg-clip-text text-transparent drop-shadow-xl"
         >
-          Competition
+          {{ bannerLines.third }}
         </span>
       </div>
 
@@ -32,6 +32,15 @@
 </template>
 
 <script lang="ts" setup>
-import Glow from "~/components/Style/Glow.vue";
+import { computed } from "vue";
+import { useI18n } from "vue-i18n";
 import AnimatedDots from "~/components/Style/AnimatedDots.vue";
+import Glow from "~/components/Style/Glow.vue";
+
+const { t } = useI18n();
+const bannerLines = computed(() => ({
+  first: t("results.words.banner.first"),
+  second: t("results.words.banner.second"),
+  third: t("results.words.banner.third"),
+}));
 </script>
