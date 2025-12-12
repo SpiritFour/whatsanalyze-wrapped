@@ -1,5 +1,8 @@
 <template>
-  <StoryContainer class="text-2xl" title="Your Year started with">
+  <StoryContainer
+    class="text-2xl"
+    :title="t('results.intro.firstMessagesTitle')"
+  >
     <div
       v-for="(message, index) in result?.getFirstMessages"
       :key="index"
@@ -30,9 +33,11 @@
 
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
+import { useI18n } from "vue-i18n";
 import { useStatsStore } from "~/store/stats";
 import BlueSlider from "~/components/Style/BlueSlider.vue";
 
 const statsStore = useStatsStore();
 const { result } = storeToRefs(statsStore);
+const { t } = useI18n();
 </script>

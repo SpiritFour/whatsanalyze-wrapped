@@ -1,5 +1,5 @@
 <template>
-  <StoryContainer title="Message with most emojis:">
+  <StoryContainer :title="t('results.emoji.messageTitle')">
     <div class="relative w-full max-w-xl py-12 text-2xl md:text-3xl">
       <div
         ref="cornerTL"
@@ -32,7 +32,8 @@
     </div>
 
     <div class="pb-10 text-center text-lg font-semibold tracking-wide">
-      from <span class="font-bold">{{ message?.author }}</span>
+      {{ t('results.emoji.from') }}
+      <span class="font-bold">{{ message?.author }}</span>
     </div>
   </StoryContainer>
 </template>
@@ -41,10 +42,12 @@
 import { computed, nextTick, onMounted, ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { animate } from "motion";
+import { useI18n } from "vue-i18n";
 import { useStatsStore } from "~/store/stats";
 
 const statsStore = useStatsStore();
 const { result } = storeToRefs(statsStore);
+const { t } = useI18n();
 
 const message = computed(() => {
   if (!result.value) return { author: "", message: "" };

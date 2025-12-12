@@ -1,12 +1,11 @@
 <template>
   <StoryContainer
     class="bg-gradient-to-b from-slate-900 via-emerald-900/40 to-black text-center px-8 py-12"
-    title="Keep the story going"
+    :title="t('results.share.title')"
   >
     <SoftOrbs class="opacity-60" />
     <p class="text-base text-slate-100/80 tracking-wide leading-relaxed">
-      Send your Wrapped story to a friend with an end-to-end encrypted link or
-      jump back to analyze a new chat.
+      {{ t("results.share.description") }}
     </p>
 
     <div class="flex flex-col gap-3 w-full mt-10">
@@ -15,7 +14,7 @@
         :disabled="isPreparing || !hasResult"
         @click="handleShare"
       >
-        <span v-if="isPreparing">Preparing secure link…</span>
+        <span v-if="isPreparing">{{ t("results.share.preparing") }}</span>
         <span v-else>{{ shareButtonLabel }}</span>
       </button>
 
@@ -24,15 +23,15 @@
         :disabled="isPreparing"
         @click="handleAnalyzeAnother"
       >
-        Analyze another chat
+        {{ t("results.share.buttons.analyzeAnother") }}
       </button>
     </div>
 
-    <p v-if="shareMessage" class="mt-4 text-sm text-emerald-200">
-      {{ shareMessage }}
+    <p v-if="shareMessageText" class="mt-4 text-sm text-emerald-200">
+      {{ shareMessageText }}
     </p>
-    <p v-if="shareError" class="mt-4 text-sm text-rose-200">
-      {{ shareError }}
+    <p v-if="shareErrorText" class="mt-4 text-sm text-rose-200">
+      {{ shareErrorText }}
     </p>
 
     <div
@@ -47,21 +46,23 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
 import { storeToRefs } from "pinia";
+import { useI18n } from "vue-i18n";
+import SoftOrbs from "~/components/Style/SoftOrbs.vue";
 import { useStatsStore } from "~/store/stats";
 import { useUserDataStore } from "~/store/userDataStore";
 import { serializeShareInfo } from "~/utils/sharing/param";
-import SoftOrbs from "~/components/Style/SoftOrbs.vue";
 
 const statsStore = useStatsStore();
 const userDataStore = useUserDataStore();
 const { result } = storeToRefs(statsStore);
+const { t } = useI18n();
 
 const runtimeConfig = useRuntimeConfig();
 
 const isPreparing = ref(false);
 const shareUrl = ref("");
-const shareMessage = ref("");
-const shareError = ref("");
+const shareMessageKey = ref<string | null>(null);
+const shareErrorKey = ref<string | null>(null);
 
 const hasResult = computed(() => Boolean(result.value));
 
@@ -70,7 +71,16 @@ const canNativeShare = computed(
 );
 
 const shareButtonLabel = computed(() =>
-  canNativeShare.value ? "Share with friends" : "Copy secure link",
+  canNativeShare.value
+    ? t("results.share.buttons.shareNative")
+    : t("results.share.buttons.shareCopy"),
+);
+
+const shareMessageText = computed(() =>
+  shareMessageKey.value ? t(shareMessageKey.value) : "",
+);
+const shareErrorText = computed(() =>
+  shareErrorKey.value ? t(shareErrorKey.value) : "",
 );
 
 const resolveBaseUrl = () => {
@@ -112,8 +122,8 @@ const prepareShareLink = async (): Promise<string> => {
   }
 
   isPreparing.value = true;
-  shareError.value = "";
-  shareMessage.value = "";
+  shareErrorKey.value = null;
+  shareMessageKey.value = null;
 
   try {
     const shareInfo = await userDataStore.saveData(result.value);
@@ -127,26 +137,26 @@ const prepareShareLink = async (): Promise<string> => {
 };
 
 const handleShare = async () => {
-  shareError.value = "";
-  shareMessage.value = "";
+  shareErrorKey.value = null;
+  shareMessageKey.value = null;
 
   try {
     const url = await prepareShareLink();
 
     if (canNativeShare.value && navigator.share) {
       await navigator.share({
-        title: "WhatsAnalyze Wrapped",
-        text: "Open our encrypted WhatsApp Wrapped story.",
+        title: t("results.share.nativeShareTitle"),
+        text: t("results.share.nativeShareText"),
         url,
       });
-      shareMessage.value = "Share sheet opened on your device.";
+      shareMessageKey.value = "results.share.messages.nativeShare";
     } else {
       await copyToClipboard(url);
-      shareMessage.value = "Secure link copied to your clipboard.";
+      shareMessageKey.value = "results.share.messages.linkCopied";
     }
   } catch (error) {
     console.error("Failed to share story", error);
-    shareError.value = "Unable to prepare the share link. Please try again.";
+    shareErrorKey.value = "results.share.messages.unableToPrepare";
   }
 };
 

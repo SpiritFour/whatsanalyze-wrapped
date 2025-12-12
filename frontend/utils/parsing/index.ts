@@ -69,11 +69,23 @@ class Parser<A extends Record<string, (messages: Message[]) => any>> {
   }
 
   private filterValidMessages(messages: Message[]): Message[] {
-    return messages.filter(
-      (msg) =>
+    const ignoredMessagePatterns = [
+      /messages and calls are end-to-end encrypted/i,
+      /is a contact\.$/i,
+    ];
+
+    return messages.filter((msg) => {
+      const normalizedMessage = msg.message.replace(/\u200e/g, "").trim();
+      const isIgnored = ignoredMessagePatterns.some((pattern) =>
+        pattern.test(normalizedMessage),
+      );
+
+      return (
         msg.author !== null &&
-        msg.date.getFullYear() === new Date().getFullYear(),
-    );
+        msg.date.getFullYear() === new Date().getFullYear() &&
+        !isIgnored
+      );
+    });
   }
 
   private createSchemaFromAnalyzers(

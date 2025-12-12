@@ -352,6 +352,64 @@
     "quietestHour": "Ora più tranquilla",
     "busiesDay": "Giorno più attivo",
     "quietestDay": "Giorno più tranquillo",
-    "messageFrequency": "Frequenza dei messaggi"
+    "messageFrequency": "Frequenza dei messaggi",
+    "status": {
+      "loadingSharedStory": "Preparazione della storia condivisa...",
+      "decryptError": "Non siamo riusciti a decifrare questo link condiviso. Assicurati che non sia stato modificato."
+    },
+    "intro": {
+      "headline": "{year} Riepilogo",
+      "firstMessagesTitle": "Il tuo anno è iniziato con"
+    },
+    "emoji": {
+      "topTitle": "I tuoi emoji più usati",
+      "messageTitle": "Messaggio con più emoji",
+      "from": "da"
+    },
+    "words": {
+      "banner": {
+        "first": "Anche se",
+        "second": "non è",
+        "third": "una gara"
+      },
+      "duel": {
+        "messagedLabel": "ha scritto",
+        "moreWordsThan": "più parole di"
+      },
+      "breakdown": {
+        "title": "Il dettaglio",
+        "wordsLabel": "parole",
+        "messagesLabel": "messaggi"
+      }
+    },
+    "conversation": {
+      "changeTitle": "Sei cambiato, e anche le tue conversazioni.",
+      "rhythm": {
+        "title": "Il ritmo della chat",
+        "mostActiveMonth": "Mese più attivo",
+        "mostMessages": "Più messaggi",
+        "maxMessagesPerMonth": "Messaggi max/mese",
+        "messagesInMonth": "messaggi in {month}",
+        "totalMessagesSince": "{count} messaggi da <month></month>",
+        "tooltip": "{name}: {value} messaggi"
+      }
+    },
+    "share": {
+      "title": "Continua la storia",
+      "description": "Invia la tua storia Wrapped con un link crittografato end-to-end oppure analizza un'altra chat.",
+      "preparing": "Preparazione del link sicuro...",
+      "buttons": {
+        "shareNative": "Condividi con gli amici",
+        "shareCopy": "Copia link sicuro",
+        "analyzeAnother": "Analizza un'altra chat"
+      },
+      "messages": {
+        "nativeShare": "Foglio di condivisione aperto sul dispositivo.",
+        "linkCopied": "Link sicuro copiato negli appunti.",
+        "unableToPrepare": "Impossibile preparare il link di condivisione. Riprova."
+      },
+      "nativeShareTitle": "WhatsAnalyze Wrapped",
+      "nativeShareText": "Apri la nostra storia WhatsApp Wrapped crittografata."
+    }
   }
 }

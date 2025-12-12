@@ -34,16 +34,16 @@
   <!--  </div>-->
 
   <div
-    v-if="shareError"
+    v-if="shareErrorMessage"
     class="mx-auto mt-6 max-w-lg rounded-2xl border border-rose-500/40 bg-rose-500/10 px-4 py-3 text-center text-sm text-rose-100"
   >
-    {{ shareError }}
+    {{ shareErrorMessage }}
   </div>
   <div
     v-else-if="shareLoading"
     class="mx-auto mt-6 max-w-lg rounded-2xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-3 text-center text-sm text-emerald-100"
   >
-    Preparing your shared story…
+    {{ t("results.status.loadingSharedStory") }}
   </div>
 
   <StoryCarousel :duration="6000">
@@ -66,6 +66,7 @@
 import { useStatsStore } from "~/store/stats";
 import { useUserDataStore } from "~/store/userDataStore";
 import { parseShareInfo } from "~/utils/sharing/param";
+import { useI18n } from "vue-i18n";
 
 const route = useRoute();
 
@@ -75,8 +76,13 @@ const { result } = storeToRefs(statsStore);
 // ######## data loading part
 const userDataStore = useUserDataStore();
 
+const { t } = useI18n();
+
 const shareLoading = ref(false);
-const shareError = ref("");
+const shareErrorKey = ref<string | null>(null);
+const shareErrorMessage = computed(() =>
+  shareErrorKey.value ? t(shareErrorKey.value) : "",
+);
 
 const buildSearchFromQuery = () => {
   const params = new URLSearchParams();
@@ -101,13 +107,13 @@ const buildSearchFromQuery = () => {
 const loadSharedStory = async () => {
   const queryString = buildSearchFromQuery();
   if (!queryString) {
-    shareError.value = "";
+    shareErrorKey.value = null;
     shareLoading.value = false;
     return;
   }
 
   shareLoading.value = true;
-  shareError.value = "";
+  shareErrorKey.value = null;
 
   try {
     const shareInfo = parseShareInfo(queryString);
@@ -115,8 +121,7 @@ const loadSharedStory = async () => {
     result.value = loadedData;
   } catch (error) {
     console.error("Failed to load shared story", error);
-    shareError.value =
-      "We couldn't decrypt this share link. Please make sure it wasn't modified.";
+    shareErrorKey.value = "results.status.decryptError";
   } finally {
     shareLoading.value = false;
   }

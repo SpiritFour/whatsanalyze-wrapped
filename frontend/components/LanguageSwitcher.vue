@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useSwitchLocalePath } from "#i18n";
 
 // 1) Strongly-typed locale codes
@@ -26,6 +26,7 @@ const locales: Array<{
 // 3) i18n + router
 const { locale, setLocale } = useI18n();
 const router = useRouter();
+const route = useRoute();
 const switchLocalePath = useSwitchLocalePath();
 
 // 4) Selected is a ref<LocaleCode>
@@ -72,19 +73,35 @@ onBeforeUnmount(() => {
 });
 
 // 5) Either handle change…
+const navigateToLocale = async (code: LocaleCode) => {
+  if (!code) return;
+  const localePath = switchLocalePath(code);
+  if (!localePath) return;
+
+  const resolved = router.resolve(localePath);
+
+  await setLocale(code);
+  await router.push({
+    path: resolved.path,
+    query: { ...route.query },
+    hash: route.hash || resolved.hash,
+  });
+};
+
 const onChange = async (e: Event) => {
   const newLocale = (e.target as HTMLSelectElement).value as LocaleCode;
   selected.value = newLocale;
-  await setLocale(newLocale);
-  router.push(switchLocalePath(newLocale));
+  await navigateToLocale(newLocale);
 };
 
-// …or: react to v-model directly
-watch(selected, async (code) => {
-  if (!code) return;
-  await setLocale(code);
-  router.push(switchLocalePath(code));
-});
+watch(
+  () => locale.value,
+  (newLocale) => {
+    if (LOCALE_CODES.includes(newLocale as LocaleCode)) {
+      selected.value = newLocale as LocaleCode;
+    }
+  },
+);
 </script>
 
 <template>

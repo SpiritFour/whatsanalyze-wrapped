@@ -1,5 +1,9 @@
 <template>
-  <StoryContainer v-if="result" class="text-5xl" title="The Breakdown">
+  <StoryContainer
+    v-if="result"
+    class="text-5xl"
+    :title="t('results.words.breakdown.title')"
+  >
     <Polygon />
 
     <div
@@ -23,7 +27,7 @@
             }}
           </div>
           <div class="mt-1 text-[0.65rem] tracking-[0.25em] text-slate-400">
-            words
+            {{ t('results.words.breakdown.wordsLabel') }}
           </div>
         </div>
 
@@ -36,7 +40,7 @@
             }}
           </div>
           <div class="mt-1 text-[0.65rem] tracking-[0.25em] text-slate-400">
-            messages
+            {{ t('results.words.breakdown.messagesLabel') }}
           </div>
         </div>
       </div>
@@ -45,10 +49,12 @@
 </template>
 
 <script lang="ts" setup>
+import { useI18n } from "vue-i18n";
 import { useStatsStore } from "~/store/stats";
 import Glow from "~/components/Style/Glow.vue";
 
 const statsStore = useStatsStore();
 
 const { result } = storeToRefs(statsStore);
+const { t } = useI18n();
 </script>

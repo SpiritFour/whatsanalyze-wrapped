@@ -352,6 +352,64 @@
     "quietestHour": "Quietest Hour",
     "busiesDay": "Busiest Day",
     "quietestDay": "Quietest Day",
-    "messageFrequency": "Message Frequency"
+    "messageFrequency": "Message Frequency",
+    "status": {
+      "loadingSharedStory": "Preparing your shared story...",
+      "decryptError": "We couldn't decrypt this share link. Please make sure it wasn't modified."
+    },
+    "intro": {
+      "headline": "{year} Wrapped",
+      "firstMessagesTitle": "Your year started with"
+    },
+    "emoji": {
+      "topTitle": "Your most used emojis",
+      "messageTitle": "Message with most emojis",
+      "from": "from"
+    },
+    "words": {
+      "banner": {
+        "first": "While it is",
+        "second": "not a",
+        "third": "Competition"
+      },
+      "duel": {
+        "messagedLabel": "messaged",
+        "moreWordsThan": "more words than"
+      },
+      "breakdown": {
+        "title": "The Breakdown",
+        "wordsLabel": "words",
+        "messagesLabel": "messages"
+      }
+    },
+    "conversation": {
+      "changeTitle": "You changed. And so has your conversation.",
+      "rhythm": {
+        "title": "Your chat rhythm",
+        "mostActiveMonth": "Most active month",
+        "mostMessages": "Most messages",
+        "maxMessagesPerMonth": "Max messages/month",
+        "messagesInMonth": "messages in {month}",
+        "totalMessagesSince": "{count} messages since <month></month>",
+        "tooltip": "{name}: {value} messages"
+      }
+    },
+    "share": {
+      "title": "Keep the story going",
+      "description": "Send your Wrapped story to a friend with an end-to-end encrypted link or jump back to analyze a new chat.",
+      "preparing": "Preparing secure link...",
+      "buttons": {
+        "shareNative": "Share with friends",
+        "shareCopy": "Copy secure link",
+        "analyzeAnother": "Analyze another chat"
+      },
+      "messages": {
+        "nativeShare": "Share sheet opened on your device.",
+        "linkCopied": "Secure link copied to your clipboard.",
+        "unableToPrepare": "Unable to prepare the share link. Please try again."
+      },
+      "nativeShareTitle": "WhatsAnalyze Wrapped",
+      "nativeShareText": "Open our encrypted WhatsApp Wrapped story."
+    }
   }
 }

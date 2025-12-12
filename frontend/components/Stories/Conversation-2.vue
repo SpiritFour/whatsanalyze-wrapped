@@ -1,7 +1,7 @@
 <template>
   <StoryContainer
     class="bg-gradient-to-b from-green-700/20 via-slate-900/20 to-emerald-950 text-4xl"
-    title="Your chat rhythm"
+    :title="t('results.conversation.rhythm.title')"
   >
     <SoftOrbs />
 
@@ -11,35 +11,45 @@
           <p
             class="text-[0.65rem] font-semibold uppercase tracking-[0.1em] text-slate-400"
           >
-            Most active month
+            {{ t('results.conversation.rhythm.mostActiveMonth') }}
           </p>
           <p class="mt-0.5 text-2xl font-semibold leading-none">
             {{ prettyMonth(summary.maxMonth) }}
           </p>
 
-          <p class="mt-0.5 text-[0.7rem] text-slate-300">Most Messages</p>
+          <p class="mt-0.5 text-[0.7rem] text-slate-300">
+            {{ t('results.conversation.rhythm.mostMessages') }}
+          </p>
         </div>
 
         <div class="card-dark h-32">
           <p
             class="text-[0.65rem] font-semibold tracking-[0.1em] uppercase text-slate-400"
           >
-            Max messages/month
+            {{ t('results.conversation.rhythm.maxMessagesPerMonth') }}
           </p>
           <p class="mt-0.5 text-2xl font-semibold leading-none">
             {{ summary.max }}
           </p>
           <p class="mt-0.5 text-[0.7rem] text-slate-300">
-            messages in {{ prettyMonth(summary.maxMonth) }}
+            {{
+              t('results.conversation.rhythm.messagesInMonth', {
+                month: prettyMonth(summary.maxMonth),
+              })
+            }}
           </p>
         </div>
       </div>
 
-      <p class="mt-2 text-sm text-slate-300">
-        {{ summary.totalMessages }} messages since
+      <p
+        v-if="totalMessagesSinceParts"
+        class="mt-2 text-sm text-slate-300"
+      >
+        {{ totalMessagesSinceParts.before }}
         <span class="font-semibold">
           {{ prettyMonth(summary.firstMonth) }}
         </span>
+        {{ totalMessagesSinceParts.after }}
       </p>
       <div class="h-64 w-full px-2">
         <Line :data="chartData" :options="chartOptions" />
@@ -76,6 +86,7 @@ import {
   Title,
   Tooltip,
 } from "chart.js";
+import { useI18n } from "vue-i18n";
 import { useStatsStore } from "~/store/stats";
 import SoftOrbs from "~/components/Style/SoftOrbs.vue";
 
@@ -92,6 +103,7 @@ ChartJS.register(
 
 const statsStore = useStatsStore();
 const { result } = storeToRefs(statsStore);
+const { t } = useI18n();
 
 const authors = computed(() => statsStore.getAuthors ?? []);
 
@@ -207,7 +219,10 @@ const chartOptions: ChartOptions<"line"> = {
         label: (ctx) => {
           const label = ctx.dataset.label ?? "";
           const value = ctx.parsed.y ?? 0;
-          return `${label}: ${value} messages`;
+          return t("results.conversation.rhythm.tooltip", {
+            name: label,
+            value,
+          });
         },
       },
     },
@@ -304,4 +319,23 @@ const legendMeta = computed(() =>
     };
   }),
 );
+
+const totalMessagesSinceParts = computed(() => {
+  if (!summary.value) return null;
+
+  const text = t("results.conversation.rhythm.totalMessagesSince", {
+    count: summary.value.totalMessages,
+  });
+
+  const placeholder = "<month></month>";
+  if (!text.includes(placeholder)) {
+    return {
+      before: text,
+      after: "",
+    };
+  }
+
+  const [before, after = ""] = text.split(placeholder);
+  return { before, after };
+});
 </script>

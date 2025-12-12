@@ -352,6 +352,64 @@
     "quietestHour": "Hora mais calma",
     "busiesDay": "Dia mais ativo",
     "quietestDay": "Dia mais calmo",
-    "messageFrequency": "Frequência de mensagens"
+    "messageFrequency": "Frequência de mensagens",
+    "status": {
+      "loadingSharedStory": "A preparar a tua história partilhada...",
+      "decryptError": "Não conseguimos descodificar esta ligação partilhada. Verifica se não foi alterada."
+    },
+    "intro": {
+      "headline": "Retrospectiva {year}",
+      "firstMessagesTitle": "O teu ano começou com"
+    },
+    "emoji": {
+      "topTitle": "Os teus emojis mais usados",
+      "messageTitle": "Mensagem com mais emojis",
+      "from": "de"
+    },
+    "words": {
+      "banner": {
+        "first": "Embora",
+        "second": "não seja",
+        "third": "uma competição"
+      },
+      "duel": {
+        "messagedLabel": "enviou",
+        "moreWordsThan": "mais palavras do que"
+      },
+      "breakdown": {
+        "title": "A análise",
+        "wordsLabel": "palavras",
+        "messagesLabel": "mensagens"
+      }
+    },
+    "conversation": {
+      "changeTitle": "Tu mudaste e a conversa também.",
+      "rhythm": {
+        "title": "O ritmo do chat",
+        "mostActiveMonth": "Mês mais ativo",
+        "mostMessages": "Mais mensagens",
+        "maxMessagesPerMonth": "Máx. de mensagens/mês",
+        "messagesInMonth": "mensagens em {month}",
+        "totalMessagesSince": "{count} mensagens desde <month></month>",
+        "tooltip": "{name}: {value} mensagens"
+      }
+    },
+    "share": {
+      "title": "Mantém a história viva",
+      "description": "Envia a tua história Wrapped com uma ligação encriptada de ponta a ponta ou volta para analisar outro chat.",
+      "preparing": "A preparar ligação segura...",
+      "buttons": {
+        "shareNative": "Partilhar com amigos",
+        "shareCopy": "Copiar ligação segura",
+        "analyzeAnother": "Analisar outro chat"
+      },
+      "messages": {
+        "nativeShare": "Folha de partilha aberta no teu dispositivo.",
+        "linkCopied": "Ligação segura copiada para a área de transferência.",
+        "unableToPrepare": "Não foi possível preparar a ligação. Tenta novamente."
+      },
+      "nativeShareTitle": "WhatsAnalyze Wrapped",
+      "nativeShareText": "Abre a nossa história WhatsApp Wrapped encriptada."
+    }
   }
 }
