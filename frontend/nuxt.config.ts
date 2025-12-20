@@ -110,6 +110,9 @@ export default defineNuxtConfig({
             run_with_functions,
             env,
             baseUrl,
+            stripePriceId: local
+                ? "price_1Sc6u074KJ57kF2wxb5cnIZL" // Dev Price ID
+                : "price_1SgOxVL4rDqbYflowSbSteJQ", // Prod Price ID
             paypalClientId: local
                 ? "ARYQUp4C_oNjNUNkvSPzLeaiulItDmnHUU226OANt2haCKC2c70ZrKZTmRHCPldcu4SD22LmPEuonfec"
                 : "AUMWxSZrtBOA1RicR_3nGijYb8yYxyq2lxBjiwoQKfVc-8jfdPr5N7X5EFUackMCLb_K7HiKswnDBUJ8",

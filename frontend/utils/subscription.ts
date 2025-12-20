@@ -1,7 +1,5 @@
 import { httpsCallable } from "firebase/functions";
 
-export const PRO_SUBSCRIPTION_PRICE_ID = "price_1SWEfW74KJ57kF2w44iNywtI";
-
 /**
  * Requests a Stripe Checkout URL for the default subscription plan.
  */
@@ -11,7 +9,8 @@ export const fetchSubscriptionCheckoutUrl = async (): Promise<string | undefined
     "createCheckoutSession",
   );
 
-  const response = await createCheckoutSession({ priceId: PRO_SUBSCRIPTION_PRICE_ID });
+  const config = useRuntimeConfig();
+  const response = await createCheckoutSession({ priceId: config.public.stripePriceId });
   const { url } = response.data as { url?: string };
 
   return url;
