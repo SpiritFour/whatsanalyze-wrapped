@@ -13,7 +13,7 @@ cd frontend
 
 rm -r .output
 # currently build for firebase dev project
-NUXT_ENV_ENV=prod pnpx nuxt build --preset github_pages
+NUXT_ENV_ENV=dev pnpx nuxt build --preset github_pages
 
 cd ..
 
