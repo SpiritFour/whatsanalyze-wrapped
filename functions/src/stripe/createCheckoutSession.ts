@@ -1,5 +1,5 @@
 import {HttpsError, onCall} from "firebase-functions/https";
-import {getStripe, stripeSecretKey, validateOrigin} from "./common";
+import {getStripe, proPriceId, stripeSecretKey, validateOrigin} from "./common";
 import * as logger from "firebase-functions/logger";
 
 export const createCheckoutSession = onCall(
@@ -10,19 +10,13 @@ export const createCheckoutSession = onCall(
         // Validate origin from request headers
         const origin = validateOrigin(request.rawRequest.get("origin"));
 
-        // Data sent from the client
-        const {priceId} = request.data;
-
-        if (!priceId) {
-            throw new HttpsError("invalid-argument", "priceId is required");
-        }
 
         try {
             const session = await stripe.checkout.sessions.create({
                 mode: "subscription",
                 line_items: [
                     {
-                        price: priceId,
+                        price: proPriceId.value(),
                         quantity: 1,
                     },
                 ],
