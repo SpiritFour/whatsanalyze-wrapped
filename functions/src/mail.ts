@@ -1,5 +1,7 @@
 import * as logger from "firebase-functions/logger";
+import {defineString} from "firebase-functions/params";
 import {db} from "./firebase";
+const emailBaseUrl = defineString("EMAIL_BASE_URL");
 
 export type Customer = {
   email: string,
@@ -8,18 +10,29 @@ export type Customer = {
   subscriptionId: string
 }
 
-// todo add url to login
+function buildSubscriptionLoginUrl(customer: Customer): string {
+  const params = new URLSearchParams({
+    token: customer.subscriptionId,
+    email: customer.email,
+  });
+  return `${emailBaseUrl}/en/subscription/verify?${params.toString()}`;
+}
+
 export async function sendSubscriptionConfirmationEmail(
   customer: Customer,
 ): Promise<void> {
   const {email, name} = customer;
   try {
+    const loginUrl = buildSubscriptionLoginUrl(customer);
     await db.collection("mail").add({
       to: email,
       template: {
         name: "subscription-confirmation",
         data: {
           customerName: name || "Subscriber",
+          loginUrl,
+          subscriptionId: customer.subscriptionId,
+          email,
         },
       },
     });

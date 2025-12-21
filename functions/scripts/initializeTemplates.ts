@@ -26,10 +26,13 @@ try {
       <h2>Welcome, {{customerName}}!</h2>
       <p>Your subscription has been successfully created.</p>
       <p>Thank you for joining WhatsAnalyze Wrapped. You now have access to all premium features.</p>
+      <p><a href="{{loginUrl}}">Open your account</a></p>
+      <p><small>If the link doesn't work, copy and paste this URL into your browser:<br/>{{loginUrl}}</small></p>
+      <p><small>Your verification code: {{subscriptionId}}</small></p>
       <p>If you have any questions, please reach out to our support team.</p>
       <p>Best regards,<br/>WhatsAnalyze Team</p>
     </body></html>`,
-    text: `Welcome, {{customerName}}!\n\nYour subscription has been successfully created.\n\nThank you for joining WhatsAnalyze Wrapped. You now have access to all premium features.\n\nBest regards,\nWhatsAnalyze Team`,
+    text: `Welcome, {{customerName}}!\n\nYour subscription has been successfully created.\n\nThank you for joining WhatsAnalyze Wrapped. You now have access to all premium features.\n\nOpen your account: {{loginUrl}}\n\nVerification code (if needed): {{subscriptionId}}\n\nBest regards,\nWhatsAnalyze Team`,
   };
 
   db.collection("mailTemplates")
