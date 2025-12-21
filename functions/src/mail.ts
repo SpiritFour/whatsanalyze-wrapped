@@ -15,7 +15,7 @@ function buildSubscriptionLoginUrl(customer: Customer): string {
     token: customer.subscriptionId,
     email: customer.email,
   });
-  return `${emailBaseUrl}/en/subscription/verify?${params.toString()}`;
+  return `${emailBaseUrl.value()}/en/subscription/verify?${params.toString()}`;
 }
 
 export async function sendSubscriptionConfirmationEmail(
