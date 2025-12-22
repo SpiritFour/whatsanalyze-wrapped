@@ -39,8 +39,8 @@
       "subtitle": "La historia de tus relaciones, contada a través de tus datos de chat de WhatsApp",
       "usedBy": "Usado por miles de personas.",
       "english": {
-        "tagline": "Ya está aquí el WhatsApp Wrapped 2025",
-        "headline": "Tu chat contado como una historia",
+        "tagline": "Ya está aquí el WhatsApp Wrapped {year}",
+        "headline": "Tu chat, contado como una historia",
         "descriptionMobile": "WhatsAnalyze convierte tus datos exportados de WhatsApp en un recap privado con formato de historias. Revive tus horas más activas, las conversaciones más divertidas y los picos emocionales sin que tus mensajes salgan del navegador.",
         "descriptionDesktop": "WhatsAnalyze transforma tus datos exportados de WhatsApp en un repaso visual, como tu propio \"year in review\" privado. Explora tus horas más activas, los intercambios más divertidos y los momentos más intensos en un formato tipo historia. Todos los insights se procesan localmente en tu dispositivo: tus mensajes nunca salen del navegador.",
         "highlights": [

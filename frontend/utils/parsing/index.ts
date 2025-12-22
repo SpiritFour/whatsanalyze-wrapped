@@ -8,6 +8,7 @@ import JSZip from "jszip";
 import * as whatsapp from "whatsapp-chat-parser";
 import { z } from "zod";
 import { getFirstMessages } from "~/utils/parsing/analyzer/firstMessagesAnalyzer";
+import { getTargetYear } from "~/utils/dateUtils";
 
 class Parser<A extends Record<string, (messages: Message[]) => any>> {
   private readonly schema: z.ZodType<{ [K in keyof A]: ReturnType<A[K]> }>;
@@ -82,7 +83,7 @@ class Parser<A extends Record<string, (messages: Message[]) => any>> {
 
       return (
         msg.author !== null &&
-        msg.date.getFullYear() === new Date().getFullYear() &&
+        msg.date.getFullYear() === getTargetYear() &&
         !isIgnored
       );
     });

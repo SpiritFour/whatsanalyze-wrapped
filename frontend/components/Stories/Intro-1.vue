@@ -15,8 +15,9 @@
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import BlueSlider from "~/components/Style/BlueSlider.vue";
+import { getTargetYear } from "~/utils/dateUtils";
 
 const { t } = useI18n();
-const currentYear = new Date().getFullYear();
+const currentYear = getTargetYear();
 const headline = computed(() => t("results.intro.headline", { year: currentYear }));
 </script>
