@@ -34,7 +34,10 @@ $ pnpm generate
 
 ```
 
-Use `deploy.sh` to publish new version of the website
+Deployments are automated via GitHub Actions:
+- **PR Preview**: Opening a PR creates a Firebase Hosting preview URL
+- **Dev**: Merging to `production` deploys to Firebase Hosting (dev environment)
+- **Production**: Merging to `production` deploys to GitHub Pages
 
 ## running together with firebase functions
 1. terminal:
