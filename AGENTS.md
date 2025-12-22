@@ -9,6 +9,11 @@
 - `pnpm build`: production build in `.output`.
 - `pnpm generate`: create the static export in `.output/public`.
 
+## Nix Flakes
+This project uses Nix flakes for development dependencies. When running CLI tools like `stripe`, `gh`, or `firebase`, use the Nix shell:
+- `cd functions && nix develop` to enter the shell, or
+- `nix develop -c <command>` to run a single command (e.g., `nix develop -c stripe login`).
+
 ## Coding Style & Naming Conventions
 Author Vue files with `<script setup lang="ts">`, two-space indentation, and PascalCase component filenames for Nuxt auto-imports. Pinia stores use the `useXStore` pattern inside `store/*.ts`, and composables stay near their features (e.g., `utils/analytics.ts`). Favor Tailwind utilities over bespoke CSS—extend shared tokens in `tailwind.config.ts` instead of hard-coding colors. Run `pnpm nuxi lint` to invoke ESLint and `pnpm prettier --write .` before opening a PR.
 

@@ -7,6 +7,7 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "dev": "NUXT_ENV_LOCAL=true NUXT_ENV_ENV=dev nuxt dev",
+    "prod": "NUXT_ENV_LOCAL=true NUXT_ENV_ENV=prod nuxt dev",
     "dev_with_functions": "NUXT_ENV_LOCAL=true NUXT_ENV_WITH_FUNCTIONS=1 NUXT_ENV_ENV=dev nuxt dev",
     "prod_with_functions": "NUXT_ENV_LOCAL=true NUXT_ENV_WITH_FUNCTIONS=1 NUXT_ENV_ENV=prod nuxt dev",
     "generate": "nuxt generate",
