@@ -18,6 +18,7 @@
             firebase-tools
             python311
             git
+            gh
           ];
           shellHook = ''
               mkdir -p .out
