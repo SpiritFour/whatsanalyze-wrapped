@@ -21,7 +21,7 @@ export const createCheckoutSession = onCall(
                     },
                 ],
                 success_url: `${origin}/subscription/success?session_id={CHECKOUT_SESSION_ID}`,
-                cancel_url: `${origin}/subscription/canceled`,
+                cancel_url: `${origin}/`,
             });
 
             // ❗ onCall cannot redirect → return the URL.
