@@ -1,5 +1,7 @@
-name: Deploy to Firebase Hosting on merge
+name: Dev Deploy (Firebase Hosting)
 
+# This is the DEV deployment - automatically deploys on merge to production branch
+# For PROD deployment (GitHub Pages), use the manual "Production Deploy" workflow
 on:
   push:
     branches:

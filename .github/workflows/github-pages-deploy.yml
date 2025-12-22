@@ -1,10 +1,6 @@
-name: Deploy to GitHub Pages
+name: Production Deploy (Manual)
 
 on:
-  push:
-    branches:
-      - production
-
   workflow_dispatch:
 
 permissions:
