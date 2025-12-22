@@ -108,7 +108,19 @@ Firebase Cloud Functions for handling Stripe checkout and subscriptions, transla
 - ./scripts/setup-stripe.sh to set the stripe keys (secret + api)
 - stripe trigger subscription.payment_succeeded --add "customer:email=stripe@whatsanalyze.com"
 
-### 3. Stripe Subscription Renewal testing
+### 3. Stripe Production Webhook Testing
+
+To verify webhooks work correctly in production, create a test checkout session:
+
+```bash
+npm run stripe:test-checkout:prod
+```
+
+This creates a checkout session with a €0.50 test product (`prod_TeTooduQWBMod7`). Open the returned `url` in your browser, complete the purchase with a real card, verify the webhook fires correctly, then refund immediately from Stripe Dashboard.
+
+**Note**: This uses the `STRIPE_SECRET_KEY` from Firebase secrets, so you need Firebase project access.
+
+### 4. Stripe Subscription Renewal testing
 In theory it should be enough to set the renewal date to now with this command:
 ```bash
 stripe subscriptions update "$SUB_ID" --billing-cycle-anchor=now --proration-behavior=none 
