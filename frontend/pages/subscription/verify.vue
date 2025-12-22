@@ -105,7 +105,7 @@
 
       <NuxtLink
         class="py-2 px-4 rounded-md text-sm border-2 text-green-500 border-green-500 hover:bg-green-500 hover:text-white w-80 text-center"
-        to="/"
+        :to="`/${locale}`"
       >
         Continue to App
       </NuxtLink>
@@ -145,7 +145,7 @@ const error = ref("");
 const verificationData = ref<any>(null);
 const isPortalLoading = ref(false);
 const portalError = ref("");
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 onMounted(async () => {
   subscriptionId.value = route.query.token as string;
