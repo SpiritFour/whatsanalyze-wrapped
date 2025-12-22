@@ -54,48 +54,35 @@ firebase use prod
 npm run deploy:prod
 ```
 
-## Available Commands
+### 6. Setup Stripe
 
-- `npm run build` — Compile TypeScript → `lib/`
-- `npm run serve` — Run emulator
-- `npm run dev` — Build + run emulator
-- `npm run deploy:dev` — Deploy to dev project
-- `npm run deploy:prod` — Deploy to prod project
-
-## Project Structure
-
-```
-functions/
-├── src/
-│   ├── index.ts           # Main functions (hello, helloHttp)
-│   ├── appCheck.ts        # Callable verification helper
-│   └── appCheckHttp.ts    # HTTPS verification helper
-├── lib/                   # Compiled output (generated)
-├── package.json
-├── tsconfig.json
-└── .gitignore
-```
+If You want to test the payment/subscription flow locally, stripe relies on webhook. We use the stripe cli to make sure that we can recieve those locally. Have a look at the stripe section further down.
 
 ## Node Version
 
 Functions target **Node 22** (latest LTS supported by Firebase Functions runtime).
 
-## App Check
+## Environment Variables
+There are some values which are different between dev and prod. For that we use environment files (`.env.FIREBASE_PROJECT_NAME`). It is possible to overwrite those when running locally by creating a `.env.local` file and adding the values there. This file takes precedence over the `.env.FIREBASE_PROJECT_NAME` file. There are also some values that are sensitive, so we treat them as secrets.
 
-App Check is **skipped in emulator** (`FUNCTIONS_EMULATOR === "true"`).
-
-For production:
-- Callable functions: Validate `context.app?.token?.valid`
-- HTTPS functions: Read & verify `X-Firebase-AppCheck` header via `admin.appCheck().verifyToken()`
-
-
-## Secrets (Prod Only)
+### Secrets 
+`STRIPE_WEBHOOK_SECRET` and `STRIPE_SECRET_KEY` are secrets which we can not simply put in the `.env.FIREBASE_PROJECT_NAME` files. For that reason we create and manage secrets via the firebase cli:
 
 ```bash
-firebase functions:secrets:set RECAPTCHA_V3_SITE_KEY --project prod
+firebase --project $PROJECT functions:secrets:set STRIPE_SECRET_KEY
+firebase --project $PROJECT functions:secrets:set STRIPE_WEBHOOK_SECRET
 ```
+You can use the `scripts/setup-stripe.sh` file for that. Make sure that there are no whitespaces in the secrets stored. You can access the secret with `firebase --project $PROJECT functions:secrets:access STRIPE_SECRET_KEY`.
 
-Access in functions via `params.RECAPTCHA_V3_SITE_KEY.value()` (for v2 functions syntax).
+## Init mail templates
+Install the extension in the firebase console first:
+![firebase_email_extension.png](docs/firebase_email_extension.png)
+```bash
+firebase login
+# authenticate gcloud
+gcloud auth application-default login
+npm run init:templates:dev
+```
 
 # Troubleshooting
 
@@ -121,17 +108,7 @@ Firebase Cloud Functions for handling Stripe checkout and subscriptions, transla
 - ./scripts/setup-stripe.sh to set the stripe keys (secret + api)
 - stripe trigger subscription.payment_succeeded --add "customer:email=stripe@whatsanalyze.com"
 
-### Init mail templates
-Install the extension in the firebase console first:
-![firebase_email_extension.png](docs/firebase_email_extension.png)
-```bash
-firebase login
-# authenticate gcloud
-gcloud auth application-default login
-npm run init:templates:dev
-```
-
-## Stripe Subscription Renewal testing
+### 3. Stripe Subscription Renewal testing
 In theory it should be enough to set the renewal date to now with this command:
 ```bash
 stripe subscriptions update "$SUB_ID" --billing-cycle-anchor=now --proration-behavior=none 
@@ -142,3 +119,8 @@ But I was not able to make it work. The anchor is successfully set, but the subs
 What was working is following this tutorial:
 https://docs.stripe.com/billing/testing/test-clocks/simulate-subscriptions
 It simulates what would happen by forwarding the time at stripe BE.
+
+## Stripe Web setup
+Create api keys and make sure to store them accordingly to the firebase function secret setup (look above).
+Create a subscription and add the price_id as env variable accordingly to the firebase environment setup (look above).
+Make sure that the webook is correctly configured. Webhook URL looks something like: `https://us-central1-whatsanalyze-wrapped.cloudfunctions.net/stripeWebhook` (This is just an example, make sure to find the correct url. It should be displayed when deploying functions).
