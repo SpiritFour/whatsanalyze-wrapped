@@ -331,6 +331,7 @@ import { computed } from "vue";
 import { useI18n } from "#imports";
 import { ChatBubbleLeftIcon, DocumentArrowDownIcon, LightBulbIcon, LockClosedIcon } from "@heroicons/vue/24/solid";
 import Polygon from "~/components/Style/Polygon.vue";
+import { getTargetYear } from "~/utils/dateUtils";
 
 const { t, tm } = useI18n();
 
@@ -375,7 +376,11 @@ type FeatureCard = {
 };
 
 const heroCopy = computed<HeroCopy>(() => {
-  return tm("home.hero.english") as HeroCopy;
+  const raw = tm("home.hero.english") as HeroCopy;
+  return {
+    ...raw,
+    tagline: raw.tagline.replace("{year}", getTargetYear().toString()),
+  };
 });
 
 const heroDescriptionMobile = computed(() => {
