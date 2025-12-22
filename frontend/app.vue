@@ -23,13 +23,13 @@
 
           <a
             class="hover:text-gray-300 transition-colors text-sm font-semibold hover:scale-105"
-            href="/#privacy"
+            :href="`/${locale}/#privacy`"
           >
             {{ $t("nav.privacy") }}
           </a>
           <a
             class="hover:text-gray-300 transition-colors text-sm font-semibold hover:scale-105"
-            href="/#guide"
+            :href="`/${locale}/#guide`"
           >
             {{ $t("nav.exportGuide") }}
           </a>
@@ -69,14 +69,14 @@
 
         <a
           class="hover:text-gray-300 transition-colors text-sm font-semibold py-2 px-2 rounded hover:bg-gray-900"
-          href="/#privacy"
+          :href="`/${locale}/#privacy`"
           @click="mobileMenuOpen = false"
         >
           {{ $t("nav.privacy") }}
         </a>
         <a
           class="hover:text-gray-300 transition-colors text-sm font-semibold py-2 px-2 rounded hover:bg-gray-900"
-          href="/#guide"
+          :href="`/${locale}/#guide`"
           @click="mobileMenuOpen = false"
         >
           {{ $t("nav.exportGuide") }}
