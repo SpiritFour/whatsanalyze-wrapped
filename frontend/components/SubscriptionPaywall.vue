@@ -57,6 +57,8 @@ import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { fetchSubscriptionCheckoutUrl } from "~/utils/subscription";
 
+const { trackSubscriptionStarted } = useAnalytics();
+
 defineProps<{
   open: boolean;
 }>();
@@ -77,6 +79,8 @@ const handleClose = () => {
 const startSubscription = async () => {
   if (isStarting.value) return;
   checkoutError.value = "";
+
+  trackSubscriptionStarted("paywall");
 
   try {
     isStarting.value = true;

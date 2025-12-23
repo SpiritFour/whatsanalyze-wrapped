@@ -54,6 +54,9 @@ import { useStatsStore } from "~/store/stats";
 import { useSubscriptionStore } from "~/store/subscriptionStore";
 import { useUploadAccessStore } from "~/store/uploadAccessStore";
 
+const { trackFileUpload, trackAnalysisComplete, trackPaywallShown } =
+  useAnalytics();
+
 const statsStore = useStatsStore();
 const subscriptionStore = useSubscriptionStore();
 const uploadAccessStore = useUploadAccessStore();
@@ -76,15 +79,23 @@ const handleFile = async (e: Event): Promise<void> => {
 
   if (!hasFreeUploadRemaining.value && !isSubscriptionValid.value) {
     showPaywall.value = true;
+    trackPaywallShown();
     input.value = "";
     return;
   }
+
+  const fileType = file.name.endsWith(".zip") ? "zip" : "txt";
+  trackFileUpload(fileType);
 
   statsStore.$reset();
   isLoading.value = true;
 
   try {
     result.value = (await sendFile(file)) ?? undefined;
+
+    if (result.value) {
+      trackAnalysisComplete(result.value.getWordUsage.totalMessagesCount ?? 0);
+    }
 
     if (hasFreeUploadRemaining.value) {
       uploadAccessStore.markFreeUploadUsed();

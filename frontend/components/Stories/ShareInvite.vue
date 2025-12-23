@@ -56,6 +56,7 @@ const statsStore = useStatsStore();
 const userDataStore = useUserDataStore();
 const { result } = storeToRefs(statsStore);
 const { t } = useI18n();
+const { trackShareCreated } = useAnalytics();
 
 const runtimeConfig = useRuntimeConfig();
 
@@ -150,9 +151,11 @@ const handleShare = async () => {
         url,
       });
       shareMessageKey.value = "results.share.messages.nativeShare";
+      trackShareCreated("native");
     } else {
       await copyToClipboard(url);
       shareMessageKey.value = "results.share.messages.linkCopied";
+      trackShareCreated("copy");
     }
   } catch (error) {
     console.error("Failed to share story", error);

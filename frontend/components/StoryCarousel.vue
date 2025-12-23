@@ -42,6 +42,8 @@ import {
   watch,
 } from "vue";
 
+const { trackStorySlideViewed } = useAnalytics();
+
 const props = defineProps({
   duration: {
     type: Number,
@@ -148,8 +150,27 @@ watch(
   { immediate: true },
 );
 
+const slideNames = [
+  "Intro1",
+  "Intro2",
+  "Emoji1",
+  "Emoji2",
+  "Words1",
+  "Words2",
+  "Words3",
+  "Conversation1",
+  "Conversation2",
+  "ShareInvite",
+];
+
+watch(activeIndex, (newIndex) => {
+  const slideName = slideNames[newIndex] || `Slide${newIndex}`;
+  trackStorySlideViewed(newIndex, slideName);
+});
+
 onMounted(() => {
   startLoop();
+  trackStorySlideViewed(0, slideNames[0]);
 });
 onBeforeUnmount(stopLoop);
 </script>

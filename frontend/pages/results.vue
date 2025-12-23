@@ -69,6 +69,7 @@ import { parseShareInfo } from "~/utils/sharing/param";
 import { useI18n } from "vue-i18n";
 
 const route = useRoute();
+const { trackResultsViewed } = useAnalytics();
 
 const statsStore = useStatsStore();
 
@@ -134,6 +135,11 @@ watch(
   },
   { immediate: true },
 );
+
+onMounted(() => {
+  const isShared = !!buildSearchFromQuery();
+  trackResultsViewed(isShared);
+});
 </script>
 
 <script lang="ts">

@@ -5,5 +5,9 @@
 </template>
 
 <script setup lang="ts">
+const { trackSubscriptionCanceled } = useAnalytics();
 
+onMounted(() => {
+  trackSubscriptionCanceled();
+});
 </script>

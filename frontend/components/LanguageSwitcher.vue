@@ -28,6 +28,7 @@ const { locale, setLocale } = useI18n();
 const router = useRouter();
 const route = useRoute();
 const switchLocalePath = useSwitchLocalePath();
+const { trackLanguageChanged } = useAnalytics();
 
 // 4) Selected is a ref<LocaleCode>
 const selected = ref<LocaleCode>(locale.value as LocaleCode);
@@ -78,6 +79,7 @@ const navigateToLocale = async (code: LocaleCode) => {
   const localePath = switchLocalePath(code);
   if (!localePath) return;
 
+  const fromLang = locale.value;
   const resolved = router.resolve(localePath);
 
   await setLocale(code);
@@ -86,6 +88,8 @@ const navigateToLocale = async (code: LocaleCode) => {
     query: { ...route.query },
     hash: route.hash || resolved.hash,
   });
+
+  trackLanguageChanged(fromLang, code);
 };
 
 const onChange = async (e: Event) => {
