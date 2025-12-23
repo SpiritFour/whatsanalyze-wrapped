@@ -8,9 +8,9 @@
       {{ t("results.share.description") }}
     </p>
 
-    <div class="flex flex-col gap-3 w-full mt-10">
+    <div class="flex flex-col gap-3 w-full mt-10 items-center relative z-30">
       <button
-        class="w-full rounded-full bg-emerald-400 text-black font-semibold py-3 px-6 shadow-lg shadow-emerald-500/40 hover:bg-emerald-300 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+        class="w-full max-w-xs rounded-full bg-emerald-400 text-black font-semibold py-3 px-6 shadow-lg shadow-emerald-500/40 hover:bg-emerald-300 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
         :disabled="isPreparing || !hasResult"
         @click="handleShare"
       >
@@ -19,7 +19,7 @@
       </button>
 
       <button
-        class="w-full rounded-full border border-white/30 py-3 px-6 font-semibold text-white hover:bg-white/10 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+        class="w-full max-w-xs rounded-full border border-white/30 py-3 px-6 font-semibold text-white hover:bg-white/10 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
         :disabled="isPreparing"
         @click="handleAnalyzeAnother"
       >
