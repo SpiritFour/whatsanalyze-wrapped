@@ -56,6 +56,7 @@
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { fetchSubscriptionCheckoutUrl } from "~/utils/subscription";
+import { logEvent } from "firebase/analytics";
 
 defineProps<{
   open: boolean;
@@ -68,6 +69,7 @@ const emit = defineEmits<{
 const isStarting = ref(false);
 const checkoutError = ref("");
 const { t } = useI18n();
+const { $analytics } = useNuxtApp();
 
 const handleClose = () => {
   if (isStarting.value) return;
@@ -80,6 +82,7 @@ const startSubscription = async () => {
 
   try {
     isStarting.value = true;
+    logEvent($analytics, "pro_click_limit_reached");
     const url = await fetchSubscriptionCheckoutUrl();
 
     if (!url) {

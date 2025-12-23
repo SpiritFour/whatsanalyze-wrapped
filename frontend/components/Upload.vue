@@ -53,10 +53,12 @@ import { sendFile } from "assets/workers";
 import { useStatsStore } from "~/store/stats";
 import { useSubscriptionStore } from "~/store/subscriptionStore";
 import { useUploadAccessStore } from "~/store/uploadAccessStore";
+import { logEvent } from "firebase/analytics";
 
 const statsStore = useStatsStore();
 const subscriptionStore = useSubscriptionStore();
 const uploadAccessStore = useUploadAccessStore();
+const { $analytics } = useNuxtApp();
 
 const { result, isLoading } = storeToRefs(statsStore);
 const { isSubscriptionValid } = storeToRefs(subscriptionStore);
@@ -80,6 +82,11 @@ const handleFile = async (e: Event): Promise<void> => {
     return;
   }
 
+  logEvent($analytics, "analyze_chat_start", {
+    file_size: file.size,
+    file_type: file.type,
+  });
+
   statsStore.$reset();
   isLoading.value = true;
 
@@ -89,12 +96,17 @@ const handleFile = async (e: Event): Promise<void> => {
     if (hasFreeUploadRemaining.value) {
       uploadAccessStore.markFreeUploadUsed();
     }
+    
+    logEvent($analytics, "analyze_chat_success");
 
     navigateTo({
       path: "/results",
     });
-  } catch (err) {
+  } catch (err: any) {
     console.error("Failed to process chat upload:", err);
+    logEvent($analytics, "analyze_chat_error", {
+      error_message: err.message || "Unknown error",
+    });
   } finally {
     isLoading.value = false;
     input.value = "";

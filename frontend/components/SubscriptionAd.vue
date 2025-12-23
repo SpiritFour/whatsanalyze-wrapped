@@ -130,10 +130,12 @@
 import { computed, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { fetchSubscriptionCheckoutUrl } from "~/utils/subscription";
+import { logEvent } from "firebase/analytics";
 
 const isStarting = ref(false);
 const checkoutError = ref("");
 const { t, tm } = useI18n();
+const { $analytics } = useNuxtApp();
 
 const freeFeatures = computed(
   () => tm("home.subscriptionAd.free.features") as string[]
@@ -148,6 +150,7 @@ const startSubscription = async () => {
 
   try {
     isStarting.value = true;
+    logEvent($analytics, "pro_click_landing");
 
     const url = await fetchSubscriptionCheckoutUrl();
 

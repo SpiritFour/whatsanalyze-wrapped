@@ -3,6 +3,8 @@ import type {Firestore} from "firebase/firestore";
 import {getFirestore} from "firebase/firestore";
 import {getFunctions,connectFunctionsEmulator} from "firebase/functions";
 import type {Functions} from "firebase/functions";
+import {getAnalytics} from "firebase/analytics";
+import type {Analytics} from "firebase/analytics";
 
 
 export default defineNuxtPlugin((nuxtApp) => {
@@ -15,6 +17,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     console.log("Currently active project:", firebaseOptions.projectId);
     const firestore = getFirestore(firebaseApp);
     const functions = getFunctions(firebaseApp);
+    const analytics = getAnalytics(firebaseApp);
 
     if (config.public.run_with_functions) {
         console.log("Running locally, connecting to local functions..")
@@ -23,11 +26,13 @@ export default defineNuxtPlugin((nuxtApp) => {
     }
     nuxtApp.provide("firestore", firestore);
     nuxtApp.provide("functions", functions);
+    nuxtApp.provide("analytics", analytics);
 });
 
 declare module "#app" {
     interface NuxtApp {
         $firestore: Firestore;
         $functions: Functions;
+        $analytics: Analytics;
     }
 }

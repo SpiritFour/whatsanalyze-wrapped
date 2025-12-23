@@ -51,12 +51,14 @@
 import { onMounted, ref } from "vue";
 import { httpsCallable } from "firebase/functions";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/vue/24/solid";
+import { logEvent } from "firebase/analytics";
 
 const route = useRoute();
 const router = useRouter();
 const loading = ref(false);
 const result = ref({} as unknown);
 const error = ref("");
+const { $analytics } = useNuxtApp();
 
 onMounted(() => {
   const session_id = route.query.session_id as string;
@@ -76,9 +78,19 @@ const _getCheckoutSession = async (sessionId: string) => {
     const { data } = await getCheckoutSession({ sessionId });
     console.log("data", data);
     result.value = data;
+
+    logEvent($analytics, "purchase", {
+      transaction_id: (data as any).id,
+      value: (data as any).amount_total ? (data as any).amount_total / 100 : 0,
+      currency: (data as any).currency || "USD",
+      items: [(data as any).subscription],
+    });
   } catch (err: any) {
     error.value = err.message || "Unknown error";
     console.error("Callable error:", err);
+    logEvent($analytics, "purchase_error", {
+      error_message: err.message || "Unknown error",
+    });
   } finally {
     loading.value = false;
   }

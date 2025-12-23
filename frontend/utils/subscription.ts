@@ -1,13 +1,17 @@
 import { httpsCallable } from "firebase/functions";
+import { logEvent } from "firebase/analytics";
 
 /**
  * Requests a Stripe Checkout URL for the default subscription plan.
  */
 export const fetchSubscriptionCheckoutUrl = async (): Promise<string | undefined> => {
+  const nuxtApp = useNuxtApp();
   const createCheckoutSession = httpsCallable(
-    useNuxtApp().$functions,
+    nuxtApp.$functions,
     "createCheckoutSession",
   );
+
+  logEvent(nuxtApp.$analytics, "begin_checkout");
 
   const config = useRuntimeConfig();
   const response = await createCheckoutSession({ priceId: config.public.stripePriceId });

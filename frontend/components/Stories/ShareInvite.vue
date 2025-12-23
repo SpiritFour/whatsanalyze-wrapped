@@ -51,11 +51,13 @@ import SoftOrbs from "~/components/Style/SoftOrbs.vue";
 import { useStatsStore } from "~/store/stats";
 import { useUserDataStore } from "~/store/userDataStore";
 import { serializeShareInfo } from "~/utils/sharing/param";
+import { logEvent } from "firebase/analytics";
 
 const statsStore = useStatsStore();
 const userDataStore = useUserDataStore();
 const { result } = storeToRefs(statsStore);
 const { t } = useI18n();
+const { $analytics } = useNuxtApp();
 
 const runtimeConfig = useRuntimeConfig();
 
@@ -144,6 +146,7 @@ const handleShare = async () => {
     const url = await prepareShareLink();
 
     if (canNativeShare.value && navigator.share) {
+      logEvent($analytics, "share_story", { method: "native" });
       await navigator.share({
         title: t("results.share.nativeShareTitle"),
         text: t("results.share.nativeShareText"),
@@ -151,6 +154,7 @@ const handleShare = async () => {
       });
       shareMessageKey.value = "results.share.messages.nativeShare";
     } else {
+      logEvent($analytics, "share_story", { method: "clipboard" });
       await copyToClipboard(url);
       shareMessageKey.value = "results.share.messages.linkCopied";
     }
