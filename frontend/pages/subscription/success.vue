@@ -57,6 +57,7 @@ const router = useRouter();
 const loading = ref(false);
 const result = ref({} as unknown);
 const error = ref("");
+const { trackSubscriptionCompleted } = useAnalytics();
 
 onMounted(() => {
   const session_id = route.query.session_id as string;
@@ -76,6 +77,7 @@ const _getCheckoutSession = async (sessionId: string) => {
     const { data } = await getCheckoutSession({ sessionId });
     console.log("data", data);
     result.value = data;
+    trackSubscriptionCompleted("stripe");
   } catch (err: any) {
     error.value = err.message || "Unknown error";
     console.error("Callable error:", err);
