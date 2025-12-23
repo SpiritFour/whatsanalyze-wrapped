@@ -67,9 +67,13 @@ const shareErrorKey = ref<string | null>(null);
 
 const hasResult = computed(() => Boolean(result.value));
 
-const canNativeShare = computed(
-  () => process.client && typeof navigator !== "undefined" && !!navigator.share,
-);
+const canNativeShare = computed(() => {
+  if (!process.client || typeof navigator === "undefined" || !navigator.share) {
+    return false;
+  }
+  const userAgent = navigator.userAgent.toLowerCase();
+  return /android|iphone|ipad|ipod/.test(userAgent);
+});
 
 const shareButtonLabel = computed(() =>
   canNativeShare.value
