@@ -28,6 +28,9 @@ export function validateOrigin(origin?: string): string {
     .split(",")
     .map((o) => o.trim());
 
+  // Always allow the main app domain
+  allowed.push("https://whatsanalyze-wrapped.web.app");
+
   // Check exact match first
   if (allowed.includes(origin)) {
     return origin;

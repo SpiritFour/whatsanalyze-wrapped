@@ -3,7 +3,7 @@ import {getStripe, proPriceId, stripeSecretKey, validateOrigin} from "./common";
 import * as logger from "firebase-functions/logger";
 
 export const createCheckoutSession = onCall(
-    {secrets: [stripeSecretKey]},
+    {secrets: [stripeSecretKey], cors: true},
     async (request) => {
         const stripe = getStripe();
 
