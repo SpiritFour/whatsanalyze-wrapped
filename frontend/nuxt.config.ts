@@ -36,7 +36,26 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "pinia-plugin-persistedstate/nuxt",
     "~/modules/firebase",
+    "@nuxtjs/sitemap",
   ],
+
+  site: {
+    url: "https://wrapped.whatsanalyze.com",
+  },
+
+  sitemap: {
+    urls: [
+      { loc: "/", priority: 1.0 },
+      { loc: "/en", priority: 0.9 },
+      { loc: "/de", priority: 0.9 },
+      { loc: "/es", priority: 0.9 },
+      { loc: "/fr", priority: 0.9 },
+      { loc: "/pt", priority: 0.9 },
+      { loc: "/it", priority: 0.9 },
+    ],
+    exclude: ["/results", "/subscription/**"],
+  },
+
   // there is no official nuxt3 firebase plugin anymore, so we implemented our own in modules/firebase.ts
   firebase: {
     dev: {

@@ -20,6 +20,7 @@
     "@firebase/firestore": "^4.9.2",
     "@nuxt/content": "2.13.4",
     "@nuxt/kit": "^3.20.1",
+    "@nuxtjs/sitemap": "^7.5.0",
     "@pinia/nuxt": "^0.9.0",
     "chart.js": "^4.5.1",
     "crypto-js": "^4.2.0",
@@ -43,13 +44,13 @@
   },
   "packageManager": "pnpm@9.15.3+sha512.1f79bc245a66eb0b07c5d4d83131240774642caaa86ef7d0434ab47c0d16f66b04e21e0c086eb61e62c77efc4d7f7ec071afad3796af64892fae66509173893a",
   "devDependencies": {
+    "@anthropic-ai/claude-code": "^2.0.42",
     "@heroicons/vue": "^2.2.0",
     "@nuxtjs/i18n": "^9.5.6",
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@types/crypto-js": "^4.2.2",
     "eslint": "^9.39.1",
     "nuxi": "^3.30.0",
-    "prettier": "^3.6.2",
-    "@anthropic-ai/claude-code": "^2.0.42"
+    "prettier": "^3.6.2"
   }
 }
