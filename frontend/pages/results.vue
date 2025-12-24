@@ -52,6 +52,7 @@
 
     <StoriesEmoji1 />
     <StoriesEmoji2 />
+    <StoriesEmoji3 />
 
     <StoriesWords1 />
     <StoriesWords2 />

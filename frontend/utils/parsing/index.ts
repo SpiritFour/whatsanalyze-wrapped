@@ -8,6 +8,7 @@ import JSZip from "jszip";
 import * as whatsapp from "whatsapp-chat-parser";
 import { z } from "zod";
 import { getFirstMessages } from "~/utils/parsing/analyzer/firstMessagesAnalyzer";
+import { getEmojiOverTime } from "~/utils/parsing/analyzer/emojiOverTimeAnalyzer";
 import { getTargetYear } from "~/utils/dateUtils";
 
 class Parser<A extends Record<string, (messages: Message[]) => any>> {
@@ -111,6 +112,7 @@ export const parser = new Parser({
   getTimeData,
   getActiveDates,
   getFirstMessages,
+  getEmojiOverTime,
 });
 
 export type ParserResult = Awaited<ReturnType<typeof parser.run>>;

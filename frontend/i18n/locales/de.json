@@ -364,7 +364,10 @@
     "emoji": {
       "topTitle": "Deine meistgenutzten Emojis",
       "messageTitle": "Nachricht mit den meisten Emojis",
-      "from": "von"
+      "from": "von",
+      "overTime": {
+        "stackedTitle": "Emoji-Mix im Zeitverlauf"
+      }
     },
     "words": {
       "banner": {

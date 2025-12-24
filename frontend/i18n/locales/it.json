@@ -364,7 +364,10 @@
     "emoji": {
       "topTitle": "I tuoi emoji più usati",
       "messageTitle": "Messaggio con più emoji",
-      "from": "da"
+      "from": "da",
+      "overTime": {
+        "stackedTitle": "Mix di emoji nel tempo"
+      }
     },
     "words": {
       "banner": {
