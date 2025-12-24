@@ -28,6 +28,10 @@ export function validateOrigin(origin?: string): string {
     .split(",")
     .map((o) => o.trim());
 
+  // Always allow the main app domain and PR previews
+  allowed.push("https://whatsanalyze-wrapped.web.app");
+  allowed.push("https://whatsanalyze-wrapped--pr-*.web.app");
+
   // Check exact match first
   if (allowed.includes(origin)) {
     return origin;

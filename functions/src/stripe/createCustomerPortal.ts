@@ -4,7 +4,7 @@ import * as logger from "firebase-functions/logger";
 import {db} from "../firebase";
 
 export const createCustomerPortal = onCall(
-    {secrets: [stripeSecretKey]},
+    {secrets: [stripeSecretKey], cors: true},
     async (request) => {
         const stripe = getStripe();
 

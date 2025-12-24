@@ -47,8 +47,6 @@ const stepStyle = (i: number) => {
 };
 
 onMounted(() => {
-  // 🎵 Play the whoosh sound
-
   // Animate the top and bottom sliders
   if (topSlider.value && bottomSlider.value) {
     let transformTop = ["translateX(2000px)", "translateX(0)"];
@@ -80,17 +78,6 @@ onMounted(() => {
       { duration, easing: "ease-out" },
     );
   }
-  // Play whoosh sound
-  setTimeout(() => {
-    if (reverse) return;
-
-    const whoosh = new Audio("/sounds/whoosh.mp3");
-    whoosh.volume = 0.5;
-    whoosh.playbackRate = 0.5;
-    whoosh.play().catch(() => {
-      console.warn("Autoplay blocked — user interaction required.");
-    });
-  }, 100);
 });
 </script>
 
