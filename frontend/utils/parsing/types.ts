@@ -66,3 +66,13 @@ export interface ActiveDates {
   dayWithMostMessages: { day: string | null; count: number };
   weekWithMostMessages: { week: string | null; count: number };
 }
+
+export interface EmojiMonthData {
+  emoji: string;
+  count: number;
+}
+
+export interface EmojiOverTimeAnalysis {
+  sortedMonths: string[];
+  monthlyTop5: Record<string, EmojiMonthData[]>;
+}

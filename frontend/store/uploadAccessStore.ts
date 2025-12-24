@@ -22,6 +22,6 @@ export const useUploadAccessStore = defineStore("uploadAccess", {
     },
   },
   persist: {
-    storage: process.client ? localStorage : undefined,
+    storage: typeof window !== "undefined" ? localStorage : undefined,
   },
 });

@@ -55,6 +55,6 @@ export const useSubscriptionStore = defineStore("subscription", {
     },
   },
   persist: {
-    storage: process.client ? localStorage : undefined,
+    storage: typeof window !== "undefined" ? localStorage : undefined,
   },
 });
