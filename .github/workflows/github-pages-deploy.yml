@@ -1,4 +1,5 @@
 name: Production Deploy (Manual)
+run-name: "Production Deploy - ${{ github.sha }}"
 
 on:
   workflow_dispatch:
@@ -44,3 +45,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Add commit link to summary
+        run: |
+          echo "## Deployed Commit" >> $GITHUB_STEP_SUMMARY
+          echo "[${{ github.sha }}](${{ github.server_url }}/${{ github.repository }}/commit/${{ github.sha }})" >> $GITHUB_STEP_SUMMARY
