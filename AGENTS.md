@@ -26,6 +26,43 @@ Commits follow the existing short, imperative style (`fix ts / ignore`, `emojii 
 ## Security & Configuration Tips
 Runtime config derives from `NUXT_ENV_LOCAL`, `BASE_URL`, and secrets such as `SENTRY_AUTH_TOKEN`; inject them via your shell or `.env` and never commit live credentials. Treat uploaded chats as sensitive: avoid logging message contents and clear temporary exports after manual runs.
 
+## Beads Multi-Agent Coordination (Task Locking)
+
+When multiple coding agents run in parallel, use this exact protocol to avoid collisions:
+
+1. **Pick only unassigned work**
+   - Use `bd ready --unassigned --json`
+   - Do **not** pick items already assigned or `in_progress`
+
+2. **Atomically claim before coding**
+   - Use `bd update <issue-id> --claim`
+   - This sets assignee + `in_progress` in one step
+
+3. **Announce ownership**
+   - Add a start note: `bd comments add <issue-id> "Starting work: <scope>"`
+   - Include files/components you plan to touch
+
+4. **One agent = one active task**
+   - Never work two tasks concurrently in the same repo
+   - Finish or hand off before claiming another
+
+5. **Use merge slot for integration-critical changes**
+   - Merge slot exists as `vibecode-merge-slot`
+   - Acquire before high-conflict merges/rebases, release after:
+     - `bd merge-slot acquire`
+     - `bd merge-slot release`
+
+6. **Close the loop**
+   - On completion, add result summary + artifact links
+   - Update status to `closed` only after acceptance criteria are met
+
+7. **If collision happens anyway**
+   - First claimer keeps task
+   - Second agent immediately unassigns itself / switches to another unassigned issue
+   - Record handoff note in comments
+
+**Important:** `bd ready` intentionally includes both `open` and `in_progress`. For agent picking, always use `--unassigned`.
+
 ## Landing the Plane (Session Completion)
 
 **When ending a work session**, you MUST complete ALL steps below. Work is NOT complete until `git push` succeeds.
