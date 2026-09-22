@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WhatsApp Wrapped has moved</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="https://whatsanalyze.com/wrapped" />
+    <script>
+      // Wrapped now lives on the main site. Tagged so GA4 attributes the
+      // arrivals to this retired domain instead of counting them as direct.
+      (function () {
+        var UTM =
+          "utm_source=wrapped_legacy&utm_medium=referral&utm_campaign=wrapped_cutover";
+        // Share links carry uuid/iv/key in the query string, and the key is
+        // what decrypts the chat -- dropping the query would load a page that
+        // silently never renders.
+        var path = location.pathname.replace(/\/+$/, "");
+        var dest = path === "/results" ? "/wrapped/results" : "/wrapped";
+        var query = location.search.replace(/^\?/, "");
+        location.replace(
+          "https://whatsanalyze.com" +
+            dest +
+            "?" +
+            (query ? query + "&" : "") +
+            UTM +
+            location.hash
+        );
+      })();
+    </script>
+    <meta
+      http-equiv="refresh"
+      content="3; url=https://whatsanalyze.com/wrapped?utm_source=wrapped_legacy&utm_medium=referral&utm_campaign=wrapped_cutover"
+    />
+  </head>
+  <body>
+    <p>
+      WhatsApp Wrapped now lives at
+      <a
+        href="https://whatsanalyze.com/wrapped?utm_source=wrapped_legacy&utm_medium=referral&utm_campaign=wrapped_cutover"
+        >whatsanalyze.com/wrapped</a
+      >.
+    </p>
+  </body>
+</html>
